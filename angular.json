@@ -88,14 +88,17 @@
           "defaultConfiguration": "development"
         },
         "test": {
-          "builder": "@angular/build:unit-test"
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "./tsconfig.spec.json"
+          }
         }
       }
     },
     "techtonics-ui": {
       "projectType": "library",
       "root": "projects/techtonics-ui",
-      "sourceRoot": "projects/techtonics-ui/src",
+      "sourceRoot": "projects/techtonics-ui",
       "prefix": "lib",
       "architect": {
         "build": {
