@@ -1,0 +1,104 @@
+<nav
+  class="vertical-nav"
+  [class.sticky]="sticky()"
+  [class.left]="side() === 'left'"
+  [class.right]="side() === 'right'"
+  [class.collapsed]="collapsed()"
+  [class.hidden]="visible() == false"
+  [ngClass]="componentClass()">
+  <!-- COLLAPSE TOGGLE -->
+  <button class="collapse-toggle" (click)="toggleCollapsed()">
+    @if (collapseToggleIcon()) {
+      <i [class]="collapseToggleIcon()"></i>
+    } @else {
+      @if (!collapsed()) {
+        <span class="collapse-icon"> ‹ </span>
+      }
+      @if (collapsed()) {
+        <span class="collapse-icon"> › </span>
+      }
+    }
+  </button>
+
+  <ul class="nav-list">
+    @for (item of items(); track item) {
+      <li class="nav-item">
+        <!-- MAIN ITEM -->
+        <button
+          class="nav-link"
+          [class.active]="isItemActive(item)"
+          (click)="onItemClick(item, $event)"
+          [attr.data-nav-trigger]="item.id"
+          uiTooltip="{{ collapsed() ? item.label : null }}">
+          @if (collapsed()) {
+            <span class="nav-icon">
+              @if (item.icon) {
+                <i [ui-icon]="item.icon"></i>
+              } @else {
+                {{ getAbbrev(item.label) }}
+              }
+            </span>
+          }
+          @if (!collapsed()) {
+            <span class="nav-label">
+              @if (itemTemplate()) {
+                <ng-container [ngTemplateOutlet]="itemTemplate()" [ngTemplateOutletContext]="{ $implicit: item }">
+                </ng-container>
+              } @else {
+                @if (item.children?.length && isGroupOpen(item.id)) {
+                  <span class="expander">▾</span>
+                  @if (item.icon) {
+                    <i [ui-icon]="item.icon" class="expanded-item-icon"></i>
+                  }
+                  {{ item.label }}
+                } @else {
+                  @if (item.children?.length && !isGroupOpen(item.id)) {
+                    <span class="expander">▸</span>
+                    @if (item.icon) {
+                      <i [ui-icon]="item.icon" class="expanded-item-icon"></i>
+                    }
+                    {{ item.label }}
+                  } @else {
+                    @if (item.icon) {
+                      <i [ui-icon]="item.icon" class="expanded-item-icon"></i>
+                    }
+                    {{ item.label }}
+                  }
+                }
+              }
+            </span>
+          }
+        </button>
+        <!-- CHILDREN (EXPANDED MODE) -->
+        @if (!collapsed() && item.children?.length) {
+          <ul class="nav-children" [class.open]="isGroupOpen(item.id)">
+            @for (child of item.children; track child) {
+              <li class="nav-child" [class.active]="isItemActive(child)" (click)="onItemClick(child, $event)">
+                @if (groupHeaderTemplate()) {
+                  <ng-container
+                    [ngTemplateOutlet]="groupHeaderTemplate()"
+                    [ngTemplateOutletContext]="{ $implicit: child }">
+                  </ng-container>
+                } @else {
+                  {{ child.label }}
+                }
+              </li>
+            }
+          </ul>
+        }
+        <!-- POPOVER (COLLAPSED MODE) -->
+        @if (collapsed() && item.children?.length && openPopoverId() === item.id) {
+          <div class="nav-popover" [attr.data-nav-popover]="item.id">
+            <ul>
+              @for (child of item.children; track child) {
+                <li class="nav-popover-item" [class.active]="isItemActive(child)" (click)="onItemClick(child, $event)">
+                  {{ child.label }}
+                </li>
+              }
+            </ul>
+          </div>
+        }
+      </li>
+    }
+  </ul>
+</nav>

@@ -1,0 +1,89 @@
+:host {
+  --radio-primary: var(--primary-light, #6200ee);
+  --radio-neutral: var(--border-strong, #757575);
+  --radio-disabled: var(--border, #cccccc);
+}
+
+/* Accessible Tapping Outer Label */
+.radio-wrapper {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+
+  padding: 0 8px;
+  user-select: none;
+}
+
+.in-group.radio-wrapper {
+  min-height: 2rem;
+}
+
+.radio-wrapper.is-disabled {
+  cursor: not-allowed;
+  color: var(--radio-disabled);
+}
+
+/* Hide the native element but preserve visibility for keyboard accessibility */
+.real-radio {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Branded Custom Radio Circle Visuals */
+.custom-radio {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--radio-neutral);
+  border-radius: 50%;
+  margin-right: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.custom-radio::after {
+  content: '';
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: transparent;
+  transform: scale(0);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Checked State Expressions using the Custom Color Theme */
+.is-checked .custom-radio {
+  border-color: var(--radio-primary);
+  background-color: var(--radio-primary);
+  transition: transform 0.2s ease-in-out;
+}
+
+.is-checked .custom-radio::after {
+  background-color: var(--bg);
+  border: 2px solid var(--radio-primary);
+  transform: scale(1);
+}
+
+/* Visual update when the item is checked AND disabled */
+.is-checked.is-disabled .custom-radio {
+  border-color: var(--radio-disabled);
+  background-color: var(--radio-disabled);
+}
+
+.is-checked.is-disabled .custom-radio::after {
+  background-color: var(--radio-disabled);
+}
+
+.is-disabled .custom-radio {
+  border-color: var(--radio-disabled);
+}
+
+/* Keyboard focus indicator indicator */
+.real-radio:focus-visible + .custom-radio {
+  outline: 2px solid var(--radio-primary);
+  outline-offset: 3px;
+}

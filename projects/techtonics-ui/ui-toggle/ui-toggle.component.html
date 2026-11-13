@@ -1,0 +1,30 @@
+<div class="field-container" [hidden]="hidden()">
+  <div
+    #inputEl
+    [id]="name()"
+    [hidden]="hidden()"
+    tabindex="0"
+    class="toggle"
+    [class.on]="value()"
+    [class.disabled]="disabled()"
+    [class.is-dirty]="dirty()"
+    [class.is-touched]="touched()"
+    [class.is-invalid]="invalid()"
+    [class.is-pending]="pending()"
+    [ngClass]="componentClass()"
+    (click)="toggle()"
+    (keydown.space)="toggle()"
+    (keydown.enter)="toggle()">
+    <div class="knob"></div>
+  </div>
+
+  <ui-form-error [errors]="normalizedErrors()" [visible]="shouldShowErrors()"></ui-form-error>
+
+  @if (disabled() && disabledReasons().length) {
+    <div class="disabled-reasons">
+      @for (reason of disabledReasons(); track reason) {
+        <small>{{ reason.message }}</small>
+      }
+    </div>
+  }
+</div>

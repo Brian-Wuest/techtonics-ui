@@ -1,0 +1,16 @@
+<button
+  [attr.type]="type()"
+  class="btn"
+  [class.btn-solid]="variant() === 'solid'"
+  [class.btn-outline]="variant() === 'outline'"
+  [class.btn-ghost]="variant() === 'ghost'"
+  [class.btn-icon]="variant() === 'icon'"
+  [class.hidden]="visible() == false"
+  [disabled]="disabled()"
+  [ngClass]="colorClass()"
+  (click)="onClick($event)"
+  [ui-icon]="computedIconClass()">
+  @if (variant() != 'icon') {
+    <ng-content></ng-content>
+  }
+</button>

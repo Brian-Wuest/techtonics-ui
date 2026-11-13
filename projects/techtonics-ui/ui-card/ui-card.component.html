@@ -1,0 +1,12 @@
+<div class="card elevation-1" [ngClass]="componentClass()" [class.hidden]="visible() == false">
+  <div class="header" (click)="toggle()">
+    <span class="chevron" class="card-title-opener">{{ open() ? '▾' : '▸' }}</span>
+    <span class="card-title-container"><ng-content select="[card-title]"></ng-content></span>
+  </div>
+
+  @if (open()) {
+    <div class="card-body">
+      <ng-content></ng-content>
+    </div>
+  }
+</div>

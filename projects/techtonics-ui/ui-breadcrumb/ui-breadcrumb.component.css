@@ -1,0 +1,28 @@
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.crumb {
+  cursor: pointer;
+  color: var(--primary-light);
+  white-space: nowrap;
+}
+
+.crumb:hover {
+  text-decoration: underline;
+}
+
+.separator {
+  color: var(--text-secondary);
+  user-select: none;
+}
+
+.default-separator {
+  font-size: 1.7rem;
+  top: 1px;
+  position: relative;
+  line-height: 1rem;
+}

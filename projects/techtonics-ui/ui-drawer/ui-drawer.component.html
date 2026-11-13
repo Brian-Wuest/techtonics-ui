@@ -1,0 +1,45 @@
+@if (isOpen()) {
+  <!-- Backdrop -->
+  <div class="drawer-backdrop" [class.active]="isAnimated()" (click)="onBackdropClick()"></div>
+
+  <!-- Drawer Shell -->
+  <div
+    #drawerContainer
+    class="drawer-pane"
+    [class]="'position-' + position()"
+    [class.active]="isAnimated()"
+    [style.width]="
+      (position() == 'left' || position() == 'right') && customSize() ? customSize() : null
+    "
+    [style.height]="
+      (position() == 'top' || position() == 'bottom') && customSize() ? customSize() : null
+    "
+    role="dialog"
+    aria-modal="true"
+    tabindex="-1">
+    <header class="drawer-header">
+      <div class="drawer-header-content">
+        @if (headerTemplate()) {
+          <ng-container *ngTemplateOutlet="headerTemplate()!"></ng-container>
+        } @else {
+          <h2>Drawer Title</h2>
+        }
+      </div>
+      <button class="drawer-close-btn" (click)="closeDrawer()" aria-label="Close drawer">
+        &times;
+      </button>
+    </header>
+
+    <section class="drawer-body">
+      @if (bodyTemplate()) {
+        <ng-container *ngTemplateOutlet="bodyTemplate()!"></ng-container>
+      }
+    </section>
+
+    @if (footerTemplate()) {
+      <footer class="drawer-footer">
+        <ng-container *ngTemplateOutlet="footerTemplate()!"></ng-container>
+      </footer>
+    }
+  </div>
+}

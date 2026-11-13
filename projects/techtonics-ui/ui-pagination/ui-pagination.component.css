@@ -1,0 +1,25 @@
+.pagination {
+  display: flex;
+  gap: 0.25rem;
+}
+
+button.active {
+  background: var(--primary-light);
+  color: var(--primary-btn-text);
+
+  &:hover:not(:disabled) {
+    background: var(--primary-hover);
+    color: var(--primary-btn-text);
+  }
+}
+
+:host-context(:root[data-theme='dark']) {
+  button.active {
+    background: var(--primary);
+    color: var(--primary-btn-text);
+    &:hover:not(:disabled) {
+      color: var(--primary-btn-text);
+      background-color: var(--primary-hover);
+    }
+  }
+}

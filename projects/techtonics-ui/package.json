@@ -1,0 +1,14 @@
+{
+  "name": "techtonics-ui",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "22.2.2",
+    "@angular/core": "22.2.2",
+    "@ng-icons/core": "36.1.0",
+    "@ng-icons/tabler-icons": "36.1.0"
+  },
+  "dependencies": {
+    "tslib": "2.8.1"
+  },
+  "sideEffects": false
+}

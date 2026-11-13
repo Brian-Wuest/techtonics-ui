@@ -1,0 +1,203 @@
+<div class="grid-wrapper-container" [class.hidden]="visible() == false">
+  <!-- Custom Action & Title Strip Panel Area -->
+  @if (titleBarTemplate()) {
+    <div class="table-title-bar">
+      <ng-container *ngTemplateOutlet="titleBarTemplate()"></ng-container>
+    </div>
+  }
+
+  <!-- Central Structured Data Node Table View -->
+  <div class="grid-scroll-viewport">
+    <table
+      class="custom-table"
+      [attr.aria-label]="ariaLabel || 'Data Grid Table'"
+      [attr.aria-multiselectable]="selectionMode() === 'multiple' ? 'true' : 'false'">
+      <thead>
+        <tr role="row">
+          <!-- Section 2 Component Integration: Explicit Selection Column Header Checkbox -->
+          @if (selectionMode() === 'multiple') {
+            <th class="checkbox-column sticky-header" role="columnheader">
+              <ui-checkbox
+                [checked]="isAllPageSelected()"
+                (changed)="toggleAllRowsOnPage()"
+                [ariaLabel]="
+                  isAllPageSelected() ? 'Deselect all rows on current page' : 'Select all rows on current page'
+                "></ui-checkbox>
+            </th>
+          } @else if (selectionMode() === 'single') {
+            <th class="checkbox-column sticky-header" role="columnheader">
+              <!--This span is for screen-readers only-->
+              <span class="sr-only">{{ rowSelectionTextForScreenReader() }}</span>
+            </th>
+          }
+
+          <!-- Dynamic Interated Framework Context Metadata Headers -->
+          @for (col of visibleColumns(); track col.field(); let i = $index) {
+            <th
+              #th
+              role="columnheader"
+              [attr.aria-sort]="getAriaSortState(col.field())"
+              [id]="col.field()"
+              [class.sortable]="col.sortable()"
+              [class.draggable-column]="reorderableColumns()"
+              [class.drag-over-left]="reorderableColumns() && activeDropTargetIndex() === i && dropSide() === 'left'"
+              [class.drag-over-right]="reorderableColumns() && activeDropTargetIndex() === i && dropSide() === 'right'"
+              [attr.draggable]="reorderableColumns() ? 'true' : null"
+              (dragstart)="onDragStart(i)"
+              (dragover)="onDragOver(i, $event)"
+              (dragleave)="onDragLeave()"
+              (drop)="onDrop(i)"
+              class="sticky-header">
+              <div
+                class="header-content"
+                (click)="onSort(col, $event)"
+                [attr.tabindex]="col.sortable() ? '0' : null"
+                (keydown.enter)="col.sortable() && onSort(col, $event)"
+                (keydown.space)="$event.preventDefault(); col.sortable() && onSort(col, $event)"
+                [attr.aria-label]="getColumnHeaderAriaLabel(col)">
+                <span>{{ col.header() || col.field() }}</span>
+                <span
+                  *ngIf="col.sortable() && getSortMeta(col.field()) as meta"
+                  class="sort-indicator-badge"
+                  aria-hidden="true">
+                  {{ meta.order === 1 ? '▲' : '▼' }}
+                  <small *ngIf="sortMetaState().length > 1">
+                    {{ sortMetaState().indexOf(meta) + 1 }}
+                  </small>
+                </span>
+              </div>
+              <div class="resize-handle" (mousedown)="initResize($event, th)" aria-hidden="true"></div>
+            </th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @if (paginatedData().length > 0) {
+          <!-- Note: track by row.id, row.sku, or the fallback 'row' object reference pointer itself -->
+          @for (row of paginatedData(); track row.sku || row.id || row; let ri = $index) {
+            <tr
+              role="row"
+              [attr.aria-selected]="isRowSelected(row) ? 'true' : 'false'"
+              [class.row-selected]="isRowSelected(row)"
+              [class.clickable-row]="isClickable()"
+              (click)="handleRowItemClick(row, $event)">
+              <!-- Section 2 Component Integration: Body Row Checkbox Toggle Element -->
+              <td *ngIf="selectionMode() !== 'none'" class="checkbox-column" role="gridcell">
+                @if (selectionMode() == 'single') {
+                  <ui-radio-button
+                    [checked]="isRowSelected(row)"
+                    (change)="toggleRowSelection(row)"
+                    [attr.aria-label]="
+                      isRowSelected(row) ? 'Deselect current row' : 'Select current row'
+                    "></ui-radio-button>
+                } @else {
+                  <input
+                    [type]="'checkbox'"
+                    [class.accessible-checkbox]="selectionMode() === 'multiple'"
+                    [checked]="isRowSelected(row)"
+                    (change)="toggleRowSelection(row)"
+                    [attr.aria-label]="isRowSelected(row) ? 'Deselect current row' : 'Select current row'" />
+                }
+              </td>
+
+              <!-- Standard and Templated Data Cells -->
+              @for (col of visibleColumns(); track col.field(); let colIndex = $index) {
+                <td
+                  role="gridcell"
+                  [attr.aria-labelledby]="col.field()"
+                  (click)="onCellClick(ri, col)"
+                  [class.invalid-cell-border]="hasCellValidationError(ri, col.field())"
+                  [attr.aria-invalid]="hasCellValidationError(ri, col.field()) ? 'true' : null">
+                  @if (editingCell()?.rowIndex === ri && editingCell()?.field === col.field()) {
+                    <input
+                      type="text"
+                      [value]="
+                        hasCellValidationError(ri, col.field())
+                          ? invalidCellValues().get(getCellErrorKey(ri, col.field()))
+                          : row[col.field()]
+                      "
+                      data-lpignore="true"
+                      data-1p-ignore
+                      autocomplete="off"
+                      (blur)="onEditBlur(row, col.field(), ri, $event)"
+                      (keydown.enter)="onEditBlur(row, col.field(), ri, $event)"
+                      class="cell-editor"
+                      [attr.aria-label]="'Edit ' + (col.header || col.field)"
+                      [attr.aria-describedby]="
+                        hasCellValidationError(ri, col.field()) ? getCellErrorKey(ri, col.field()) : null
+                      "
+                      autofocus />
+                  } @else {
+                    <div class="cell-display-content-wrapper">
+                      <div
+                        [attr.tabindex]="col.editable() ? '0' : null"
+                        (keydown.enter)="col.editable() && onCellClick(ri, col)"
+                        [attr.aria-label]="
+                          col.editable() ? 'Click or press enter to edit ' + (col.header || col.field) : null
+                        "
+                        class="focusable-cell-content-track">
+                        @if (col.template()) {
+                          <!--This allows a column's template to get the row and column context-->
+                          <ng-container
+                            *ngTemplateOutlet="
+                              col.template();
+                              context: {
+                                $implicit: hasCellValidationError(ri, col.field())
+                                  ? invalidCellValues().get(getCellErrorKey(ri, col.field()))
+                                  : row[col.field()],
+                                row: row,
+                                column: col,
+                                rowIndex: ri,
+                                colIndex: colIndex,
+                              }
+                            "></ng-container>
+                        } @else {
+                          {{
+                            hasCellValidationError(ri, col.field())
+                              ? invalidCellValues().get(getCellErrorKey(ri, col.field()))
+                              : row[col.field()]
+                          }}
+                        }
+                      </div>
+
+                      @if (hasCellValidationError(ri, col.field())) {
+                        <!-- Adds a floating validation message indicator tooltips -->
+                        <span
+                          [id]="getCellErrorKey(ri, col.field())"
+                          class="validation-error-badge"
+                          role="alert"
+                          [attr.title]="getCellErrorMessage(ri, col.field())">
+                          <i class="warning-text-color {{ validationErrorIconClass() }}"></i>
+                        </span>
+                      }
+                    </div>
+                  }
+                </td>
+              }
+            </tr>
+          }
+        } @else {
+          <tr role="row">
+            <!-- Calculates colspan explicitly to fill the screen perfectly -->
+            <td
+              [attr.colspan]="visibleColumns().length + (selectionMode() !== 'none' ? 1 : 0)"
+              class="empty-table-cell"
+              role="gridcell">
+              @if (emptyStateTemplate()) {
+                <ng-container *ngTemplateOutlet="emptyStateTemplate()"></ng-container>
+              } @else {
+                <div class="default-empty-msg" role="status">{{ defaultEmptyMessage() }}</div>
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  @if (usePaginator()) {
+    <div class="table-footer-paginator-zone">
+      <ui-pagination #gridPaginator (rowsPerPageChanged)="onRowsPerPageChanged($event)"></ui-pagination>
+    </div>
+  }
+</div>

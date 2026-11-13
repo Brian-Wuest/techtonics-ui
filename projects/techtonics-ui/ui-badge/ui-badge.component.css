@@ -1,0 +1,23 @@
+.badge {
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.badge-success {
+  background: var(--success-soft);
+  color: var(--success);
+}
+.badge-warning {
+  background: var(--warning-soft);
+  color: var(--warning-text-color);
+}
+.badge-error {
+  background: var(--error-soft);
+  color: var(--error);
+}
+.badge-info {
+  background: var(--info-soft);
+  color: var(--info);
+}

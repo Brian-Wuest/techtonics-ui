@@ -1,0 +1,15 @@
+select {
+  background: var(--surface);
+  color: var(--text-primary);
+  border: var(--border);
+  border-radius: var(--radius-md);
+
+  option {
+    background: var(--surface);
+    color: var(--text-primary);
+
+    &:hover {
+      background-color: var(--bg-hover);
+    }
+  }
+}

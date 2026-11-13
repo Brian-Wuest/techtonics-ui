@@ -1,0 +1,25 @@
+<label
+  class="radio-wrapper"
+  [class.in-group]="group != null"
+  [class.is-checked]="checked()"
+  [class.is-disabled]="isDisabled()"
+  [ngClass]="componentClass()"
+  [hidden]="hidden()">
+  <input
+    #radioInput
+    [id]="name()"
+    [name]="name()"
+    type="radio"
+    class="real-radio"
+    [value]="value()"
+    [checked]="checked()"
+    [disabled]="isDisabled()"
+    [attr.tabindex]="tabIndex()"
+    [class.is-dirty]="dirty()"
+    [class.is-touched]="touched()"
+    (change)="onSelect($event)" />
+  <span class="custom-radio"></span>
+  <span class="radio-label">
+    <ng-content></ng-content>
+  </span>
+</label>

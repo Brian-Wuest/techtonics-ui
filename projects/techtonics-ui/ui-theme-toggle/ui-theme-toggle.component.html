@@ -1,0 +1,7 @@
+<div class="theme-toggle-container">
+  <ui-toggle
+    [ui-icon]="isDarkMode() ? 'ti ti-moon' : 'ti ti-sun'"
+    [ngModel]="isDarkMode()"
+    (ngModelChange)="toggleTheme()"
+    [disabled]="disabled()"></ui-toggle>
+</div>

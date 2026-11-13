@@ -1,0 +1,31 @@
+@if (open()) {
+  <div class="modal-backdrop" (click)="backdropClicked($event)">
+    <div
+      class="modal"
+      [class.x-small]="size() == 'x-small'"
+      [class.small]="size() == 'small'"
+      [class.medium]="size() == 'medium'"
+      [class.large]="size() == 'large'"
+      [class.x-large]="size() == 'x-large'"
+      [ngClass]="modalClass()"
+      #modalContainer
+      tabindex="-1"
+      role="dialog"
+      aria-modal="true"
+      (keydown)="modalKeyDown($event)"
+      (click)="mainModalClicked($event)">
+      <div class="modal-header">
+        <ng-content select="[modal-title]"></ng-content>
+        <button class="btn-icon modal-close" (click)="close.emit()">×</button>
+      </div>
+
+      <div class="modal-body">
+        <ng-content select="[modal-body]"></ng-content>
+      </div>
+
+      <div class="modal-footer">
+        <ng-content select="[modal-footer]"></ng-content>
+      </div>
+    </div>
+  </div>
+}

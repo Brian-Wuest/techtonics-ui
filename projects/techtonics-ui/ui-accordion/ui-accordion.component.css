@@ -1,0 +1,136 @@
+/* --- Light Theme Design Variables --- */
+:host {
+  --acc-header-bg: var(--bg-dark);
+  --acc-header-hover: var(--bg-hover);
+  --acc-bg: var(--container-content);
+  --acc-border: var(--border);
+  --acc-text-main: var(--text-primary);
+  --acc-text-muted: var(--text-muted);
+  --acc-btn-bg: var(--primary);
+  --acc-btn-text: var(--primary-btn-text);
+  --acc-btn-hover: var(--primary-hover);
+
+  display: block;
+}
+
+/* --- Dark Theme Trigger Condition --- */
+:host-context(:root[data-theme='dark']) {
+  --acc-header-bg: var(--bg-dark);
+  --acc-header-hover: var(--bg-hover);
+  --acc-bg: var(--surface-raised);
+  --acc-border: var(--border);
+  --acc-text-main: var(--text-primary);
+  --acc-text-muted: var(--text-muted);
+  --acc-btn-bg: var(--primary);
+  --acc-btn-text: var(--primary-btn-text);
+  --acc-btn-hover: var(--primary-hover);
+}
+
+/* --- Action Controls --- */
+.accordion-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.accordion-actions button {
+  background-color: var(--acc-btn-bg);
+  color: var(--acc-btn-text);
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.accordion-actions button:hover {
+  background-color: var(--acc-btn-hover);
+}
+
+/* --- Main Accordion Structure --- */
+.accordion-container {
+  border: 1px solid var(--acc-border);
+  border-radius: 8px;
+  background-color: var(--acc-bg);
+  overflow: hidden;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s;
+}
+
+.accordion-item {
+  border-bottom: 1px solid var(--acc-border);
+}
+.accordion-item:last-child {
+  border-bottom: none;
+}
+
+/* --- Header & Layout Styles --- */
+.accordion-header {
+  padding: 14px 18px;
+  background-color: var(--acc-header-bg);
+  color: var(--acc-text-main);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  transition: background-color 0.2s;
+}
+.accordion-header:hover {
+  background-color: var(--acc-header-hover);
+}
+
+/* --- Chevron Keyframes --- */
+/* Note: This creates a chevron using borders and isn't actually any text! */
+.accordion-icon {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--acc-text-muted);
+  border-bottom: 2px solid var(--acc-text-muted);
+  transform: rotate(-45deg);
+  /* The chevron will bounce playfully when it spins */
+  transition: transform 0.45s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}
+.accordion-item.expanded .accordion-icon {
+  transform: rotate(45deg);
+}
+
+/* --- The Smooth Height Transition Engine --- */
+.accordion-body-wrapper {
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  /* Transitions max-height, opacity, and visibility smoothly together */
+  transition:
+    max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.45s ease,
+    visibility 0.45s ease;
+}
+
+/* When expanded state is true on item card */
+.accordion-item.expanded .accordion-body-wrapper {
+  max-height: 1000px; /* Safe upper limit for rich text content blocks */
+  opacity: 1;
+  visibility: visible;
+}
+
+.accordion-body {
+  color: var(--acc-text-main);
+  background-color: var(--acc-bg);
+}
+
+.default-body {
+  padding: 16px 18px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* --- Disabled State Overrides --- */
+.accordion-item.disabled {
+  opacity: 0.45;
+}
+.accordion-item.disabled .accordion-header {
+  cursor: not-allowed;
+  background-color: var(--acc-header-bg);
+}

@@ -1,0 +1,63 @@
+<div class="field-container" [hidden]="hidden()">
+  @let visualName = name();
+  <label class="ui-label" [attr.for]="visualName || undefined" (click)="$event.preventDefault()">
+    @if (label()) {
+      <span
+        >{{ label() }}
+        @if (required()) {
+          <span class="required">*</span>
+        }
+      </span>
+    }
+  </label>
+
+  <div class="input-frame" [ngClass]="componentClass()">
+    @if (preInputTemplate()) {
+      <div class="ui-input-prefix-cluster">
+        <ng-container
+          [ngTemplateOutlet]="preInputTemplate()"
+          [ngTemplateOutletContext]="{ $implicit: display() }">
+        </ng-container>
+      </div>
+    }
+    <input
+      #inputEl
+      [id]="name()"
+      [name]="name()"
+      [type]="type()"
+      [disabled]="disabled()"
+      [attr.minLength]="minLength() == null ? null : minLength()"
+      [attr.maxLength]="maxLength() == null ? null : maxLength()"
+      [readOnly]="readonly()"
+      [placeholder]="placeholder()"
+      [value]="display()"
+      [required]="required()"
+      (input)="onInput($event)"
+      (blur)="onBlur()"
+      class="ui-input"
+      [class.is-dirty]="dirty()"
+      [class.is-touched]="touched()"
+      [class.is-invalid]="invalid()"
+      [class.is-pending]="pending()"
+      [class.ui-input-with-prefix]="preInputTemplate() != null" />
+
+    @if (showClear() && !disabled()) {
+      <div class="action-cluster">
+        <button type="button" class="clear-btn" (click)="clear()" [aria-label]="clearAriaLabel()">
+          ×
+        </button>
+      </div>
+    }
+  </div>
+
+  <!-- Validation Error Reporting -->
+  <ui-form-error [errors]="normalizedErrors()" [visible]="shouldShowErrors()"></ui-form-error>
+
+  @if (disabled() && disabledReasons().length) {
+    <div class="disabled-reasons">
+      @for (reason of disabledReasons(); track reason) {
+        <small>{{ reason.message }}</small>
+      }
+    </div>
+  }
+</div>

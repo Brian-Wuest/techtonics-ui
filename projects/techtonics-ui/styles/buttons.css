@@ -1,0 +1,328 @@
+.btn:not([class*='btn-icon']) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  color: var(--primary-btn-text);
+  transition:
+    background var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition-fast);
+}
+
+.btn-small {
+  padding: 0.25rem 0.55rem;
+}
+
+.btn {
+  &.btn-small {
+    padding: 0.25rem 0.55rem;
+    background-color: hotpink;
+  }
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Primary */
+
+.btn-solid {
+  &.color-primary {
+    background-color: var(--primary);
+    color: var(--primary-btn-text);
+  }
+
+  &.color-secondary {
+    background-color: var(--secondary);
+    color: var(--light-solid-btn-text);
+  }
+
+  &.color-success {
+    background-color: var(--success);
+  }
+
+  &.color-warning {
+    background-color: var(--warning);
+    color: var(--light-solid-btn-text);
+  }
+
+  &.color-error {
+    background-color: var(--error);
+  }
+
+  &.color-info {
+    background-color: var(--info);
+  }
+}
+
+.btn-solid:hover:not(:disabled) {
+  &.color-primary {
+    background-color: var(--primary-hover);
+
+    &:active {
+      background-color: var(--primary-active);
+    }
+  }
+
+  &.color-secondary {
+    background-color: var(--secondary-hover);
+    color: var(--light-solid-btn-text);
+
+    &:active {
+      background-color: var(--secondary-active);
+    }
+  }
+
+  &.color-success {
+    background-color: var(--success-hover);
+
+    &:active {
+      background-color: var(--success-active);
+    }
+  }
+
+  &.color-warning {
+    background-color: var(--warning-hover);
+
+    &:active {
+      background-color: var(--warning-active);
+    }
+  }
+
+  &.color-error {
+    background-color: var(--error-hover);
+
+    &:active {
+      background-color: var(--error-active);
+    }
+  }
+
+  &.color-info {
+    background-color: var(--info-hover);
+
+    &:active {
+      background-color: var(--info-active);
+    }
+  }
+}
+
+/* Secondary (outline) */
+.btn-outline {
+  background: transparent;
+
+  &.color-primary {
+    border-color: var(--primary-soft);
+    color: var(--primary-light);
+
+    &:hover:not(:disabled) {
+      background: var(--primary-soft);
+      &:active {
+        background-color: var(--primary-active);
+        color: var(--primary-btn-text);
+      }
+    }
+  }
+
+  &.color-secondary {
+    border-color: var(--secondary-soft-hover);
+    color: var(--secondary-text);
+
+    &:hover:not(:disabled) {
+      background: var(--secondary-hover);
+      color: var(--light-solid-btn-text);
+
+      &:active {
+        background-color: var(--secondary-active-strong);
+        color: var(--secondary-active-text);
+      }
+    }
+  }
+
+  &.color-success {
+    border-color: var(--success);
+    color: var(--success);
+
+    &:hover:not(:disabled) {
+      background-color: var(--success-soft);
+      &:active {
+        background-color: var(--success-active);
+        color: var(--primary-btn-text);
+      }
+    }
+  }
+
+  &.color-warning {
+    border-color: var(--warning);
+    color: var(--warning-text-color);
+
+    &:hover:not(:disabled) {
+      background-color: var(--warning-soft);
+
+      &:active {
+        background-color: var(--warning-active-strong);
+        color: var(--primary-btn-text);
+      }
+    }
+  }
+
+  &.color-error {
+    border-color: var(--error);
+    color: var(--error);
+
+    &:hover:not(:disabled) {
+      background-color: var(--error-soft);
+
+      &:active {
+        background-color: var(--error-active);
+        color: var(--primary-btn-text);
+      }
+    }
+  }
+
+  &.color-info {
+    border-color: var(--info);
+    color: var(--info);
+
+    &:hover:not(:disabled) {
+      background-color: var(--info-soft);
+
+      &:active {
+        background-color: var(--info-active);
+        color: var(--primary-btn-text);
+      }
+    }
+  }
+}
+
+/* Subtle / ghost */
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border: none;
+
+  &.color-primary {
+    color: var(--primary-light);
+  }
+
+  &.color-secondary {
+    color: var(--secondary-text);
+  }
+
+  &.color-success {
+    color: var(--success);
+  }
+
+  &.color-warning {
+    color: var(--warning-text-color);
+  }
+
+  &.color-error {
+    color: var(--error);
+  }
+
+  &.color-info {
+    color: var(--info);
+  }
+}
+
+[class*='btn-icon'] {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition:
+    background var(--transition),
+    color var(--transition);
+}
+
+.btn-icon {
+  &.color-primary {
+    color: var(--primary-light);
+  }
+
+  &.color-secondary {
+    color: var(--secondary-text);
+  }
+
+  &.color-success {
+    color: var(--success);
+  }
+
+  &.color-warning {
+    color: var(--warning-text-color);
+  }
+
+  &.color-error {
+    color: var(--error);
+  }
+
+  &.color-info {
+    color: var(--info);
+  }
+}
+
+.btn-ghost:hover:not(:disabled),
+.btn-icon:hover:not(:disabled) {
+  &.color-primary {
+    background: var(--primary-soft);
+
+    &:active {
+      background-color: var(--primary-soft-hover);
+    }
+  }
+
+  &.color-secondary {
+    color: var(--light-solid-btn-text);
+    background: var(--secondary-soft);
+
+    &:active {
+      background-color: var(--secondary-soft-hover);
+    }
+  }
+
+  &.color-success {
+    background-color: var(--success-soft);
+
+    &:active {
+      background-color: var(--success-soft-hover);
+    }
+  }
+
+  &.color-warning {
+    background-color: var(--warning-soft);
+    color: var(--warning-text-color);
+
+    &:active {
+      background-color: var(--warning-soft-hover);
+    }
+  }
+
+  &.color-error {
+    background-color: var(--error-soft);
+
+    &:active {
+      background-color: var(--error-soft-hover);
+    }
+  }
+
+  &.color-info {
+    background-color: var(--info-soft);
+
+    &:active {
+      background-color: var(--info-soft-hover);
+    }
+  }
+}

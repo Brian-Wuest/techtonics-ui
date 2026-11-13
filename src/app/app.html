@@ -1,0 +1,27 @@
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <nav>
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/ui-docs']" routerLinkActive="active">UI Docs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/ui-workbench']" routerLinkActive="active"
+            >UI Workbench</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/ui-universal-workbench']" routerLinkActive="active"
+            >Universal Workbench</a
+          >
+        </li>
+      </ul>
+    </nav>
+  </aside>
+  <main class="app-main">
+    <router-outlet></router-outlet>
+  </main>
+</div>

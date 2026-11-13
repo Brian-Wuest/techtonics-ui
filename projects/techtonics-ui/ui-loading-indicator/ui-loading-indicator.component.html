@@ -1,0 +1,12 @@
+@if (loading()) {
+  <div
+    class="backdrop"
+    animate.enter="fade-in"
+    animate.leave="fade-out"
+    role="dialog"
+    aria-busy="true"
+    aria-modal="true"
+    [aria-label]="ariaLabel()">
+    <div class="spinner" role="progressbar" aria-hidden="true"></div>
+  </div>
+}

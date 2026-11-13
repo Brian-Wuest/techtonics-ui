@@ -1,0 +1,15 @@
+<div
+  #popoverElement
+  popover="auto"
+  class="ui-popover-surface"
+  [class]="'placement-' + position()"
+  [style.position-anchor]="uniqueAnchorName"
+  [style.max-height]="maxSize()"
+  [style.max-width]="maxSize()"
+  (toggle)="handleToggle($event)">
+  <!-- Dynamic Anchor Positioning Arrow Caret -->
+  <div class="ui-popover-arrow"></div>
+  <div class="ui-popover-content">
+    <ng-content></ng-content>
+  </div>
+</div>

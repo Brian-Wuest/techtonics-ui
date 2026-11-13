@@ -1,0 +1,107 @@
+.trigger-container {
+  display: inline-block;
+  width: max-content;
+  height: max-content;
+}
+
+.menu-popover-root {
+  position: fixed;
+  margin: 0;
+  padding: 4px 0;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-md);
+  width: 190px;
+  overflow: visible;
+  outline: none;
+}
+
+.menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-item {
+  position: relative;
+  padding: 8px 12px;
+  cursor: pointer;
+  user-select: none;
+  color: var(--text-primary);
+  font-size: 14px;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+
+  /* Remove native blue outline rings on focus */
+  outline: none;
+}
+
+.menu-item:hover:not(.disabled),
+.menu-item:focus-visible:not(.disabled) {
+  background-color: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.menu-item.disabled {
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.menu-item-default {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.menu-status-zone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.menu-checkmark {
+  color: var(--primary);
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.menu-checkmark.checked-disabled {
+  color: var(--text-muted);
+}
+
+.menu-icon {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-secondary);
+}
+
+.menu-item.disabled .menu-icon {
+  color: var(--text-muted);
+}
+
+.menu-label {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.menu-arrow {
+  font-size: 10px;
+  color: var(--text-secondary);
+  margin-left: auto;
+  padding-left: 8px;
+}
+
+.menu-item.disabled .menu-arrow {
+  color: var(--text-muted);
+}
+
+.menu-separator {
+  height: 1px;
+  background-color: var(--border);
+  margin: 4px 0;
+}

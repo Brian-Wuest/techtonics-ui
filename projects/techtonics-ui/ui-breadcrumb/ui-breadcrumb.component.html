@@ -1,0 +1,28 @@
+<nav
+  class="breadcrumb"
+  [aria-label]="ariaLabel()"
+  [ngClass]="componentClass()"
+  [class.hidden]="visible() == false">
+  @for (item of items(); track item.id; let last = $last) {
+    <div class="crumb" (click)="onItemClick(item)">
+      @if (itemTemplate()) {
+        <ng-container
+          [ngTemplateOutlet]="itemTemplate()"
+          [ngTemplateOutletContext]="{ $implicit: item }">
+        </ng-container>
+      } @else {
+        {{ item.label }}
+      }
+    </div>
+
+    @if (!last) {
+      <div class="separator">
+        @if (separatorTemplate()) {
+          <ng-container [ngTemplateOutlet]="separatorTemplate()"> </ng-container>
+        } @else {
+          <span class="default-separator">›</span>
+        }
+      </div>
+    }
+  }
+</nav>

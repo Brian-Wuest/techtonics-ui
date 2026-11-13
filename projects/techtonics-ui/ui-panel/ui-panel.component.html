@@ -1,0 +1,16 @@
+<section class="panel elevation-1" [class.hidden]="visible() == false" [ngClass]="componentClass()">
+  <div class="header" (click)="toggle()">
+    @if (collaspable()) {
+      <span class="chevron" class="panel-title-opener">{{ open() ? '▾' : '▸' }}</span>
+    }
+    <span class="panel-title-container" [class.expandable]="collaspable()"
+      ><ng-content select="[panel-title]"></ng-content
+    ></span>
+  </div>
+
+  @if (!collaspable() || open()) {
+    <div class="panel-body">
+      <ng-content></ng-content>
+    </div>
+  }
+</section>

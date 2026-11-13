@@ -1,0 +1,127 @@
+<nav class="nav" [ngClass]="componentClass()" [class.hidden]="visible() == false">
+  <!-- LEFT: LOGO -->
+  <div class="nav-left">
+    @if (logoTemplate()) {
+      <ng-container [ngTemplateOutlet]="logoTemplate()"> </ng-container>
+    } @else {
+      <div class="logo">{{ logo() }}</div>
+    }
+  </div>
+
+  <!-- MOBILE TOGGLE -->
+  <button class="mobile-toggle" (click)="toggleMobile()">☰</button>
+
+  <!-- CENTER: NAV ITEMS -->
+  <ul class="nav-items" [class.open]="mobileOpen()">
+    @for (item of items(); track item.id) {
+      <li class="nav-item" [class.has-children]="item.children?.length">
+        <button
+          class="nav-link"
+          [class.disabled]="item.disabled"
+          (click)="onItemClick(item)"
+          [attr.aria-expanded]="openDropdownId() === item.id">
+          @if (itemTemplate()) {
+            <ng-container [ngTemplateOutlet]="itemTemplate()" [ngTemplateOutletContext]="{ $implicit: item }">
+            </ng-container>
+          } @else {
+            @if (openDropdownId() === item.id && item.children?.length) {
+              <span class="expander">▾</span>
+            } @else {
+              @if (item.children?.length) {
+                <span class="expander">▸</span>
+              }
+            }
+            <span [ui-icon]="item.icon" [ui-icon-y-position]="'lower'">
+              @if (item.icon) {
+                &nbsp;
+              }
+              {{ item.label }}</span
+            >
+          }
+        </button>
+
+        <!-- NORMAL DROPDOWN (DESKTOP) -->
+
+        @if (item.children?.length && !item.mega && openDropdownId() === item.id) {
+          <div class="dropdown">
+            @for (child of item.children; track child.id) {
+              <button class="dropdown-item" (click)="onItemClick(child)" (uiClickOutside)="onClickOutside()">
+                @if (dropdownItemTemplate()) {
+                  <ng-container
+                    [ngTemplateOutlet]="dropdownItemTemplate()"
+                    [ngTemplateOutletContext]="{ $implicit: child }">
+                  </ng-container>
+                } @else {
+                  <span [ui-icon]="child.icon" [ui-icon-y-position]="'lower'">
+                    @if (child.icon) {
+                      &nbsp;
+                    }
+                    {{ child.label }}</span
+                  >
+                }
+              </button>
+            }
+          </div>
+        }
+
+        <!-- MEGA MENU (DESKTOP) -->
+        @if (item.mega && openDropdownId() === item.id) {
+          <div class="mega-menu">
+            @if (megaMenuTemplate()) {
+              <ng-container [ngTemplateOutlet]="megaMenuTemplate()" [ngTemplateOutletContext]="{ $implicit: item }">
+              </ng-container>
+            } @else {
+              <div class="mega-grid">
+                @for (child of item.children; track child.id) {
+                  <div class="mega-column">
+                    <h4 [ui-icon]="child.icon" [ui-icon-y-position]="'lower'">
+                      @if (child.icon) {
+                        &nbsp;
+                      }
+                      {{ child.label }}
+                    </h4>
+
+                    @for (sub of child.children; track sub.id) {
+                      <button
+                        [ui-icon]="sub.icon"
+                        [ui-icon-y-position]="'lower'"
+                        class="mega-sub-item"
+                        (click)="onItemClick(sub)"
+                        (uiClickOutside)="onClickOutside()">
+                        @if (sub.icon) {
+                          &nbsp;
+                        }
+                        {{ sub.label }}
+                      </button>
+                    }
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        }
+      </li>
+    }
+  </ul>
+
+  <!-- RIGHT: PROFILE MENU -->
+  <div class="nav-right">
+    <button class="profile-button" (click)="toggleProfile()">
+      @if (profileTemplate()) {
+        <ng-container [ngTemplateOutlet]="profileTemplate()"> </ng-container>
+      } @else {
+        <span> {{ profileMenuName() }} </span>
+      }
+    </button>
+
+    @if (openProfile()) {
+      <div class="profile-menu">
+        @for (p of profileItems(); track p.id) {
+          <button [ui-icon]="p.icon" class="profile-item" (click)="onItemClick(p)" (uiClickOutside)="onClickOutside()">
+            {{ p.label }}
+          </button>
+        }
+      </div>
+    }
+  </div>
+</nav>

@@ -1,0 +1,71 @@
+<div class="field-container" [hidden]="hidden()">
+  <div class="spinner-frame" [class.disabled]="disabled()" [ngClass]="componentClass()">
+    <input
+      #spinnerInput
+      [id]="name()"
+      [name]="name()"
+      type="text"
+      [disabled]="disabled()"
+      [readOnly]="readonly()"
+      inputmode="decimal"
+      [value]="inputValue"
+      [min]="min()"
+      [max]="max()"
+      [required]="required()"
+      (keydown)="onKeyDown($event)"
+      (beforeinput)="onBeforeInput($event)"
+      (focus)="onInputFocus($event)"
+      (blur)="onInputBlur()"
+      (input)="onInputChange($event)"
+      placeholder="0"
+      class="spinner-input"
+      [class.is-dirty]="dirty()"
+      [class.is-touched]="touched()"
+      [class.is-invalid]="invalid()"
+      [class.is-pending]="pending()" />
+
+    <div class="action-cluster">
+      @if (showClear() && !disabled()) {
+        <button type="button" class="clear-btn" (click)="clear()" [aria-label]="clearAriaLabel()">
+          ×
+        </button>
+      }
+
+      @if (showButtons()) {
+        <div class="step-actions">
+          <button
+            type="button"
+            class="step-btn increment-btn"
+            [disabled]="
+              disabled() || (max() != undefined && value() !== null && value()! >= max()!)
+            "
+            (click)="increment()"
+            [aria-label]="incrementAriaLabel()">
+            ▲
+          </button>
+          <button
+            type="button"
+            class="step-btn decrement-btn"
+            [disabled]="
+              disabled() || (min() != undefined && value() !== null && value()! <= min()!)
+            "
+            (click)="decrement()"
+            [aria-label]="decrementAriaLabel()">
+            ▼
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Validation Error Reporting -->
+  <ui-form-error [errors]="normalizedErrors()" [visible]="shouldShowErrors()"></ui-form-error>
+
+  @if (disabled() && disabledReasons().length) {
+    <div class="disabled-reasons">
+      @for (reason of disabledReasons(); track reason) {
+        <small>{{ reason.message }}</small>
+      }
+    </div>
+  }
+</div>

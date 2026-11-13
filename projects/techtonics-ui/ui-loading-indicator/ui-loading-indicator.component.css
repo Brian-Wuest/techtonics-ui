@@ -1,0 +1,76 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 23, 42, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  pointer-events: auto;
+}
+
+.spinner {
+  width: 55px;
+  height: 55px;
+  border: 5px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  /* Tie both the rotation and the color shifts to the same continuous cycle */
+  animation:
+    spin 1s linear infinite,
+    colorShift 4s ease-in-out infinite;
+}
+
+.fade-in {
+  animation: fadeInEffect 250ms ease-out forwards;
+}
+
+.fade-out {
+  animation: fadeOutEffect 200ms ease-in forwards;
+}
+
+@keyframes fadeInEffect {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOutEffect {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Standard spinning mechanics */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Alternating aesthetic colors for the active spinning wedge */
+@keyframes colorShift {
+  0% {
+    border-top-color: #3b82f6;
+  } /* Electric Blue */
+  25% {
+    border-top-color: #ec4899;
+  } /* Hot Pink */
+  50% {
+    border-top-color: #8b5cf6;
+  } /* Deep Purple */
+  75% {
+    border-top-color: #10b981;
+  } /* Emerald Green */
+  100% {
+    border-top-color: #3b82f6;
+  } /* Back to Blue */
+}

@@ -1,0 +1,3298 @@
+{
+  "UIAccordionComponent": {
+    "inputs": [
+      {
+        "name": "items",
+        "controlType": "json",
+        "typeSignature": "AccordionModel[]",
+        "isRequired": true,
+        "options": [],
+        "defaultValue": "[]",
+        "description": ""
+      },
+      {
+        "name": "showActionButtons",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "exclusive",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "itemToggled",
+        "typeSignature": "{ item: AccordionModel<T>; expanded: boolean }",
+        "description": ""
+      }
+    ],
+    "slots": {
+      "default": false,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {
+      "AccordionModel": [
+        {
+          "name": "key",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "header",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "data",
+          "type": "T",
+          "optional": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "optional": false
+        },
+        {
+          "name": "expanded",
+          "type": "boolean",
+          "optional": false
+        }
+      ]
+    }
+  },
+  "UIAppNavComponent": {
+    "inputs": [
+      {
+        "name": "items",
+        "controlType": "json",
+        "typeSignature": "NavItem[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[\n  {\n    \"id\": 1,\n    \"label\": \"Home\",\n    \"data\": {}\n  },\n  {\n    \"id\": 2,\n    \"label\": \"Components\",\n    \"data\": {}\n  }\n]",
+        "description": ""
+      },
+      {
+        "name": "logo",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "componentClass",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "visible",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      },
+      {
+        "name": "profileItems",
+        "controlType": "json",
+        "typeSignature": "NavItem[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[\n  {\n    \"id\": 1,\n    \"label\": \"Home\",\n    \"data\": {}\n  },\n  {\n    \"id\": 2,\n    \"label\": \"Components\",\n    \"data\": {}\n  }\n]",
+        "description": ""
+      },
+      {
+        "name": "profileMenuName",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Profile",
+        "description": ""
+      },
+      {
+        "name": "routeOnItemClick",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "itemClick",
+        "typeSignature": "NavItem",
+        "description": ""
+      }
+    ],
+    "slots": {
+      "default": false,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UIBadgeComponent": {
+    "inputs": [
+      {
+        "name": "variant",
+        "controlType": "select",
+        "typeSignature": "'success' | 'warning' | 'error' | 'info'",
+        "isRequired": false,
+        "options": [
+          "success",
+          "warning",
+          "error",
+          "info"
+        ],
+        "defaultValue": "info",
+        "description": ""
+      },
+      {
+        "name": "componentClass",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "visible",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "slots": {
+      "default": true,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UIBreadcrumbComponent": {
+    "inputs": [
+      {
+        "name": "items",
+        "controlType": "json",
+        "typeSignature": "BreadcrumbItem[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[\n  {\n    \"id\": 1,\n    \"label\": \"Home\",\n    \"data\": {}\n  },\n  {\n    \"id\": 2,\n    \"label\": \"Components\",\n    \"data\": {}\n  }\n]",
+        "description": ""
+      },
+      {
+        "name": "componentClass",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "ariaLabel",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Breadcrumb",
+        "description": ""
+      },
+      {
+        "name": "visible",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "itemClick",
+        "typeSignature": "BreadcrumbItem",
+        "description": ""
+      }
+    ],
+    "slots": {
+      "default": false,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {
+      "BreadcrumbItem": [
+        {
+          "name": "id",
+          "type": "string | number",
+          "optional": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "data",
+          "type": "any",
+          "optional": true
+        }
+      ]
+    }
+  },
+  "UIButtonComponent": {
+    "inputs": [
+      {
+        "name": "variant",
+        "controlType": "select",
+        "typeSignature": "'solid' | 'outline' | 'ghost' | 'icon'",
+        "isRequired": false,
+        "options": [
+          "solid",
+          "outline",
+          "ghost",
+          "icon"
+        ],
+        "defaultValue": "solid",
+        "description": "Controls the aesthetic filling styling rules for rendering this button anchor wrapper"
+      },
+      {
+        "name": "type",
+        "controlType": "select",
+        "typeSignature": "'button' | 'submit'",
+        "isRequired": false,
+        "options": [
+          "button",
+          "submit"
+        ],
+        "defaultValue": "button",
+        "description": ""
+      },
+      {
+        "name": "color",
+        "controlType": "select",
+        "typeSignature": "'primary' | 'success' | 'warning' | 'error' | 'info' | 'secondary'",
+        "isRequired": false,
+        "options": [
+          "primary",
+          "success",
+          "warning",
+          "error",
+          "info",
+          "secondary"
+        ],
+        "defaultValue": "primary",
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": "Sets whether the button element ignores user click action events completely"
+      },
+      {
+        "name": "componentClass",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "iconClass",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "visible",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "click",
+        "typeSignature": "PointerEvent",
+        "description": ""
+      }
+    ],
+    "slots": {
+      "default": true,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UICardComponent": {
+    "inputs": [
+      {
+        "name": "componentClass",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "visible",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "slots": {
+      "default": true,
+      "named": [
+        "card-title"
+      ]
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UICheckboxComponent": {
+    "inputs": [
+      {
+        "name": "label",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "ariaLabel",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "name",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "touched",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "dirty",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "checked",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "required",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "disabledReasons",
+        "controlType": "json",
+        "typeSignature": "readonly WithOptionalFieldTree<DisabledReason>[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[]",
+        "description": ""
+      },
+      {
+        "name": "hidden",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "invalid",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "pending",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "errors",
+        "controlType": "json",
+        "typeSignature": "readonly ValidationError[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[]",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "touch",
+        "typeSignature": "any",
+        "description": ""
+      },
+      {
+        "name": "changed",
+        "typeSignature": "boolean",
+        "description": ""
+      }
+    ],
+    "slots": {
+      "default": false,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UICurrencyInputComponent": {
+    "inputs": [
+      {
+        "name": "step",
+        "controlType": "number",
+        "typeSignature": "number",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": 0.01,
+        "description": ""
+      },
+      {
+        "name": "currency",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "USD",
+        "description": ""
+      },
+      {
+        "name": "showButtons",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      },
+      {
+        "name": "showClear",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      },
+      {
+        "name": "componentClass",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "incrementAriaLabel",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Increment",
+        "description": ""
+      },
+      {
+        "name": "decrementAriaLabel",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Decrement",
+        "description": ""
+      },
+      {
+        "name": "min",
+        "controlType": "number",
+        "typeSignature": "number",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Number.MIN_SAFE_INTEGER",
+        "description": ""
+      },
+      {
+        "name": "max",
+        "controlType": "number",
+        "typeSignature": "number",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Number.MAX_SAFE_INTEGER",
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "disabledReasons",
+        "controlType": "json",
+        "typeSignature": "readonly WithOptionalFieldTree<DisabledReason>[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[]",
+        "description": ""
+      },
+      {
+        "name": "readonly",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "hidden",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "required",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "touched",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "dirty",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "name",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "invalid",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "pending",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "errors",
+        "controlType": "json",
+        "typeSignature": "readonly ValidationError[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[]",
+        "description": ""
+      },
+      {
+        "name": "value",
+        "controlType": "number",
+        "typeSignature": "number",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": null,
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "touch",
+        "typeSignature": "any",
+        "description": ""
+      }
+    ],
+    "slots": {
+      "default": false,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UIDataGridComponent": {
+    "inputs": [
+      {
+        "name": "data",
+        "controlType": "json",
+        "typeSignature": "any[]",
+        "isRequired": true,
+        "options": [],
+        "defaultValue": "[]",
+        "description": ""
+      },
+      {
+        "name": "selectionMode",
+        "controlType": "select",
+        "typeSignature": "'single' | 'multiple' | 'none'",
+        "isRequired": false,
+        "options": [
+          "single",
+          "multiple",
+          "none"
+        ],
+        "defaultValue": "none",
+        "description": ""
+      },
+      {
+        "name": "reorderableColumns",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "usePaginator",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "ariaLabel",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "rowSelectionTextForScreenReader",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Row Selection",
+        "description": ""
+      },
+      {
+        "name": "validationErrorIconClass",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "ti ti-alert-triangle",
+        "description": ""
+      },
+      {
+        "name": "defaultEmptyMessage",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "No available records found.",
+        "description": ""
+      },
+      {
+        "name": "visible",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      },
+      {
+        "name": "validationRules",
+        "controlType": "string",
+        "typeSignature": "(row: any, field: string, value: any) =",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "columnOrder",
+        "controlType": "json",
+        "typeSignature": "string[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[]",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "onCellEditComplete",
+        "typeSignature": "ICellEditCompleteEvent",
+        "description": ""
+      },
+      {
+        "name": "selectionChange",
+        "typeSignature": "any[]",
+        "description": ""
+      },
+      {
+        "name": "onPage",
+        "typeSignature": "IPageChangedEvent",
+        "description": ""
+      },
+      {
+        "name": "onColumnOrderChange",
+        "typeSignature": "string[]",
+        "description": ""
+      },
+      {
+        "name": "onValidationStatusChange",
+        "typeSignature": "boolean",
+        "description": ""
+      }
+    ],
+    "slots": {
+      "default": false,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UIGridColumnComponent": {
+    "inputs": [
+      {
+        "name": "field",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": true,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "header",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "sortable",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "editable",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "visible",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "visibleChange",
+        "typeSignature": "boolean",
+        "description": ""
+      }
+    ],
+    "slots": {
+      "default": false,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UIDateTimePickerComponent": {
+    "inputs": [
+      {
+        "name": "mode",
+        "controlType": "string",
+        "typeSignature": "PickerMode",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "datetime",
+        "description": ""
+      },
+      {
+        "name": "timeFormat",
+        "controlType": "string",
+        "typeSignature": "TimeFormat",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "12h",
+        "description": ""
+      },
+      {
+        "name": "placeholder",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Select date/time",
+        "description": ""
+      },
+      {
+        "name": "showClear",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      },
+      {
+        "name": "componentClass",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "amButtonText",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "AM",
+        "description": ""
+      },
+      {
+        "name": "pmButtonText",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "PM",
+        "description": ""
+      },
+      {
+        "name": "selectButtonText",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Select",
+        "description": ""
+      },
+      {
+        "name": "clearAriaLabel",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Clear value",
+        "description": ""
+      },
+      {
+        "name": "min",
+        "controlType": "string",
+        "typeSignature": "Date",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "undefined",
+        "description": ""
+      },
+      {
+        "name": "max",
+        "controlType": "string",
+        "typeSignature": "Date",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "undefined",
+        "description": ""
+      },
+      {
+        "name": "required",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "disabledReasons",
+        "controlType": "json",
+        "typeSignature": "readonly WithOptionalFieldTree<DisabledReason>[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[]",
+        "description": ""
+      },
+      {
+        "name": "readonly",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "hidden",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "touched",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "dirty",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "name",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "invalid",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "pending",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "errors",
+        "controlType": "json",
+        "typeSignature": "readonly ValidationError[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[]",
+        "description": ""
+      },
+      {
+        "name": "value",
+        "controlType": "string",
+        "typeSignature": "Date",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": null,
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "touch",
+        "typeSignature": "any",
+        "description": ""
+      }
+    ],
+    "slots": {
+      "default": false,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UIDrawerComponent": {
+    "inputs": [
+      {
+        "name": "isOpen",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": true,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "position",
+        "controlType": "string",
+        "typeSignature": "DrawerPosition",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "right",
+        "description": ""
+      },
+      {
+        "name": "closeOnEscape",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      },
+      {
+        "name": "closeOnBackdrop",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      },
+      {
+        "name": "customSize",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "close",
+        "typeSignature": "void",
+        "description": ""
+      }
+    ],
+    "slots": {
+      "default": false,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UIDropdownComponent": {
+    "inputs": [
+      {
+        "name": "items",
+        "controlType": "json",
+        "typeSignature": "DropdownItem[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[\n  {\n    \"id\": 1,\n    \"label\": \"Home\",\n    \"data\": {}\n  },\n  {\n    \"id\": 2,\n    \"label\": \"Components\",\n    \"data\": {}\n  }\n]",
+        "description": ""
+      },
+      {
+        "name": "placeholder",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Select…",
+        "description": ""
+      },
+      {
+        "name": "allItemsText",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "All Items Selected",
+        "description": ""
+      },
+      {
+        "name": "showClear",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      },
+      {
+        "name": "showCheckboxes",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "showSelectAll",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "filterPlaceholder",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Search...",
+        "description": ""
+      },
+      {
+        "name": "showFilter",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "componentClass",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "clearAriaLabel",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Clear value",
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "disabledReasons",
+        "controlType": "json",
+        "typeSignature": "readonly WithOptionalFieldTree<DisabledReason>[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[]",
+        "description": ""
+      },
+      {
+        "name": "readonly",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "hidden",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "required",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "touched",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "dirty",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "name",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "invalid",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "pending",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "errors",
+        "controlType": "json",
+        "typeSignature": "readonly ValidationError[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[]",
+        "description": ""
+      },
+      {
+        "name": "value",
+        "controlType": "json",
+        "typeSignature": "DropdownItem | DropdownItem[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": null,
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "touch",
+        "typeSignature": "any",
+        "description": ""
+      }
+    ],
+    "slots": {
+      "default": false,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {
+      "DropdownItem": [
+        {
+          "name": "key",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "selected",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "data",
+          "type": "T",
+          "optional": true
+        }
+      ]
+    }
+  },
+  "UIFormErrorComponent": {
+    "inputs": [
+      {
+        "name": "errors",
+        "controlType": "json",
+        "typeSignature": "ValidationError[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[]",
+        "description": ""
+      },
+      {
+        "name": "visible",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "slots": {
+      "default": false,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UIInputComponent": {
+    "inputs": [
+      {
+        "name": "label",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "placeholder",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "type",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "text",
+        "description": ""
+      },
+      {
+        "name": "showClear",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      },
+      {
+        "name": "clearAriaLabel",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Clear value",
+        "description": ""
+      },
+      {
+        "name": "componentClass",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "disabledReasons",
+        "controlType": "json",
+        "typeSignature": "readonly WithOptionalFieldTree<DisabledReason>[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[]",
+        "description": ""
+      },
+      {
+        "name": "readonly",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "hidden",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "required",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "minLength",
+        "controlType": "number",
+        "typeSignature": "number",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": 0,
+        "description": ""
+      },
+      {
+        "name": "maxLength",
+        "controlType": "number",
+        "typeSignature": "number",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": 0,
+        "description": ""
+      },
+      {
+        "name": "touched",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "dirty",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "name",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "invalid",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "pending",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "errors",
+        "controlType": "json",
+        "typeSignature": "readonly ValidationError[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[]",
+        "description": ""
+      },
+      {
+        "name": "value",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": null,
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "touch",
+        "typeSignature": "any",
+        "description": ""
+      }
+    ],
+    "slots": {
+      "default": false,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UIListBoxComponent": {
+    "inputs": [
+      {
+        "name": "items",
+        "controlType": "json",
+        "typeSignature": "T[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[]",
+        "description": ""
+      },
+      {
+        "name": "componentClass",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "selectionMode",
+        "controlType": "select",
+        "typeSignature": "'single' | 'multi' | 'checkbox'",
+        "isRequired": false,
+        "options": [
+          "single",
+          "multi",
+          "checkbox"
+        ],
+        "defaultValue": "single",
+        "description": ""
+      },
+      {
+        "name": "draggable",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "groupBy",
+        "controlType": "string",
+        "typeSignature": "((item: T) =",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "searchKey",
+        "controlType": "string",
+        "typeSignature": "((item: T) =",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "selectAllCheckboxLabel",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Select All",
+        "description": ""
+      },
+      {
+        "name": "filterPlaceholder",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Search...",
+        "description": ""
+      },
+      {
+        "name": "labelIsSearchKey",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "showSearch",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "disabledReasons",
+        "controlType": "json",
+        "typeSignature": "readonly WithOptionalFieldTree<DisabledReason>[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[]",
+        "description": ""
+      },
+      {
+        "name": "readonly",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "hidden",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "touched",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "dirty",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "name",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "invalid",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "pending",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "errors",
+        "controlType": "json",
+        "typeSignature": "readonly ValidationError[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[]",
+        "description": ""
+      },
+      {
+        "name": "value",
+        "controlType": "json",
+        "typeSignature": "T[] | T",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": null,
+        "description": "These are the selected items."
+      }
+    ],
+    "outputs": [
+      {
+        "name": "dragStart",
+        "typeSignature": "T",
+        "description": ""
+      },
+      {
+        "name": "dragOver",
+        "typeSignature": "{ target: T; dragged: T; position: 'above' | 'below' }",
+        "description": ""
+      },
+      {
+        "name": "drop",
+        "typeSignature": "{ target: T; dragged: T; position: 'above' | 'below' }",
+        "description": ""
+      },
+      {
+        "name": "touch",
+        "typeSignature": "any",
+        "description": ""
+      }
+    ],
+    "slots": {
+      "default": false,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UILoadingIndicatorComponent": {
+    "inputs": [
+      {
+        "name": "ariaLabel",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Loading content, please wait",
+        "description": ""
+      },
+      {
+        "name": "loading",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": "Determines of the loading spinner is showing or not."
+      }
+    ],
+    "outputs": [],
+    "slots": {
+      "default": false,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UIMenuComponent": {
+    "inputs": [
+      {
+        "name": "menuItems",
+        "controlType": "json",
+        "typeSignature": "MenuItem[]",
+        "isRequired": true,
+        "options": [],
+        "defaultValue": "[\n  {\n    \"id\": 1,\n    \"label\": \"Home\",\n    \"data\": {}\n  },\n  {\n    \"id\": 2,\n    \"label\": \"Components\",\n    \"data\": {}\n  }\n]",
+        "description": ""
+      },
+      {
+        "name": "isOpen",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "itemTemplate",
+        "controlType": "string",
+        "typeSignature": "TemplateRef<any>",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "onClick",
+        "typeSignature": "{ menuItem: MenuItem; hostElement: HTMLElement; event: MouseEvent }",
+        "description": ""
+      }
+    ],
+    "slots": {
+      "default": true,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UISubMenuComponent": {
+    "inputs": [
+      {
+        "name": "menuItems",
+        "controlType": "json",
+        "typeSignature": "MenuItem[]",
+        "isRequired": true,
+        "options": [],
+        "defaultValue": "[\n  {\n    \"id\": 1,\n    \"label\": \"Home\",\n    \"data\": {}\n  },\n  {\n    \"id\": 2,\n    \"label\": \"Components\",\n    \"data\": {}\n  }\n]",
+        "description": ""
+      },
+      {
+        "name": "anchorX",
+        "controlType": "number",
+        "typeSignature": "number",
+        "isRequired": true,
+        "options": [],
+        "defaultValue": 0,
+        "description": ""
+      },
+      {
+        "name": "anchorY",
+        "controlType": "number",
+        "typeSignature": "number",
+        "isRequired": true,
+        "options": [],
+        "defaultValue": 0,
+        "description": ""
+      },
+      {
+        "name": "parentItemElement",
+        "controlType": "string",
+        "typeSignature": "HTMLElement",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "itemTemplate",
+        "controlType": "string",
+        "typeSignature": "TemplateRef<any>",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "onClick",
+        "typeSignature": "{ menuItem: MenuItem; hostElement: HTMLElement; event: MouseEvent }",
+        "description": ""
+      },
+      {
+        "name": "onCloseSubmenu",
+        "typeSignature": "void",
+        "description": ""
+      }
+    ],
+    "slots": {
+      "default": false,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UIModalComponent": {
+    "inputs": [
+      {
+        "name": "open",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "closeOnEscape",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      },
+      {
+        "name": "closeOnBackdropClick",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "size",
+        "controlType": "select",
+        "typeSignature": "'x-small' | 'small' | 'medium' | 'large' | 'x-large'",
+        "isRequired": false,
+        "options": [
+          "x-small",
+          "small",
+          "medium",
+          "large",
+          "x-large"
+        ],
+        "defaultValue": "small",
+        "description": ""
+      },
+      {
+        "name": "modalClass",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": "Custom class for this modal."
+      }
+    ],
+    "outputs": [
+      {
+        "name": "close",
+        "typeSignature": "any",
+        "description": ""
+      }
+    ],
+    "slots": {
+      "default": false,
+      "named": [
+        "modal-title",
+        "modal-body",
+        "modal-footer"
+      ]
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UINumberSpinnerComponent": {
+    "inputs": [
+      {
+        "name": "componentClass",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "step",
+        "controlType": "number",
+        "typeSignature": "number",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": 0.01,
+        "description": ""
+      },
+      {
+        "name": "decimalPlaces",
+        "controlType": "number",
+        "typeSignature": "number",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": 2,
+        "description": ""
+      },
+      {
+        "name": "showThousandthsSeparator",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      },
+      {
+        "name": "showButtons",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      },
+      {
+        "name": "showClear",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      },
+      {
+        "name": "clearAriaLabel",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Clear value",
+        "description": ""
+      },
+      {
+        "name": "decrementAriaLabel",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Decrement",
+        "description": ""
+      },
+      {
+        "name": "incrementAriaLabel",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Increment",
+        "description": ""
+      },
+      {
+        "name": "min",
+        "controlType": "number",
+        "typeSignature": "number",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Number.MIN_SAFE_INTEGER",
+        "description": ""
+      },
+      {
+        "name": "max",
+        "controlType": "number",
+        "typeSignature": "number",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Number.MAX_SAFE_INTEGER",
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "disabledReasons",
+        "controlType": "json",
+        "typeSignature": "readonly WithOptionalFieldTree<DisabledReason>[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[]",
+        "description": ""
+      },
+      {
+        "name": "readonly",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "hidden",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "required",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "touched",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "dirty",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "name",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "invalid",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "pending",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "errors",
+        "controlType": "json",
+        "typeSignature": "readonly ValidationError[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[]",
+        "description": ""
+      },
+      {
+        "name": "value",
+        "controlType": "number",
+        "typeSignature": "number",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": null,
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "touch",
+        "typeSignature": "any",
+        "description": ""
+      }
+    ],
+    "slots": {
+      "default": false,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UIPaginationComponent": {
+    "inputs": [
+      {
+        "name": "componentClass",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "rowsPerPage",
+        "controlType": "json",
+        "typeSignature": "Array<number>",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[]",
+        "description": ""
+      },
+      {
+        "name": "previousButtonText",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Prev",
+        "description": ""
+      },
+      {
+        "name": "nextButtonText",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Next",
+        "description": ""
+      },
+      {
+        "name": "visible",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      },
+      {
+        "name": "page",
+        "controlType": "string",
+        "typeSignature": "ModelSignal<number",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": 1,
+        "description": ""
+      },
+      {
+        "name": "totalPages",
+        "controlType": "string",
+        "typeSignature": "ModelSignal<number",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": 1,
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "rowsPerPageChanged",
+        "typeSignature": "number",
+        "description": ""
+      },
+      {
+        "name": "change",
+        "typeSignature": "number",
+        "description": ""
+      }
+    ],
+    "slots": {
+      "default": false,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UIPanelComponent": {
+    "inputs": [
+      {
+        "name": "collaspable",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      },
+      {
+        "name": "componentClass",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "visible",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "slots": {
+      "default": true,
+      "named": [
+        "panel-title"
+      ]
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UIPopoverComponent": {
+    "inputs": [
+      {
+        "name": "isOpen",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": true,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "maxSize",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "400px",
+        "description": ""
+      },
+      {
+        "name": "position",
+        "controlType": "string",
+        "typeSignature": "PopoverPosition",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "bottom",
+        "description": ""
+      },
+      {
+        "name": "triggerElement",
+        "controlType": "select",
+        "typeSignature": "HTMLElement | UIPopoverTriggerDirective",
+        "isRequired": true,
+        "options": [
+          "HTMLElement",
+          "UIPopoverTriggerDirective"
+        ],
+        "defaultValue": "HTMLElement",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "onClose",
+        "typeSignature": "void",
+        "description": ""
+      }
+    ],
+    "slots": {
+      "default": true,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UIRadioButtonComponent": {
+    "inputs": [
+      {
+        "name": "value",
+        "controlType": "string",
+        "typeSignature": "any",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": "The key value for a radio button. This value is not shown to the user. If this radio button is part of a radio button group, this value is used to differentiate between the other radio buttons in the group so each one should have a unique value."
+      },
+      {
+        "name": "componentClass",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "hidden",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "touched",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "dirty",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "name",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "checked",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "change",
+        "typeSignature": "boolean",
+        "description": ""
+      },
+      {
+        "name": "touch",
+        "typeSignature": "any",
+        "description": ""
+      }
+    ],
+    "slots": {
+      "default": true,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UIRadioGroupComponent": {
+    "inputs": [
+      {
+        "name": "value",
+        "controlType": "string",
+        "typeSignature": "any",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "slots": {
+      "default": false,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UISkeletonComponent": {
+    "inputs": [
+      {
+        "name": "width",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "100%",
+        "description": ""
+      },
+      {
+        "name": "height",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "1rem",
+        "description": ""
+      },
+      {
+        "name": "componentClass",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "visible",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "slots": {
+      "default": false,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UIStepperComponent": {
+    "inputs": [
+      {
+        "name": "steps",
+        "controlType": "json",
+        "typeSignature": "TimelineEvent[]",
+        "isRequired": true,
+        "options": [],
+        "defaultValue": "[]",
+        "description": ""
+      },
+      {
+        "name": "currentStepIndex",
+        "controlType": "number",
+        "typeSignature": "number",
+        "isRequired": true,
+        "options": [],
+        "defaultValue": 0,
+        "description": ""
+      },
+      {
+        "name": "orientation",
+        "controlType": "select",
+        "typeSignature": "'vertical' | 'horizontal'",
+        "isRequired": false,
+        "options": [
+          "vertical",
+          "horizontal"
+        ],
+        "defaultValue": "horizontal",
+        "description": ""
+      },
+      {
+        "name": "visible",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      },
+      {
+        "name": "disableFutureSteps",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "alternateSides",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "componentClass",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "ariaLabelStepPrefix",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Go to ",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "stepClick",
+        "typeSignature": "{ step: TimelineEvent; index: number }",
+        "description": ""
+      }
+    ],
+    "slots": {
+      "default": false,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {
+      "TimelineEvent": [
+        {
+          "name": "key",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "data",
+          "type": "T",
+          "optional": true
+        }
+      ]
+    }
+  },
+  "UITableComponent": {
+    "inputs": [
+      {
+        "name": "componentClass",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "visible",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "slots": {
+      "default": true,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UITabsComponent": {
+    "inputs": [
+      {
+        "name": "tabs",
+        "controlType": "json",
+        "typeSignature": "TabItem[]",
+        "isRequired": true,
+        "options": [],
+        "defaultValue": "[\n  {\n    \"id\": 1,\n    \"label\": \"Home\",\n    \"data\": {}\n  },\n  {\n    \"id\": 2,\n    \"label\": \"Components\",\n    \"data\": {}\n  }\n]",
+        "description": ""
+      },
+      {
+        "name": "defaultActiveKey",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "componentClass",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "visible",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "tabClick",
+        "typeSignature": "TabItem",
+        "description": ""
+      }
+    ],
+    "slots": {
+      "default": true,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {
+      "TabItem": [
+        {
+          "name": "key",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "data",
+          "type": "any",
+          "optional": true
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "optional": true
+        }
+      ]
+    }
+  },
+  "UIToastContainerComponent": {
+    "inputs": [
+      {
+        "name": "componentClass",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "slots": {
+      "default": false,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UIToggleComponent": {
+    "inputs": [
+      {
+        "name": "componentClass",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "disabledReasons",
+        "controlType": "json",
+        "typeSignature": "readonly WithOptionalFieldTree<DisabledReason>[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[]",
+        "description": ""
+      },
+      {
+        "name": "hidden",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "touched",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "dirty",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "name",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "invalid",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "pending",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "errors",
+        "controlType": "json",
+        "typeSignature": "readonly ValidationError[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[]",
+        "description": ""
+      },
+      {
+        "name": "value",
+        "controlType": "string",
+        "typeSignature": "ModelSignal<boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "touch",
+        "typeSignature": "any",
+        "description": ""
+      }
+    ],
+    "slots": {
+      "default": false,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UITreeViewComponent": {
+    "inputs": [
+      {
+        "name": "id",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "multi",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "itemTemplate",
+        "controlType": "string",
+        "typeSignature": "TemplateRef<any>",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "componentClass",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "useDragDrop",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "visible",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      },
+      {
+        "name": "showSearch",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "rowHeight",
+        "controlType": "number",
+        "typeSignature": "number",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": 36,
+        "description": ""
+      },
+      {
+        "name": "searchPlaceholderText",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "Search",
+        "description": ""
+      },
+      {
+        "name": "nodes",
+        "controlType": "json",
+        "typeSignature": "TreeNode<T>[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[]",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "dragStart",
+        "typeSignature": "TreeNode<T>",
+        "description": ""
+      },
+      {
+        "name": "dragOver",
+        "typeSignature": "{\n    target: TreeNode<T>;\n    dragged: TreeNode<T>;\n    position: DropPosition;\n  }",
+        "description": ""
+      },
+      {
+        "name": "dragLeave",
+        "typeSignature": "TreeNode<T>",
+        "description": ""
+      },
+      {
+        "name": "drop",
+        "typeSignature": "{\n    target: TreeNode<T>;\n    dragged: TreeNode<T>;\n    position: DropPosition;\n  }",
+        "description": ""
+      },
+      {
+        "name": "selectedChange",
+        "typeSignature": "TreeNode<T>[]",
+        "description": ""
+      }
+    ],
+    "slots": {
+      "default": false,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  },
+  "UIVerticalNavComponent": {
+    "inputs": [
+      {
+        "name": "items",
+        "controlType": "json",
+        "typeSignature": "NavItem[]",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "[\n  {\n    \"id\": 1,\n    \"label\": \"Home\",\n    \"data\": {}\n  },\n  {\n    \"id\": 2,\n    \"label\": \"Components\",\n    \"data\": {}\n  }\n]",
+        "description": ""
+      },
+      {
+        "name": "highlightActive",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "isActive",
+        "controlType": "string",
+        "typeSignature": "((item: NavItem) =",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "componentClass",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": "",
+        "description": ""
+      },
+      {
+        "name": "visible",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": true,
+        "description": ""
+      },
+      {
+        "name": "sticky",
+        "controlType": "boolean",
+        "typeSignature": "boolean",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": false,
+        "description": ""
+      },
+      {
+        "name": "collapseToggleIcon",
+        "controlType": "string",
+        "typeSignature": "string",
+        "isRequired": false,
+        "options": [],
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "side",
+        "controlType": "select",
+        "typeSignature": "'left' | 'right'",
+        "isRequired": false,
+        "options": [
+          "left",
+          "right"
+        ],
+        "defaultValue": "left",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "itemClick",
+        "typeSignature": "NavItem",
+        "description": ""
+      }
+    ],
+    "slots": {
+      "default": false,
+      "named": []
+    },
+    "templateChildren": [],
+    "typeDefinitions": {}
+  }
+}

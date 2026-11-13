@@ -1,0 +1,62 @@
+<div class="color-picker-container" [class.has-error]="hasError()" [hidden]="hidden()" [class.disabled]="disabled()">
+  <!-- Assign the programmatic runtime anchor targeting to this scope instance -->
+  <div
+    class="input-wrapper"
+    (click)="toggleDropdown($event)"
+    [attr.popovertarget]="dropdownId"
+    [style.anchor-name]="uniqueAnchorName"
+    [style.--dropdown-anchor-id]="uniqueAnchorName">
+    <span class="color-preview" [style.backgroundColor]="safeColor()"></span>
+    <span class="display-text">{{ displayText() }}</span>
+
+    @if (showCopyButton()) {
+      <button
+        type="button"
+        class="copy-btn"
+        [disabled]="disabled()"
+        [class.is-dirty]="dirty()"
+        [class.is-touched]="touched()"
+        (click)="copyToClipboard($event)"
+        [attr.aria-label]="copied() ? 'Copied!' : 'Copy hex code'">
+        @if (copied()) {
+          <svg xmlns="http://w3.org" viewBox="0 0 20 20" fill="currentColor" class="icon icon-success">
+            <path
+              fill-rule="evenodd"
+              d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+              clip-rule="evenodd" />
+          </svg>
+        } @else {
+          <svg xmlns="http://w3.org" viewBox="0 0 20 20" fill="currentColor" class="icon">
+            <path
+              d="M7 3.5A1.5 1.5 0 0 1 8.5 2h3A1.5 1.5 0 0 1 13 3.5V5h1.75A2.25 2.25 0 0 1 17 7.25v9.5A2.25 2.25 0 0 1 14.75 19h-9.5A2.25 2.25 0 0 1 3 16.75v-9.5A2.25 2.25 0 0 1 5.25 5H7V3.5Z" />
+            <path d="M8.5 5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Z" />
+          </svg>
+        }
+      </button>
+    }
+  </div>
+
+  @if (hasError()) {
+    <div class="error-msg-box">
+      {{ errorMessage() }}
+    </div>
+  }
+
+  <div [id]="dropdownId" #dropDownMenu popover class="dropdown-panel" [style.position-anchor]="uniqueAnchorName">
+    <div class="preset-grid">
+      @for (preset of presetColors(); track preset) {
+        <button
+          type="button"
+          class="preset-swatch"
+          [style.backgroundColor]="preset"
+          [class.active]="preset === safeColor()"
+          (click)="onColorSelect(preset)"></button>
+      }
+    </div>
+
+    <div class="advanced-picker">
+      <label for="native-picker">Spectrum Picker:</label>
+      <input id="native-picker" type="color" [value]="safeColor()" (input)="onNativeInputChange($event)" />
+    </div>
+  </div>
+</div>

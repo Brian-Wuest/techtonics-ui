@@ -1,0 +1,58 @@
+.accessible-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+
+  width: 1.5em;
+  height: 1.5em;
+
+  border: 2px solid var(--border);
+  border-radius: 4px;
+  background-color: var(--bg);
+  display: inline-block;
+  place-content: center;
+  transition: all 0.2s ease-in-out;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &:checked {
+    background-color: var(--primary-light);
+    border-color: var(--primary-light);
+  }
+
+  &::before {
+    /* Inner Checkmark using pseudo-element */
+    content: '';
+    width: 0.65em;
+    height: 0.65em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    /* Inner color of the checkmark */
+    box-shadow: inset 1em 1em var(--primary-btn-text);
+
+    /* Creates a checkmark shape */
+    transform-origin: bottom left;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    display: inline-block;
+    position: relative;
+    left: 4px;
+  }
+
+  &:checked {
+    &::before {
+      transform: scale(1);
+    }
+  }
+
+  &:hover:not(:disabled) {
+    border-color: var(--ui-indigo-300);
+  }
+}
+
+/* Focus Indicator for Keyboard Accessibility */
+.accessible-checkbox:focus-visible {
+  outline: 3px solid var(--ui-indigo-300);
+  outline-offset: 2px;
+}

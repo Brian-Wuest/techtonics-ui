@@ -1,0 +1,64 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 18, 25, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal-backdrop);
+}
+
+.modal {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  z-index: var(--z-modal);
+
+  &.x-small {
+    max-width: 30vw;
+    max-height: 35vh;
+  }
+
+  &.small {
+    max-width: 45vw;
+    max-height: 45vh;
+  }
+
+  &.medium {
+    max-width: 65vw;
+    max-height: 65vh;
+  }
+
+  &.large {
+    max-width: 85vw;
+    max-height: 85vh;
+  }
+
+  &.x-large {
+    max-width: 95vw;
+    max-height: 95vh;
+  }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.modal-body {
+  overflow: auto;
+}
+
+.modal-close {
+  font-size: 1.75rem;
+}
+
+.modal-footer {
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
+}

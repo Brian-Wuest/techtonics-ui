@@ -1,0 +1,20 @@
+.card {
+  background: var(--surface);
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.card-title-opener {
+  display: inline-block;
+  cursor: pointer;
+  font-size: 1.75rem;
+  line-height: 1.25;
+  min-width: 28px;
+}
+
+.card-title-container {
+  display: inline-block;
+  cursor: pointer;
+}

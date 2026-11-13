@@ -1,0 +1,196 @@
+.stepper-container {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.step-item {
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+
+/* ========================================= */
+/* Horizontal Configuration Layout           */
+/* ========================================= */
+.stepper-container.horizontal {
+  flex-direction: row;
+  justify-content: space-between;
+}
+.stepper-container.horizontal .step-item {
+  flex-direction: column;
+  flex: 1;
+  text-align: center;
+}
+.stepper-container.horizontal .step-connector {
+  position: absolute;
+  left: -50%;
+  right: 50%;
+  top: 15px;
+  height: 2px;
+  background-color: var(--border);
+  z-index: 1;
+}
+.stepper-container.horizontal .step-item.completed .step-connector,
+.stepper-container.horizontal .step-item.active .step-connector {
+  background-color: var(--primary);
+}
+
+/* ========================================= */
+/* Standard Vertical Layout                  */
+/* ========================================= */
+.stepper-container.vertical:not(.alternating) {
+  flex-direction: column;
+  gap: 30px;
+}
+.stepper-container.vertical:not(.alternating) .step-item {
+  flex-direction: row;
+}
+.stepper-container.vertical:not(.alternating) .step-connector {
+  position: absolute;
+  top: -42px;
+  left: 10px;
+  height: 59px;
+  width: 2px;
+  background-color: var(--border);
+}
+.stepper-container.vertical:not(.alternating) .step-item.completed .step-connector,
+.stepper-container.vertical:not(.alternating) .step-item.active .step-connector {
+  background-color: var(--primary);
+}
+.stepper-container.vertical:not(.alternating) .step-details {
+  margin-left: 16px;
+}
+
+/* ========================================= */
+/* Alternating Vertical Layout               */
+/* ========================================= */
+.stepper-container.vertical.alternating {
+  flex-direction: column;
+  align-items: center;
+}
+.stepper-container.vertical.alternating .stepper-center-line {
+  position: absolute;
+  left: 50%;
+  top: 16px;
+  bottom: 16px;
+  width: 2px;
+  background-color: var(--border);
+  transform: translateX(-50%);
+  z-index: 1;
+}
+.stepper-container.vertical.alternating .step-item {
+  width: 50%;
+  margin-bottom: 48px;
+}
+.stepper-container.vertical.alternating .step-dot {
+  position: absolute;
+  left: 50%;
+  z-index: 3;
+}
+.stepper-container.vertical.alternating .step-item.left-side {
+  align-self: flex-start;
+  justify-content: flex-end;
+  padding-right: 25px;
+  text-align: right;
+
+  .step-details {
+    margin-right: 1rem;
+  }
+}
+.stepper-container.vertical.alternating .step-item.left-side .step-dot {
+  right: 0;
+  left: auto;
+  transform: translateX(50%);
+}
+.stepper-container.vertical.alternating .step-item.right-side {
+  align-self: flex-end;
+  justify-content: flex-start;
+  padding-left: 25px;
+  text-align: left;
+
+  .step-details {
+    margin-left: 1rem;
+  }
+}
+.stepper-container.vertical.alternating .step-item.right-side .step-dot {
+  left: 0;
+  transform: translateX(-50%);
+}
+
+/* Hide normal sub-connectors when central line rule handles it */
+.stepper-container.vertical.alternating .step-connector {
+  display: none;
+}
+
+/* ========================================= */
+/* Dots & Utility States                     */
+/* ========================================= */
+.step-dot {
+  z-index: 2;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--border-strong);
+  background-color: var(--surface);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0px;
+  position: relative;
+  top: 5px;
+}
+.inner-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: transparent;
+}
+.step-item.active .step-dot {
+  border-color: var(--primary-light);
+  background-color: var(--primary-light);
+}
+.step-item.active .inner-dot {
+  background-color: var(--primary-light);
+}
+.step-item.completed .step-dot {
+  border-color: var(--primary-light);
+  background-color: var(--primary-light);
+}
+.step-item.completed .inner-dot {
+  background-color: var(--surface-light);
+  width: 8px;
+  height: 8px;
+}
+
+/* Disabled states layout modifications */
+.step-item.disabled .step-dot {
+  cursor: not-allowed;
+  opacity: 0.5;
+  background-color: var(--surface-muted);
+}
+.step-item.disabled .step-details {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.step-details {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+.step-label {
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+.step-item.active .step-label {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.step-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}

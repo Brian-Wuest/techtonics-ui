@@ -1,0 +1,61 @@
+<div
+  [class]="'stepper-container ' + orientation()"
+  [class.alternating]="alternateSides() && orientation() === 'vertical'"
+  [class.hidden]="visible() == false"
+  [ngClass]="componentClass()">
+  <!-- Central background rail tracker for vertical alternating layout -->
+  @if (orientation() === 'vertical' && alternateSides()) {
+    <div class="stepper-center-line"></div>
+  }
+
+  @for (step of steps(); track step.key; let idx = $index) {
+    @let isCurrent = idx === currentStepIndex();
+    @let isCompleted = idx < currentStepIndex();
+    @let isClickDisabled = step.disabled || (disableFutureSteps() && idx > currentStepIndex());
+    @let alignmentClass = getAlignmentSide(idx);
+
+    <div
+      [ngClass]="{
+        'step-item': true,
+        active: isCurrent,
+        completed: isCompleted,
+        disabled: isClickDisabled,
+        'left-side': alignmentClass === 'left',
+        'right-side': alignmentClass === 'right',
+      }">
+      <!-- Connection Connector Bar Track -->
+      @if (idx > 0) {
+        <div class="step-connector"></div>
+      }
+
+      <!-- Clickable Progress Dot Element -->
+      <button
+        type="button"
+        class="step-dot"
+        [disabled]="isClickDisabled"
+        [attr.aria-label]="ariaLabelStepPrefix() + step.label"
+        (click)="onStepClick(step, idx)">
+        <span class="inner-dot"></span>
+      </button>
+
+      <!-- Label and Descriptor View (Default text layout or Custom projected template) -->
+      <div
+        class="step-details"
+        [ngClass]="{ 'mt-1': orientation() == 'horizontal' }"
+        (click)="!isClickDisabled && onStepClick(step, idx)">
+        @if (labelTemplate()) {
+          <ng-container
+            *ngTemplateOutlet="
+              labelTemplate()!;
+              context: { $implicit: step, index: idx, active: isCurrent, completed: isCompleted }
+            "></ng-container>
+        } @else {
+          <span class="step-label">{{ step.label }}</span>
+          @if (step.description) {
+            <span class="step-desc">{{ step.description }}</span>
+          }
+        }
+      </div>
+    </div>
+  }
+</div>

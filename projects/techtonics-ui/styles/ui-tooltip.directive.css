@@ -1,0 +1,95 @@
+.ui-tooltip-arrow {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: var(--text-secondary);
+  transform: rotate(45deg);
+  box-sizing: border-box;
+  z-index: var(--z-tooltip);
+}
+
+.ui-tooltip-container {
+  position: absolute;
+  z-index: var(--z-tooltip);
+  background: light-dark(var(--bg), #27272a);
+  box-shadow: 2px 2px 2px var(--border-strong);
+  border: 1px solid var(--border-strong);
+  color: var(--text-primary);
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+  transform: scale(0.9);
+
+  .ui-tooltip-arrow {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    /* Matches tooltip color */
+    background: inherit;
+    transform: rotate(45deg);
+    border: 1px solid var(--border-strong);
+  }
+
+  &[data-position='top'] {
+    /* Anchored to bottom edge,
+    moves freely on X-axis */
+    .ui-tooltip-arrow {
+      bottom: -4px;
+      border-top: 0;
+      border-left: 0;
+      left: var(--arrow-offset, 50%);
+      transform: translateX(-50%) rotate(45deg);
+    }
+  }
+
+  &[data-position='bottom'] {
+    /* Anchored to top edge, moves freely on X-axis */
+    .ui-tooltip-arrow {
+      top: -4px;
+      border-bottom: 0;
+      border-right: 0;
+      left: var(--arrow-offset, 50%);
+      transform: translateX(-50%) rotate(45deg);
+    }
+  }
+
+  &[data-position='left'] {
+    /*  Anchored to right edge, moves freely on Y-axis */
+    .ui-tooltip-arrow {
+      right: -4px;
+      border-left: 0;
+      border-bottom: 0;
+      top: var(--arrow-offset, 50%);
+      transform: translateY(-50%) rotate(45deg);
+    }
+  }
+
+  /* Handle positioning changes seamlessly via attributes */
+  &[data-position='right'] {
+    /*  Anchored to left edge, moves freely on Y-axis */
+    .ui-tooltip-arrow {
+      left: -4px;
+      border-right: 0;
+      border-top: 0;
+      top: var(--arrow-offset, 50%);
+      transform: translateY(-50%) rotate(45deg);
+    }
+  }
+
+  /* Fade-in animation */
+  &.fade-in {
+    opacity: 1;
+    transform: scale(1); /* grow to full size */
+  }
+
+  /* Fade-out animation */
+  &.fade-out {
+    opacity: 0;
+    transform: scale(0.9); /* shrink slightly */
+  }
+}

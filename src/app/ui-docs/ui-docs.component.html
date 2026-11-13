@@ -1,0 +1,1588 @@
+<div class="ui-docs">
+  <div class="section">
+    <h1 class="left">UI Library</h1>
+    <div class="right">
+      <button class="btn btn-ghost color-primary" (click)="toggleTheme()">
+        {{ theme.theme() === 'dark' ? '🌙 Dark Mode' : '☀️ Light Mode' }}
+      </button>
+    </div>
+  </div>
+  <p>A complete design system and component library.</p>
+
+  <!--App Nav-->
+  <section>
+    <h2>App Nav</h2>
+    <ui-app-nav [items]="mainNav" [profileItems]="profileNav" (itemClick)="onNavClick($event)" logo="My Test App">
+    </ui-app-nav>
+  </section>
+
+  <!--App Nav (Mega Menu)-->
+  <section>
+    <h2>App Nav (Mega Menu)</h2>
+
+    <ng-template #hamburgerTpl>
+      <span style="font-size: 2rem">&equals;</span>
+    </ng-template>
+
+    <ui-app-nav [items]="megaMainNav" [profileItems]="profileNav" (itemClick)="onNavClick($event)">
+      <ng-template #logo>
+        <div style="display: flex; align-items: center; gap: 0.5rem">
+          <span style="font-weight: 700">MyCorp</span>
+        </div>
+      </ng-template>
+      <ng-template #profile>
+        <span profileTrigger>
+          <img src="4.jpg" width="36" style="border-radius: 50%" />
+        </span>
+      </ng-template>
+    </ui-app-nav>
+  </section>
+
+  <!--Accordion-->
+  <section>
+    <h2>Plain Accordion</h2>
+    <ui-accordion [(items)]="accordionData3" (itemToggled)="onItemToggled3($event)"> </ui-accordion>
+  </section>
+
+  <section>
+    <h2>Accordion With Templates</h2>
+    <div class="external-controls">
+      <button (click)="myAccordion.expandItem('item-2')">Open Item 2 Manually</button>
+    </div>
+
+    <ui-accordion
+      #myAccordion
+      [(items)]="accordionData"
+      [showActionButtons]="true"
+      (itemToggled)="onItemToggled($event)">
+      <!-- Custom Header Template -->
+      <ng-template #accordionHeader let-item>
+        <div class="custom-header-layout">
+          <strong>⚡ {{ item.header }}</strong>
+          <span class="badge">{{ item.data.category }}</span>
+        </div>
+      </ng-template>
+
+      <!-- Custom Body Template -->
+      <ng-template #accordionBody let-item>
+        <div class="custom-body-layout px-3">
+          <p>{{ item.body }}</p>
+          <small>Database ID: {{ item.data.id }}</small>
+        </div>
+      </ng-template>
+    </ui-accordion>
+  </section>
+
+  <section>
+    <h2>Exclusive Accordion</h2>
+    <ui-accordion
+      [(items)]="accordionData2"
+      (itemToggled)="onItemToggled2($event)"
+      [showActionButtons]="true"
+      [exclusive]="true">
+      <!-- Dynamic Mutual Exclusivity Mode Enabled -->
+
+      <ng-template #accordionHeader let-item>
+        <strong>⚡ {{ item.header }}</strong>
+      </ng-template>
+
+      <ng-template #accordionBody let-item>
+        <p class="px-3">{{ item.body }}</p>
+      </ng-template>
+    </ui-accordion>
+  </section>
+
+  <!-- Badges -->
+  <section>
+    <h2>Badges</h2>
+    <ui-badge variant="success">Success</ui-badge>
+    <ui-badge variant="warning">Warning</ui-badge>
+    <ui-badge variant="error">Error</ui-badge>
+    <ui-badge variant="info">Info</ui-badge>
+  </section>
+
+  <!--Breadcrumb-->
+  <section>
+    <h2>breadcrumb</h2>
+    <ui-breadcrumb [items]="breadCrumbItems" (itemClick)="onCrumbClick($event)"> </ui-breadcrumb>
+    <ui-breadcrumb [items]="breadCrumbItems">
+      <ng-template #item let-item> <span class="icon">📁</span> {{ item.label }} </ng-template>
+    </ui-breadcrumb>
+  </section>
+
+  <!-- Buttons -->
+  <section>
+    <h2>Buttons</h2>
+    <ui-button class="mr-2">Regular Solid</ui-button>
+    <ui-button class="mr-2" color="secondary">Secondary Color Solid</ui-button>
+    <ui-button class="mr-2" color="success">Success Solid</ui-button>
+    <ui-button class="mr-2" color="warning">Warning Solid</ui-button>
+    <ui-button class="mr-2" color="error">Error Solid</ui-button>
+    <ui-button class="mr-2" color="info">Info Solid</ui-button>
+    <br />
+    <br />
+    <ui-button class="mr-2" iconClass="ti ti-disc">Solid Icon</ui-button>
+    <ui-button class="mr-2" iconClass="ti ti-load-balancer" color="secondary">Secondary Solid Icon</ui-button>
+    <ui-button class="mr-2" iconClass="ti ti-device-gamepad-3" color="success">Success Solid Icon</ui-button>
+    <ui-button class="mr-2" iconClass="ti ti-bath" color="warning">Warning Solid Icon</ui-button>
+    <ui-button class="mr-2" iconClass="ti ti-cube-3d-sphere" color="error">Error Solid Icon</ui-button>
+    <ui-button class="mr-2" iconClass="ti ti-a-b" color="info">Info Solid Icon</ui-button>
+    <br />
+    <br />
+    <ui-button class="mr-2" color="primary" [disabled]="true">Disabled Solid</ui-button>
+    <ui-button class="mr-2" color="secondary" [disabled]="true">Secondary Color Solid</ui-button>
+    <ui-button class="mr-2" color="success" [disabled]="true">Disabled Solid Success</ui-button>
+    <ui-button class="mr-2" color="warning" [disabled]="true">Disabled Solid Warning</ui-button>
+    <ui-button class="mr-2" color="error" [disabled]="true">Disabled Solid Error</ui-button>
+    <ui-button class="mr-2" color="info" [disabled]="true">Disabled Solid Info</ui-button>
+    <br />
+    <br />
+    <ui-button class="mr-2" variant="outline">Regular Outline style</ui-button>
+    <ui-button class="mr-2" color="secondary" variant="outline">Secondary Color Outline style</ui-button>
+    <ui-button class="mr-2" variant="outline" color="success">Success Outline style</ui-button>
+    <ui-button class="mr-2" variant="outline" color="warning">Warning Outline style</ui-button>
+    <ui-button class="mr-2" variant="outline" color="error">Error Outline style</ui-button>
+    <ui-button class="mr-2" variant="outline" color="info">Info Outline style</ui-button>
+    <br />
+    <br />
+    <ui-button class="mr-2" iconClass="ti ti-disc" variant="outline">Regular Outline Icon</ui-button>
+    <ui-button class="mr-2" iconClass="ti ti-load-balancer" color="secondary" variant="outline"
+      >Secondary Color Outline Icon</ui-button
+    >
+    <ui-button class="mr-2" iconClass="ti ti-device-gamepad-3" variant="outline" color="success"
+      >Success Outline Icon</ui-button
+    >
+    <ui-button class="mr-2" iconClass="ti ti-bath" variant="outline" color="warning">Warning Outline Icon</ui-button>
+    <ui-button class="mr-2" iconClass="ti ti-cube-3d-sphere" variant="outline" color="error"
+      >Error Outline Icon</ui-button
+    >
+    <ui-button class="mr-2" iconClass="ti ti-a-b" variant="outline" color="info">Info Outline Icon</ui-button>
+    <br />
+    <br />
+    <ui-button class="mr-2" variant="outline" color="primary" [disabled]="true">Disabled Outline Primary</ui-button>
+    <ui-button class="mr-2" variant="outline" color="secondary" [disabled]="true">Disabled Outline Primary</ui-button>
+    <ui-button class="mr-2" variant="outline" color="success" [disabled]="true">Disabled Outline Success</ui-button>
+    <ui-button class="mr-2" variant="outline" color="warning" [disabled]="true">Disabled Outline Warning</ui-button>
+    <ui-button class="mr-2" variant="outline" color="error" [disabled]="true">Disabled Outline Error</ui-button>
+    <ui-button class="mr-2" variant="outline" color="info" [disabled]="true">Disabled Outline Info</ui-button>
+    <br />
+    <br />
+    <ui-button class="mr-2" variant="ghost">Regular Ghost</ui-button>
+    <ui-button class="mr-2" variant="ghost" color="secondary">Secondary Ghost</ui-button>
+    <ui-button class="mr-2" variant="ghost" color="success">Success Ghost</ui-button>
+    <ui-button class="mr-2" variant="ghost" color="warning">Warning Ghost</ui-button>
+    <ui-button class="mr-2" variant="ghost" color="error">Error Ghost</ui-button>
+    <ui-button class="mr-2" variant="ghost" color="info">Info Ghost</ui-button>
+    <br />
+    <br />
+    <ui-button class="mr-2" iconClass="ti ti-disc" variant="ghost">Regular Ghost Icon</ui-button>
+    <ui-button class="mr-2" iconClass="ti ti-load-balancer" variant="ghost" color="secondary"
+      >Secondary Ghost Icon</ui-button
+    >
+    <ui-button class="mr-2" iconClass="ti ti-device-gamepad-3" variant="ghost" color="success"
+      >Success Ghost Icon</ui-button
+    >
+    <ui-button class="mr-2" iconClass="ti ti-bath" variant="ghost" color="warning">Warning Ghost Icon</ui-button>
+    <ui-button class="mr-2" iconClass="ti ti-cube-3d-sphere" variant="ghost" color="error">Error Ghost Icon</ui-button>
+    <ui-button class="mr-2" iconClass="ti ti-a-b" variant="ghost" color="info">Info Ghost Icon</ui-button>
+    <br />
+    <br />
+    <ui-button class="mr-2" variant="ghost" color="primary" [disabled]="true">Disabled Ghost Primary</ui-button>
+    <ui-button class="mr-2" variant="ghost" color="secondary" [disabled]="true">Disabled Ghost Secondary</ui-button>
+    <ui-button class="mr-2" variant="ghost" color="success" [disabled]="true">Disabled Ghost Success</ui-button
+    ><ui-button class="mr-2" variant="ghost" color="warning" [disabled]="true">Disabled Ghost Warning</ui-button>
+    <ui-button class="mr-2" variant="ghost" color="error" [disabled]="true">Disabled Ghost Error</ui-button>
+    <ui-button class="mr-2" variant="ghost" color="info" [disabled]="true">Disabled Ghost Info</ui-button>
+    <br />
+    <br />
+    <ui-button class="mr-2" variant="icon" iconClass="ti ti-alarm"></ui-button>
+    <ui-button class="mr-2" variant="icon" color="secondary" iconClass="ti ti-scuba-mask"></ui-button>
+    <ui-button class="mr-2" variant="icon" color="success" iconClass="ti ti-hammer"></ui-button>
+    <ui-button class="mr-2" variant="icon" color="warning" iconClass="ti ti-device-ipad-bolt"></ui-button>
+    <ui-button class="mr-2" variant="icon" color="error" iconClass="ti ti-device-imac-question"></ui-button>
+    <ui-button class="mr-2" variant="icon" color="info" iconClass="ti ti-door-exit"></ui-button>
+    <ui-button class="mr-2" variant="icon" color="info" iconClass="ti ti-music-search" [disabled]="true"></ui-button>
+  </section>
+
+  <section>
+    <h2>Icon Buttons</h2>
+    <button [ui-icon]="'ti ti-alarm'" class="btn-icon mr-2"></button>
+    <button ui-icon="ti ti-hammer" class="btn-icon color-primary mr-2"></button>
+    <button ui-icon="ti ti-gift-card" class="btn-icon color-secondary mr-2"></button>
+    <button ui-icon="ti ti-device-ipad-bolt" class="btn-icon color-success mr-2"></button>
+    <button ui-icon="ti ti-device-imac-question" class="btn-icon color-warning mr-2"></button>
+    <button ui-icon="ti ti-file-excel" class="btn-icon color-error mr-2"></button>
+    <button ui-icon="ti ti-door-exit" class="btn-icon color-info mr-2"></button>
+  </section>
+
+  <!-- Cards -->
+  <section>
+    <h2>Cards</h2>
+    <ui-card>
+      <ng-content card-title><h3>Card Title</h3></ng-content>
+      <p>This is a card component.</p>
+    </ui-card>
+  </section>
+
+  <section>
+    <h2>Checkboxes</h2>
+    <ui-checkbox label="My Checkbox With Label"></ui-checkbox>
+    <br />
+    <ui-checkbox id="MyCheckboxWithout Label" [required]="true"></ui-checkbox>
+    <br />
+    <ui-checkbox label="My Checkbox With Label and required" [required]="true"></ui-checkbox>
+    <br />
+  </section>
+
+  <!--Color picker-->
+  <section>
+    <h2>Color Picker: Default (Displays Hex Notation Code)</h2>
+    <app-color-picker [(value)]="selectedColor1" />
+    <p>Selected Value: {{ selectedColor1() }}</p>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+  </section>
+
+  <section>
+    <h2>Color Picker: Custom Display Text String</h2>
+    <app-color-picker [(value)]="selectedColor2" customText="Accent Brand Color" [showCopyButton]="true" />
+    <p>Selected Value: {{ selectedColor2() }}</p>
+  </section>
+
+  <section>
+    <h2>Color Picker: With Signal Forms</h2>
+    <form>
+      <label for="theme" style="display: block">Choose Theme Color</label>
+
+      <!-- #colorField reference grabs the internal signal state context seamlessly -->
+      <app-color-picker [formField]="inputSignalColorForm.selectedColor" #colorField="formField" />
+    </form>
+    <p>Selected Value: {{ inputSignalColorForm.selectedColor().controlValue() }}</p>
+  </section>
+
+  <section>
+    <h2>Color Picker: With signal form and contrast validation</h2>
+    <form style="display: flex; flex-direction: column; gap: 32px; padding: 40px">
+      <div>
+        <label>Primary Brand Background</label>
+        <app-color-picker [formField]="themeForm.primaryColor" />
+      </div>
+
+      <div>
+        <label>Readable Text Foreground Color</label>
+        <app-color-picker [formField]="themeForm.textColor" />
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <h2>Color Picker: With reactive form and contrast validation</h2>
+    <form style="display: flex; flex-direction: column; gap: 32px; padding: 40px" [formGroup]="colorThemeForm">
+      <div>
+        <label>Primary Brand Background</label>
+        <app-color-picker [formControlName]="'primaryColor'" />
+        <p>Selected Value: {{ colorThemeForm.controls.primaryColor.value }}</p>
+      </div>
+
+      <div>
+        <label>Readable Text Foreground Color</label>
+        <app-color-picker [formControlName]="'textColor'" />
+        <p>Selected Value: {{ colorThemeForm.controls.textColor.value }}</p>
+      </div>
+    </form>
+  </section>
+
+  <!--Currency Control-->
+  <section>
+    <h2>Currency Control</h2>
+    <ui-currency-input [ngModel]="currencyValue()" (ngModelChange)="onCurrencyChanged($event)"></ui-currency-input>
+  </section>
+
+  <!--Data Grid-->
+  <section style="height: 25rem; display: flex; flex-direction: column">
+    <h2>Data Grid</h2>
+    <ui-data-grid
+      [data]="products()"
+      selectionMode="multiple"
+      [usePaginator]="true"
+      (selectionChange)="handleSelection($event)">
+      <!-- 1. Custom Title Bar Area Template Reference definition -->
+      <ng-template #titleBar>
+        <div class="custom-title-layout">
+          <h3>📦 Central Warehouse Inventory</h3>
+          <div class="action-buttons">
+            <button [disabled]="selectedItems.length === 0" (click)="deleteSelected()">
+              Delete Selected ({{ selectedItems.length }})
+            </button>
+            <button (click)="exportToCSV()">Export Data</button>
+          </div>
+        </div>
+      </ng-template>
+
+      <!-- 2. Grid Table Columns Configuration Definitions -->
+      <ui-grid-col field="code" header="SKU" [sortable]="true"></ui-grid-col>
+      <ui-grid-col field="name" header="Item Title" [editable]="true"></ui-grid-col>
+      <ui-grid-col field="inventory" header="Stock Count" [sortable]="true"></ui-grid-col>
+    </ui-data-grid>
+  </section>
+
+  <section style="height: 75rem; display: flex; flex-direction: column">
+    <h2>Data Grid From Workbench!</h2>
+    <ui-data-grid
+      [data]="[
+        { code: 'A102', name: 'Wireless Mouse', inventory: 40 },
+        { code: 'A102', name: 'Wireless Mouse 2', inventory: 50 },
+        { code: 'B501', name: 'Mechanical Keyboard', inventory: 5 },
+        { code: 'C309', name: '4K Gaming Monitor', inventory: 12 },
+        { code: 'D401', name: 'USB-C Docking Hub', inventory: 22 },
+        { code: 'E112', name: 'Ergonomic Office Chair', inventory: 8 },
+        { code: 'F702', name: 'Super Computer', inventory: 2 },
+        { code: 'G812', name: 'Qwen AI Assistant', inventory: 5 },
+        { code: 'H923', name: 'Wired Mouse', inventory: 10 },
+        { code: 'I134', name: 'Stool', inventory: 12 },
+        { code: 'J245', name: '2k Television', inventory: 15 },
+        { code: 'K356', name: 'Television Wall Mount', inventory: 61 },
+        { code: 'L467', name: '4-Tier Book Case', inventory: 5 },
+        { code: 'M578', name: '8-Tier Book Case', inventory: 9 },
+        { code: 'N689', name: 'Regular Office Chair', inventory: 65 },
+        { code: 'O790', name: 'Players Handbook (3.5)', inventory: 3 },
+        { code: 'P801', name: 'Monster Manual (3.5)', inventory: 5 },
+        { code: 'A102', name: 'Wireless Mouse', inventory: 40 },
+        { code: 'A102', name: 'Wireless Mouse 2', inventory: 50 },
+        { code: 'B501', name: 'Mechanical Keyboard', inventory: 5 },
+        { code: 'C309', name: '4K Gaming Monitor', inventory: 12 },
+        { code: 'D401', name: 'USB-C Docking Hub', inventory: 22 },
+        { code: 'E112', name: 'Ergonomic Office Chair', inventory: 8 },
+        { code: 'F702', name: 'Super Computer', inventory: 2 },
+        { code: 'G812', name: 'Qwen AI Assistant', inventory: 5 },
+        { code: 'H923', name: 'Wired Mouse', inventory: 10 },
+        { code: 'I134', name: 'Stool', inventory: 12 },
+        { code: 'J245', name: '2k Television', inventory: 15 },
+        { code: 'K356', name: 'Television Wall Mount', inventory: 61 },
+        { code: 'L467', name: '4-Tier Book Case', inventory: 5 },
+        { code: 'M578', name: '8-Tier Book Case', inventory: 9 },
+        { code: 'N689', name: 'Regular Office Chair', inventory: 65 },
+        { code: 'O790', name: 'Players Handbook (3.5)', inventory: 3 },
+        { code: 'P801', name: 'Monster Manual (3.5)', inventory: 5 },
+        { code: 'A102', name: 'Wireless Mouse', inventory: 40 },
+        { code: 'A102', name: 'Wireless Mouse 2', inventory: 50 },
+        { code: 'B501', name: 'Mechanical Keyboard', inventory: 5 },
+        { code: 'C309', name: '4K Gaming Monitor', inventory: 12 },
+        { code: 'D401', name: 'USB-C Docking Hub', inventory: 22 },
+        { code: 'E112', name: 'Ergonomic Office Chair', inventory: 8 },
+        { code: 'F702', name: 'Super Computer', inventory: 2 },
+        { code: 'G812', name: 'Qwen AI Assistant', inventory: 5 },
+        { code: 'H923', name: 'Wired Mouse', inventory: 10 },
+        { code: 'I134', name: 'Stool', inventory: 12 },
+        { code: 'J245', name: '2k Television', inventory: 15 },
+        { code: 'K356', name: 'Television Wall Mount', inventory: 61 },
+        { code: 'L467', name: '4-Tier Book Case', inventory: 5 },
+        { code: 'M578', name: '8-Tier Book Case', inventory: 9 },
+        { code: 'N689', name: 'Regular Office Chair', inventory: 65 },
+        { code: 'O790', name: 'Players Handbook (3.5)', inventory: 3 },
+        { code: 'P801', name: 'Monster Manual (3.5)', inventory: 5 },
+        { code: 'A102', name: 'Wireless Mouse', inventory: 40 },
+        { code: 'A102', name: 'Wireless Mouse 2', inventory: 50 },
+        { code: 'B501', name: 'Mechanical Keyboard', inventory: 5 },
+        { code: 'C309', name: '4K Gaming Monitor', inventory: 12 },
+        { code: 'D401', name: 'USB-C Docking Hub', inventory: 22 },
+        { code: 'E112', name: 'Ergonomic Office Chair', inventory: 8 },
+        { code: 'F702', name: 'Super Computer', inventory: 2 },
+        { code: 'G812', name: 'Qwen AI Assistant', inventory: 5 },
+        { code: 'H923', name: 'Wired Mouse', inventory: 10 },
+        { code: 'I134', name: 'Stool', inventory: 12 },
+        { code: 'J245', name: '2k Television', inventory: 15 },
+        { code: 'K356', name: 'Television Wall Mount', inventory: 61 },
+        { code: 'L467', name: '4-Tier Book Case', inventory: 5 },
+        { code: 'M578', name: '8-Tier Book Case', inventory: 9 },
+        { code: 'N689', name: 'Regular Office Chair', inventory: 65 },
+        { code: 'O790', name: 'Players Handbook (3.5)', inventory: 3 },
+        { code: 'P801', name: 'Monster Manual (3.5)', inventory: 5 },
+        { code: 'A102', name: 'Wireless Mouse', inventory: 40 },
+        { code: 'A102', name: 'Wireless Mouse 2', inventory: 50 },
+        { code: 'B501', name: 'Mechanical Keyboard', inventory: 5 },
+        { code: 'C309', name: '4K Gaming Monitor', inventory: 12 },
+        { code: 'D401', name: 'USB-C Docking Hub', inventory: 22 },
+        { code: 'E112', name: 'Ergonomic Office Chair', inventory: 8 },
+        { code: 'F702', name: 'Super Computer', inventory: 2 },
+        { code: 'G812', name: 'Qwen AI Assistant', inventory: 5 },
+        { code: 'H923', name: 'Wired Mouse', inventory: 10 },
+        { code: 'I134', name: 'Stool', inventory: 12 },
+        { code: 'J245', name: '2k Television', inventory: 15 },
+        { code: 'K356', name: 'Television Wall Mount', inventory: 61 },
+        { code: 'L467', name: '4-Tier Book Case', inventory: 5 },
+        { code: 'M578', name: '8-Tier Book Case', inventory: 9 },
+        { code: 'N689', name: 'Regular Office Chair', inventory: 65 },
+        { code: 'O790', name: 'Players Handbook (3.5)', inventory: 3 },
+        { code: 'P801', name: 'Monster Manual (3.5)', inventory: 5 },
+        { code: 'A102', name: 'Wireless Mouse', inventory: 40 },
+        { code: 'A102', name: 'Wireless Mouse 2', inventory: 50 },
+        { code: 'B501', name: 'Mechanical Keyboard', inventory: 5 },
+        { code: 'C309', name: '4K Gaming Monitor', inventory: 12 },
+        { code: 'D401', name: 'USB-C Docking Hub', inventory: 22 },
+        { code: 'E112', name: 'Ergonomic Office Chair', inventory: 8 },
+        { code: 'F702', name: 'Super Computer', inventory: 2 },
+        { code: 'G812', name: 'Qwen AI Assistant', inventory: 5 },
+        { code: 'H923', name: 'Wired Mouse', inventory: 10 },
+        { code: 'I134', name: 'Stool', inventory: 12 },
+        { code: 'J245', name: '2k Television', inventory: 15 },
+        { code: 'K356', name: 'Television Wall Mount', inventory: 61 },
+        { code: 'L467', name: '4-Tier Book Case', inventory: 5 },
+        { code: 'M578', name: '8-Tier Book Case', inventory: 9 },
+        { code: 'N689', name: 'Regular Office Chair', inventory: 65 },
+        { code: 'O790', name: 'Players Handbook (3.5)', inventory: 3 },
+        { code: 'P801', name: 'Monster Manual (3.5)', inventory: 5 },
+        { code: 'A102', name: 'Wireless Mouse', inventory: 40 },
+        { code: 'A102', name: 'Wireless Mouse 2', inventory: 50 },
+        { code: 'B501', name: 'Mechanical Keyboard', inventory: 5 },
+        { code: 'C309', name: '4K Gaming Monitor', inventory: 12 },
+        { code: 'D401', name: 'USB-C Docking Hub', inventory: 22 },
+        { code: 'E112', name: 'Ergonomic Office Chair', inventory: 8 },
+        { code: 'F702', name: 'Super Computer', inventory: 2 },
+        { code: 'G812', name: 'Qwen AI Assistant', inventory: 5 },
+        { code: 'H923', name: 'Wired Mouse', inventory: 10 },
+        { code: 'I134', name: 'Stool', inventory: 12 },
+        { code: 'J245', name: '2k Television', inventory: 15 },
+        { code: 'K356', name: 'Television Wall Mount', inventory: 61 },
+        { code: 'L467', name: '4-Tier Book Case', inventory: 5 },
+        { code: 'M578', name: '8-Tier Book Case', inventory: 9 },
+        { code: 'N689', name: 'Regular Office Chair', inventory: 65 },
+        { code: 'O790', name: 'Players Handbook (3.5)', inventory: 3 },
+        { code: 'P801', name: 'Monster Manual (3.5)', inventory: 5 },
+        { code: 'A102', name: 'Wireless Mouse', inventory: 40 },
+        { code: 'A102', name: 'Wireless Mouse 2', inventory: 50 },
+        { code: 'B501', name: 'Mechanical Keyboard', inventory: 5 },
+        { code: 'C309', name: '4K Gaming Monitor', inventory: 12 },
+        { code: 'D401', name: 'USB-C Docking Hub', inventory: 22 },
+        { code: 'E112', name: 'Ergonomic Office Chair', inventory: 8 },
+        { code: 'F702', name: 'Super Computer', inventory: 2 },
+        { code: 'G812', name: 'Qwen AI Assistant', inventory: 5 },
+        { code: 'H923', name: 'Wired Mouse', inventory: 10 },
+        { code: 'I134', name: 'Stool', inventory: 12 },
+        { code: 'J245', name: '2k Television', inventory: 15 },
+        { code: 'K356', name: 'Television Wall Mount', inventory: 61 },
+        { code: 'L467', name: '4-Tier Book Case', inventory: 5 },
+        {
+          code: 'M578',
+          name: '8-Tier Book Case',
+          inventory: 9,
+        },
+        { code: 'N689', name: 'Regular Office Chair', inventory: 65 },
+        { code: 'O790', name: 'Players Handbook (3.5)', inventory: 3 },
+        { code: 'P801', name: 'Monster Manual (3.5)', inventory: 5 },
+        { code: 'A102', name: 'Wireless Mouse', inventory: 40 },
+        { code: 'A102', name: 'Wireless Mouse 2', inventory: 50 },
+        { code: 'B501', name: 'Mechanical Keyboard', inventory: 5 },
+        { code: 'C309', name: '4K Gaming Monitor', inventory: 12 },
+        {
+          code: 'D401',
+          name: 'USB-C Docking Hub',
+          inventory: 22,
+        },
+        { code: 'E112', name: 'Ergonomic Office Chair', inventory: 8 },
+        { code: 'F702', name: 'Super Computer', inventory: 2 },
+        { code: 'G812', name: 'Qwen AI Assistant', inventory: 5 },
+        { code: 'H923', name: 'Wired Mouse', inventory: 10 },
+        { code: 'I134', name: 'Stool', inventory: 12 },
+        { code: 'J245', name: '2k Television', inventory: 15 },
+        { code: 'K356', name: 'Television Wall Mount', inventory: 61 },
+        { code: 'L467', name: '4-Tier Book Case', inventory: 5 },
+        { code: 'M578', name: '8-Tier Book Case', inventory: 9 },
+        { code: 'N689', name: 'Regular Office Chair', inventory: 65 },
+        { code: 'O790', name: 'Players Handbook (3.5)', inventory: 3 },
+        { code: 'P801', name: 'Monster Manual (3.5)', inventory: 5 },
+        { code: 'A102', name: 'Wireless Mouse', inventory: 40 },
+        { code: 'A102', name: 'Wireless Mouse 2', inventory: 50 },
+        { code: 'B501', name: 'Mechanical Keyboard', inventory: 5 },
+        { code: 'C309', name: '4K Gaming Monitor', inventory: 12 },
+        { code: 'D401', name: 'USB-C Docking Hub', inventory: 22 },
+        { code: 'E112', name: 'Ergonomic Office Chair', inventory: 8 },
+        { code: 'F702', name: 'Super Computer', inventory: 2 },
+        { code: 'G812', name: 'Qwen AI Assistant', inventory: 5 },
+        { code: 'H923', name: 'Wired Mouse', inventory: 10 },
+        { code: 'I134', name: 'Stool', inventory: 12 },
+        { code: 'J245', name: '2k Television', inventory: 15 },
+        { code: 'K356', name: 'Television Wall Mount', inventory: 61 },
+        { code: 'L467', name: '4-Tier Book Case', inventory: 5 },
+        { code: 'M578', name: '8-Tier Book Case', inventory: 9 },
+        { code: 'N689', name: 'Regular Office Chair', inventory: 65 },
+        { code: 'O790', name: 'Players Handbook (3.5)', inventory: 3 },
+        { code: 'P801', name: 'Monster Manual (3.5)', inventory: 5 },
+        { code: 'A102', name: 'Wireless Mouse', inventory: 40 },
+        { code: 'A102', name: 'Wireless Mouse 2', inventory: 50 },
+        { code: 'B501', name: 'Mechanical Keyboard', inventory: 5 },
+        { code: 'C309', name: '4K Gaming Monitor', inventory: 12 },
+        { code: 'D401', name: 'USB-C Docking Hub', inventory: 22 },
+        { code: 'E112', name: 'Ergonomic Office Chair', inventory: 8 },
+        { code: 'F702', name: 'Super Computer', inventory: 2 },
+        { code: 'G812', name: 'Qwen AI Assistant', inventory: 5 },
+        { code: 'H923', name: 'Wired Mouse', inventory: 10 },
+        { code: 'I134', name: 'Stool', inventory: 12 },
+        { code: 'J245', name: '2k Television', inventory: 15 },
+        { code: 'K356', name: 'Television Wall Mount', inventory: 61 },
+        { code: 'L467', name: '4-Tier Book Case', inventory: 5 },
+        { code: 'M578', name: '8-Tier Book Case', inventory: 9 },
+        { code: 'N689', name: 'Regular Office Chair', inventory: 65 },
+        { code: 'O790', name: 'Players Handbook (3.5)', inventory: 3 },
+        { code: 'P801', name: 'Monster Manual (3.5)', inventory: 5 },
+        { code: 'A102', name: 'Wireless Mouse', inventory: 40 },
+        { code: 'A102', name: 'Wireless Mouse 2', inventory: 50 },
+        { code: 'B501', name: 'Mechanical Keyboard', inventory: 5 },
+        { code: 'C309', name: '4K Gaming Monitor', inventory: 12 },
+        { code: 'D401', name: 'USB-C Docking Hub', inventory: 22 },
+        { code: 'E112', name: 'Ergonomic Office Chair', inventory: 8 },
+        { code: 'F702', name: 'Super Computer', inventory: 2 },
+        { code: 'G812', name: 'Qwen AI Assistant', inventory: 5 },
+        { code: 'H923', name: 'Wired Mouse', inventory: 10 },
+        { code: 'I134', name: 'Stool', inventory: 12 },
+        { code: 'J245', name: '2k Television', inventory: 15 },
+        { code: 'K356', name: 'Television Wall Mount', inventory: 61 },
+        { code: 'L467', name: '4-Tier Book Case', inventory: 5 },
+        { code: 'M578', name: '8-Tier Book Case', inventory: 9 },
+        { code: 'N689', name: 'Regular Office Chair', inventory: 65 },
+        { code: 'O790', name: 'Players Handbook (3.5)', inventory: 3 },
+        { code: 'P801', name: 'Monster Manual (3.5)', inventory: 5 },
+        { code: 'A102', name: 'Wireless Mouse', inventory: 40 },
+        { code: 'A102', name: 'Wireless Mouse 2', inventory: 50 },
+        { code: 'B501', name: 'Mechanical Keyboard', inventory: 5 },
+        { code: 'C309', name: '4K Gaming Monitor', inventory: 12 },
+        { code: 'D401', name: 'USB-C Docking Hub', inventory: 22 },
+        { code: 'E112', name: 'Ergonomic Office Chair', inventory: 8 },
+        { code: 'F702', name: 'Super Computer', inventory: 2 },
+        { code: 'G812', name: 'Qwen AI Assistant', inventory: 5 },
+        { code: 'H923', name: 'Wired Mouse', inventory: 10 },
+        { code: 'I134', name: 'Stool', inventory: 12 },
+        { code: 'J245', name: '2k Television', inventory: 15 },
+        { code: 'K356', name: 'Television Wall Mount', inventory: 61 },
+        { code: 'L467', name: '4-Tier Book Case', inventory: 5 },
+        { code: 'M578', name: '8-Tier Book Case', inventory: 9 },
+        { code: 'N689', name: 'Regular Office Chair', inventory: 65 },
+        { code: 'O790', name: 'Players Handbook (3.5)', inventory: 3 },
+        {
+          code: 'P801',
+          name: 'Monster Manual (3.5)',
+          inventory: 5,
+        },
+        { code: 'A102', name: 'Wireless Mouse', inventory: 40 },
+        { code: 'A102', name: 'Wireless Mouse 2', inventory: 50 },
+        { code: 'B501', name: 'Mechanical Keyboard', inventory: 5 },
+        { code: 'C309', name: '4K Gaming Monitor', inventory: 12 },
+        { code: 'D401', name: 'USB-C Docking Hub', inventory: 22 },
+        { code: 'E112', name: 'Ergonomic Office Chair', inventory: 8 },
+        { code: 'F702', name: 'Super Computer', inventory: 2 },
+        { code: 'G812', name: 'Qwen AI Assistant', inventory: 5 },
+        { code: 'H923', name: 'Wired Mouse', inventory: 10 },
+        { code: 'I134', name: 'Stool', inventory: 12 },
+        { code: 'J245', name: '2k Television', inventory: 15 },
+        { code: 'K356', name: 'Television Wall Mount', inventory: 61 },
+        { code: 'L467', name: '4-Tier Book Case', inventory: 5 },
+        { code: 'M578', name: '8-Tier Book Case', inventory: 9 },
+        { code: 'N689', name: 'Regular Office Chair', inventory: 65 },
+        { code: 'O790', name: 'Players Handbook (3.5)', inventory: 3 },
+        { code: 'P801', name: 'Monster Manual (3.5)', inventory: 5 },
+        { code: 'A102', name: 'Wireless Mouse', inventory: 40 },
+        { code: 'A102', name: 'Wireless Mouse 2', inventory: 50 },
+        { code: 'B501', name: 'Mechanical Keyboard', inventory: 5 },
+        { code: 'C309', name: '4K Gaming Monitor', inventory: 12 },
+        { code: 'D401', name: 'USB-C Docking Hub', inventory: 22 },
+        { code: 'E112', name: 'Ergonomic Office Chair', inventory: 8 },
+        { code: 'F702', name: 'Super Computer', inventory: 2 },
+        { code: 'G812', name: 'Qwen AI Assistant', inventory: 5 },
+        { code: 'H923', name: 'Wired Mouse', inventory: 10 },
+        { code: 'I134', name: 'Stool', inventory: 12 },
+        { code: 'J245', name: '2k Television', inventory: 15 },
+        { code: 'K356', name: 'Television Wall Mount', inventory: 61 },
+        { code: 'L467', name: '4-Tier Book Case', inventory: 5 },
+        { code: 'M578', name: '8-Tier Book Case', inventory: 9 },
+        { code: 'N689', name: 'Regular Office Chair', inventory: 65 },
+        { code: 'O790', name: 'Players Handbook (3.5)', inventory: 3 },
+        { code: 'P801', name: 'Monster Manual (3.5)', inventory: 5 },
+        { code: 'A102', name: 'Wireless Mouse', inventory: 40 },
+        { code: 'A102', name: 'Wireless Mouse 2', inventory: 50 },
+        { code: 'B501', name: 'Mechanical Keyboard', inventory: 5 },
+        { code: 'C309', name: '4K Gaming Monitor', inventory: 12 },
+        { code: 'D401', name: 'USB-C Docking Hub', inventory: 22 },
+        { code: 'E112', name: 'Ergonomic Office Chair', inventory: 8 },
+        { code: 'F702', name: 'Super Computer', inventory: 2 },
+        { code: 'G812', name: 'Qwen AI Assistant', inventory: 5 },
+        { code: 'H923', name: 'Wired Mouse', inventory: 10 },
+        { code: 'I134', name: 'Stool', inventory: 12 },
+        { code: 'J245', name: '2k Television', inventory: 15 },
+        { code: 'K356', name: 'Television Wall Mount', inventory: 61 },
+        { code: 'L467', name: '4-Tier Book Case', inventory: 5 },
+        { code: 'M578', name: '8-Tier Book Case', inventory: 9 },
+        { code: 'N689', name: 'Regular Office Chair', inventory: 65 },
+        { code: 'O790', name: 'Players Handbook (3.5)', inventory: 3 },
+        { code: 'P801', name: 'Monster Manual (3.5)', inventory: 5 },
+        { code: 'A102', name: 'Wireless Mouse', inventory: 40 },
+        { code: 'A102', name: 'Wireless Mouse 2', inventory: 50 },
+        { code: 'B501', name: 'Mechanical Keyboard', inventory: 5 },
+        { code: 'C309', name: '4K Gaming Monitor', inventory: 12 },
+        { code: 'D401', name: 'USB-C Docking Hub', inventory: 22 },
+        { code: 'E112', name: 'Ergonomic Office Chair', inventory: 8 },
+        { code: 'F702', name: 'Super Computer', inventory: 2 },
+        { code: 'G812', name: 'Qwen AI Assistant', inventory: 5 },
+        { code: 'H923', name: 'Wired Mouse', inventory: 10 },
+        { code: 'I134', name: 'Stool', inventory: 12 },
+        { code: 'J245', name: '2k Television', inventory: 15 },
+        { code: 'K356', name: 'Television Wall Mount', inventory: 61 },
+        { code: 'L467', name: '4-Tier Book Case', inventory: 5 },
+        { code: 'M578', name: '8-Tier Book Case', inventory: 9 },
+        { code: 'N689', name: 'Regular Office Chair', inventory: 65 },
+        { code: 'O790', name: 'Players Handbook (3.5)', inventory: 3 },
+        { code: 'P801', name: 'Monster Manual (3.5)', inventory: 5 },
+      ]"
+      selectionMode="none"
+      ariaLabel=""
+      rowSelectionTextForScreenReader="Row Selection"
+      validationErrorIconClass="ti ti-alert-triangle"
+      defaultEmptyMessage="No available records found."
+      [visible]="true"
+      [columnOrder]="[]">
+      <ui-grid-col field="code" header="SKU" [sortable]="true"></ui-grid-col>
+      <ui-grid-col field="name" header="Item Title" [editable]="true"></ui-grid-col>
+      <ui-grid-col field="inventory" header="Stock Count" [sortable]="true"></ui-grid-col>
+    </ui-data-grid>
+  </section>
+
+  <section style="height: 20rem; display: flex; flex-direction: column">
+    <div class="grid flex-1 flex flex-column m-0 overflow-hidden">
+      <div class="col-12 flex-1 flex flex-column p-0" style="min-height: 0; flex-grow: 0.15 !important">
+        <h2>Data Grid - No Paging - Single Selection</h2>
+      </div>
+      <div class="col-12 flex-1 flex flex-column p-0" style="min-height: 0">
+        <ui-data-grid [data]="products()" selectionMode="single" (selectionChange)="handleSelection($event)">
+          <!-- 1. Custom Title Bar Area Template Reference definition -->
+          <ng-template #titleBar>
+            <div class="custom-title-layout">
+              <h3>📦 Central Warehouse Inventory</h3>
+              <div class="action-buttons">
+                <button [disabled]="selectedItems.length === 0" (click)="deleteSelected()">
+                  Delete Selected ({{ selectedItems.length }})
+                </button>
+                <button (click)="exportToCSV()">Export Data</button>
+              </div>
+            </div>
+          </ng-template>
+
+          <!-- 2. Grid Table Columns Configuration Definitions -->
+          <ui-grid-col field="code" header="SKU" [sortable]="true"></ui-grid-col>
+          <ui-grid-col field="name" header="Item Title" [editable]="true"></ui-grid-col>
+          <ui-grid-col field="inventory" header="Stock Count" [sortable]="true"></ui-grid-col>
+        </ui-data-grid>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Data Grid - Column Visibility and Empty State</h2>
+    <ui-data-grid #grid2 [data]="products2()" [usePaginator]="true" selectionMode="multiple">
+      <!-- 1. Header Control: Toggling Visibility Checkboxes -->
+      <ng-template #titleBar>
+        <div class="toolbar">
+          <h3>📋 Inventory Control Panel</h3>
+          <div class="toggles">
+            <ui-checkbox class="mr-3" [(ngModel)]="showTableSku" [label]="'Show SKU'"></ui-checkbox>
+            <ui-checkbox class="mr-3" [(ngModel)]="showTableCost" label="Show Cost"></ui-checkbox>
+            <button (click)="clearAllTableData()">Wipe Grid</button>
+          </div>
+        </div>
+      </ng-template>
+
+      <!-- 2. Empty Overlay Implementation Definition -->
+      <ng-template #emptyState>
+        <div class="custom-empty-view">
+          <span>⚠️ Inventory is empty. Click system ingest to populate data.</span>
+        </div>
+      </ng-template>
+
+      <!-- 3. Dynamic Column Sets -->
+      <ui-grid-col field="code" header="SKU" [visible]="showTableSku"></ui-grid-col>
+      <ui-grid-col field="name" header="Item Title"></ui-grid-col>
+      <ui-grid-col field="price" header="Cost" [visible]="showTableCost"></ui-grid-col>
+    </ui-data-grid>
+  </section>
+
+  <section>
+    <h2>Data Grid - Global Search and row actions</h2>
+    <ui-data-grid #grid3 [data]="products3()" [usePaginator]="true" (onRowClick)="openModal($event.row)">
+      <!-- Integrated Dynamic Title Strip Panel Area -->
+      <ng-template #titleBar>
+        <div class="title-strip-layout">
+          <h3>📦 Enterprise Logistics Register</h3>
+
+          <!-- Interactive Search Input directly communicating with grid internal Signal -->
+          <div class="search-box-container">
+            <input
+              type="text"
+              placeholder="🔍 Global keyword lookup..."
+              (input)="grid3.globalSearchFilter.set($any($event.target).value)"
+              class="toolbar-search-input" />
+          </div>
+        </div>
+      </ng-template>
+
+      <!-- Custom Empty State Fallback Template Grid Overlays -->
+      <ng-template #emptyState>
+        <div class="empty-state-card">
+          <span>❌ No assets match the specified search term parameters.</span>
+        </div>
+      </ng-template>
+
+      <!-- Table Structure Configurations -->
+      <ui-grid-col field="sku" header="Asset SKU" [sortable]="true"></ui-grid-col>
+      <ui-grid-col field="title" header="Label Name" [editable]="true"></ui-grid-col>
+      <ui-grid-col field="warehouse" header="Location Bin"></ui-grid-col>
+    </ui-data-grid>
+  </section>
+
+  <section>
+    <h2>Data Grid - Template Columns</h2>
+    <ui-data-grid [data]="users">
+      <!-- 1. Standard structural column -->
+      <ui-grid-col field="id" header="User ID"></ui-grid-col>
+
+      <!-- 2. Formatting a text column using full row context -->
+      <ui-grid-col field="name" header="Name Registry">
+        <!-- 'let-name' reads the implicit field ('row[col.field]'). -->
+        <!-- 'let-row="row"' extracts the full object map for this specific line. -->
+        <ng-template let-name let-row="row">
+          <div class="user-cell">
+            <strong>{{ name }}</strong>
+            <span class="role-badge" [ngClass]="row.role">
+              {{ row.role | uppercase }}
+            </span>
+          </div>
+        </ng-template>
+      </ui-grid-col>
+
+      <!-- 3. Creating a pure Actions Column with NO real data-field backend mapping -->
+      <ui-grid-col field="actions" header="Operations">
+        <!-- We use an empty string or dummy key for 'field' because we won't print it. -->
+        <!-- Instead, we extract 'let-row="row"' to gain complete structural reference. -->
+        <ng-template let-row="row">
+          <div class="actions-row">
+            <button class="btn-edit" (click)="editUser(row)">✏️ Edit</button>
+            <button class="btn-delete" (click)="deleteUser(row)">🗑️ Remove</button>
+          </div>
+        </ng-template>
+      </ui-grid-col>
+    </ui-data-grid>
+  </section>
+
+  <section>
+    <h2>Data Grid - Export Grid</h2>
+    <ui-data-grid #inventoryGrid [data]="products4()" selectionMode="multiple">
+      <ng-template #titleBar>
+        <div class="flex justify-content-between align-items-center w-full">
+          <h3>📦 Warehouse Registry Control</h3>
+
+          <div class="flex gap-2">
+            <!-- Programmatically toggle column visibility to test layout updates -->
+            <button (click)="showCost = !showCost; inventoryGrid.updateColumnVisibility()">Toggle Cost Column</button>
+
+            <!-- Triggers export functionality seamlessly matching active visual fields -->
+            <button (click)="inventoryGrid.exportToCSV('Warehouse_Report')">
+              📥 Export to CSV
+              @if (inventoryGrid.selectedRows().size > 0) {
+                <span> ({{ inventoryGrid.selectedRows().size }} Selected) </span>
+              }
+            </button>
+          </div>
+        </div>
+      </ng-template>
+
+      <!-- Data structural columns mapping configurations -->
+      <ui-grid-col field="sku" header="Asset SKU"></ui-grid-col>
+      <ui-grid-col field="title" header="Item Label"></ui-grid-col>
+      <ui-grid-col field="cost" header="Unit Cost" [visible]="showCost"></ui-grid-col>
+    </ui-data-grid>
+  </section>
+
+  <section style="height: 25rem; display: flex; flex-direction: column">
+    <h2>Data Grid - Persisted re-orderable columns</h2>
+    <ui-data-grid
+      #registryGrid
+      [data]="inventory"
+      [reorderableColumns]="true"
+      [columnOrder]="savedColumnSequence"
+      (onColumnOrderChange)="persistColumnLayout($event)">
+      <ng-template #titleBar>
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%">
+          <h3>📋 Register Asset Workspace</h3>
+
+          <!-- Triggers layout defaults instantly across order tracking states -->
+          <button (click)="registryGrid.resetLayout()" style="padding: 6px 12px; cursor: pointer">
+            🔄 Reset Layout Options
+          </button>
+        </div>
+      </ng-template>
+      <ui-grid-col field="sku" header="Asset SKU" [sortable]="true"></ui-grid-col>
+      <ui-grid-col field="title" header="Label Name"></ui-grid-col>
+      <ui-grid-col field="warehouse" header="Location Bin"></ui-grid-col>
+    </ui-data-grid>
+  </section>
+
+  <section style="height: 20rem; display: flex; flex-direction: column">
+    <h2>Data Grid - Validating data entry</h2>
+    <ui-data-grid [data]="inventory2" [validationRules]="validateCellInput" (onCellEditComplete)="handleSave($event)">
+      <ui-grid-col field="sku" header="Asset SKU"></ui-grid-col>
+      <ui-grid-col field="title" header="Label Name" [editable]="true"></ui-grid-col>
+      <ui-grid-col field="stock" header="Stock Count" [editable]="true"></ui-grid-col>
+    </ui-data-grid>
+  </section>
+
+  <section style="height: 20rem; display: flex; flex-direction: column">
+    <h2>Data Grid - Validating data entry (global state)</h2>
+    <ui-data-grid #myGrid [data]="inventory3" [validationRules]="validateCellInput">
+      <ng-template #titleBar>
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%">
+          <div>
+            <h3>📋 Secured Cloud Master Ledger</h3>
+            <!-- Shows a warning label if errors are found -->
+            @if (myGrid.hasErrors()) {
+              <span style="color: #d32f2f; font-size: 12px; font-weight: bold">
+                ⚠️ Fix active formatting errors before syncing records.
+              </span>
+            }
+          </div>
+
+          <!-- NEW: Disables this button if hasErrors() evaluates to true -->
+          <button
+            [disabled]="myGrid.hasErrors()"
+            (click)="syncToCloudDB()"
+            [style.opacity]="myGrid.hasErrors() ? 0.5 : 1"
+            style="padding: 8px 16px; cursor: pointer; font-weight: bold">
+            ☁️ Sync Data to Server
+          </button>
+        </div>
+      </ng-template>
+
+      <ui-grid-col field="sku" header="Asset SKU"></ui-grid-col>
+      <ui-grid-col field="title" header="Label Name" [editable]="true"></ui-grid-col>
+      <ui-grid-col field="stock" header="Stock Count" [editable]="true"></ui-grid-col>
+    </ui-data-grid>
+  </section>
+
+  <!-- Date Time Picker -->
+  <section>
+    <h2>Date Picker</h2>
+    <ui-custom-date-time-picker
+      mode="datetime"
+      [min]="minLimit"
+      [max]="maxLimit"
+      [(ngModel)]="myEventDateTime"></ui-custom-date-time-picker>
+    <p>Selected: {{ myEventDateTime }}</p>
+  </section>
+
+  <!-- Date Time Picker -->
+  <section>
+    <h2>Time Picker</h2>
+    <ui-custom-date-time-picker mode="time" [(ngModel)]="myEventTime">></ui-custom-date-time-picker>
+    <p>Selected: {{ myEventTime }}</p>
+  </section>
+
+  <!-- Date Time Picker -->
+  <section>
+    <h2>Date Picker</h2>
+    <ui-custom-date-time-picker mode="date" [(ngModel)]="myEventDate">></ui-custom-date-time-picker>
+    <p>Selected: {{ myEventDate }}</p>
+  </section>
+
+  <!--Drawer-->
+  <section>
+    <h2>Drawer Right</h2>
+    <ui-button (click)="isDrawerVisible.set(true)">Open Setup Config</ui-button>
+
+    <app-drawer
+      #drawer
+      [isOpen]="isDrawerVisible()"
+      [position]="'right'"
+      [customSize]="'400px'"
+      [closeOnEscape]="true"
+      [closeOnBackdrop]="true"
+      (close)="isDrawerVisible.set(false)">
+      <ng-template #drawerHeader>
+        <h3 style="margin: 0">Configuration Manager</h3>
+      </ng-template>
+
+      <ng-template #drawerBody>
+        <p>Adjust system configurations below.</p>
+        <input type="text" placeholder="Instance Profile Name" />
+        <select>
+          <option>Production (us-east)</option>
+          <option>Staging</option>
+        </select>
+      </ng-template>
+
+      <ng-template #drawerFooter>
+        <ui-button color="secondary" (click)="drawer.closeDrawer()">Cancel</ui-button>
+        <ui-button>Save Variables</ui-button>
+      </ng-template>
+    </app-drawer>
+  </section>
+
+  <section>
+    <h2>Drawer Bottom</h2>
+    <ui-button (click)="isDrawer2Visible.set(true)">Open Setup Config</ui-button>
+
+    <app-drawer
+      #drawer2
+      [isOpen]="isDrawer2Visible()"
+      [position]="'bottom'"
+      [customSize]="'400px'"
+      [closeOnEscape]="true"
+      [closeOnBackdrop]="true"
+      (close)="isDrawer2Visible.set(false)">
+      <ng-template #drawerHeader>
+        <h3 style="margin: 0">Configuration Manager</h3>
+      </ng-template>
+
+      <ng-template #drawerBody>
+        <p>Adjust system configurations below.</p>
+        <input type="text" placeholder="Instance Profile Name" />
+        <select>
+          <option>Production (us-east)</option>
+          <option>Staging</option>
+        </select>
+      </ng-template>
+
+      <ng-template #drawerFooter>
+        <ui-button color="secondary" (click)="drawer2.closeDrawer()">Cancel</ui-button>
+        <ui-button>Save Variables</ui-button>
+      </ng-template>
+    </app-drawer>
+  </section>
+
+  <section>
+    <h2>Drawer Left</h2>
+    <ui-button (click)="isDrawer3Visible.set(true)">Open Setup Config</ui-button>
+
+    <app-drawer
+      #drawer3
+      [isOpen]="isDrawer3Visible()"
+      [position]="'left'"
+      [closeOnEscape]="true"
+      [closeOnBackdrop]="true"
+      (close)="isDrawer3Visible.set(false)">
+      <ng-template #drawerHeader>
+        <h3 style="margin: 0">Configuration Manager</h3>
+      </ng-template>
+
+      <ng-template #drawerBody>
+        <p>Adjust system configurations below.</p>
+        <input type="text" placeholder="Instance Profile Name" />
+        <select>
+          <option>Production (us-east)</option>
+          <option>Staging</option>
+        </select>
+      </ng-template>
+
+      <ng-template #drawerFooter>
+        <ui-button color="secondary" (click)="drawer3.closeDrawer()">Cancel</ui-button>
+        <ui-button>Save Variables</ui-button>
+      </ng-template>
+    </app-drawer>
+  </section>
+
+  <section>
+    <h2>Drawer Top</h2>
+    <ui-button (click)="isDrawer4Visible.set(true)">Open Setup Config</ui-button>
+
+    <app-drawer
+      #drawer4
+      [isOpen]="isDrawer4Visible()"
+      [position]="'top'"
+      [customSize]="'400px'"
+      [closeOnEscape]="true"
+      [closeOnBackdrop]="true"
+      (close)="isDrawer4Visible.set(false)">
+      <ng-template #drawerHeader>
+        <h3 style="margin: 0">Configuration Manager</h3>
+      </ng-template>
+
+      <ng-template #drawerBody>
+        <p>Adjust system configurations below.</p>
+        <input type="text" placeholder="Instance Profile Name" />
+        <select>
+          <option>Production (us-east)</option>
+          <option>Staging</option>
+        </select>
+      </ng-template>
+
+      <ng-template #drawerFooter>
+        <ui-button color="secondary" (click)="drawer4.closeDrawer()">Cancel</ui-button>
+        <ui-button>Save Variables</ui-button>
+      </ng-template>
+    </app-drawer>
+  </section>
+
+  <!-- Dropdown -->
+  <section>
+    <h2>Regular Dropdown</h2>
+    <ui-dropdown
+      [items]="dropdownItems"
+      placeholder="Choose..."
+      [ngModel]="dropdownValue"
+      (ngModelChange)="setDropdown($event)"></ui-dropdown>
+    <p>Selected: {{ dropdownValue | json }}</p>
+    <br />
+    <br />
+    <h3>With CheckBoxes</h3>
+    <ui-dropdown
+      [items]="dropdownItems2"
+      placeholder="Choose..."
+      [showSelectAll]="true"
+      [showCheckboxes]="true"
+      [ngModel]="dropdownValues"
+      (ngModelChange)="setDropdownValues($event)">
+    </ui-dropdown>
+    <p>Selected: {{ dropdownValues | json }}</p>
+    <br />
+    <br />
+    <h3>With Template</h3>
+    <ui-dropdown
+      [items]="dropdownItems3"
+      placeholder="Choose..."
+      [showSelectAll]="false"
+      [showCheckboxes]="false"
+      [ngModel]="dropdownValue2"
+      (ngModelChange)="setDropdown2($event)">
+      <ng-template #display let-display>
+        @if (display == null) {
+          <div>Nothing to see here...</div>
+        } @else {
+          <div><i [class]="display.data.iconClass"></i>&nbsp;{{ display.label }} Display label</div>
+        }
+      </ng-template>
+      <ng-template #item let-item let-index="index">
+        @if (item && item.data) {
+          <div><i [class]="item.data.iconClass"></i>&nbsp;{{ item.label }}</div>
+        }
+      </ng-template>
+    </ui-dropdown>
+    <p>Selected: {{ dropdownValue2 | json }}</p>
+    <br />
+    <br />
+    <h3>With Filter and Checkboxes</h3>
+    <ui-dropdown
+      [items]="dropdownItems2"
+      placeholder="Choose..."
+      [showSelectAll]="true"
+      [showCheckboxes]="true"
+      [showFilter]="true"
+      [ngModel]="dropdownValues2"
+      (ngModelChange)="setDropdownValues2($event)">
+    </ui-dropdown>
+    <p>Selected: {{ dropdownValues2 | json }}</p>
+  </section>
+
+  <!-- Inputs -->
+  <section>
+    <h2>Inputs</h2>
+    <ui-input label="Email" placeholder="you@example.com"></ui-input>
+    <br />
+    <ui-input label="Something else" placeholder="you@example.com">
+      <ng-template #preInput>
+        <ui-button iconClass="ti ti-moneybag" (click)="modalOpen = true"></ui-button>
+      </ng-template>
+    </ui-input>
+    <br />
+    <form [formGroup]="minLengthInputformGroup">
+      <ui-input label="Required Input, Min Length: 4" formControlName="something"></ui-input>
+    </form>
+    <br />
+    <form [formGroup]="requiredInputformGroup">
+      <ui-input
+        label="Disabled with reason, but also required?"
+        [formControlName]="'something'"
+        [disabledReasons]="[{ message: 'I don\'t like this input at all so I disabled it, so there!' }]"></ui-input>
+    </form>
+    <br />
+    <form [formRoot]="inputSignalForm">
+      <ui-input
+        label="Signal form Field with min length and required"
+        [formField]="inputSignalForm.personName"></ui-input>
+    </form>
+  </section>
+
+  <!--List Box-->
+  <section>
+    <h2>List Box</h2>
+    <ui-listbox [items]="listItems()" (valueChange)="listBoxItemsChanged($event)" [draggable]="false"></ui-listbox>
+  </section>
+
+  <section>
+    <h2>List Box</h2>
+    <ui-listbox
+      [items]="listItems2()"
+      (valueChange)="listBoxItemsChanged2($event)"
+      [draggable]="true"
+      [groupBy]="groupByListItem2"
+      selectionMode="checkbox"></ui-listbox>
+  </section>
+
+  <section>
+    <h2>Loading Indicator</h2>
+    <ui-button (click)="setupLoading()">Set Loading</ui-button>
+    <ui-loading-indicator></ui-loading-indicator>
+  </section>
+
+  <!--Menu-->
+
+  <section>
+    <h2>Menu</h2>
+    <ui-menu
+      [menuItems]="myMenuData"
+      [isOpen]="isMenuOpen()"
+      [itemTemplate]="myCustomTemplate"
+      (onClick)="handleMenuAction($event)">
+      <div class="target-card">Click or Scroll Me (Target UI Element Component)</div>
+    </ui-menu>
+
+    <ng-template #myCustomTemplate let-item>
+      <div class="custom-row-override">
+        <span>✨ {{ item.label }}</span>
+      </div>
+    </ng-template>
+  </section>
+
+  <!-- Modal -->
+  <section>
+    <h2>Modal</h2>
+    <ui-button (click)="modalOpen = true">Open Modal</ui-button>
+
+    <ui-modal [open]="modalOpen" (close)="modalOpen = false" size="x-small">
+      <div modal-title>Example Modal</div>
+      <div modal-body>
+        This is a modal body.
+        <br />
+        <ui-button (click)="setupLoading()">Set Loading</ui-button>
+      </div>
+      <div modal-footer>
+        <ui-button class="right" variant="ghost" (click)="modalOpen = false">Close</ui-button>
+      </div>
+    </ui-modal>
+    <br />
+    <br />
+    <h3>Modal with backdrop close</h3>
+    <ui-button (click)="modalOpen2 = true" color="secondary">Open Modal</ui-button>
+
+    <ui-modal [open]="modalOpen2" [closeOnBackdropClick]="true" (close)="modalOpen2 = false">
+      <div modal-title>Example Modal 2</div>
+      <div modal-body>
+        This is a modal body for another modal..
+        <div class="grid">
+          <div class="col-6">
+            <ui-dropdown
+              [items]="dropdownItems"
+              placeholder="Choose..."
+              [ngModel]="dropdownValue"
+              (ngModelChange)="setDropdown($event)"></ui-dropdown>
+            <p>Selected: {{ dropdownValue | json }}</p>
+          </div>
+          <div class="col-6">
+            <ui-dropdown
+              [items]="dropdownItems"
+              placeholder="Choose..."
+              [ngModel]="dropdownValue3"
+              (ngModelChange)="setDropdown3($event)"></ui-dropdown>
+            <p>Selected: {{ dropdownValue3 | json }}</p>
+          </div>
+          <div class="col-6">
+            <ui-custom-date-time-picker
+              mode="datetime"
+              [min]="minLimit"
+              [max]="maxLimit"
+              [(ngModel)]="myEventDateTime2"></ui-custom-date-time-picker>
+            <p>Selected: {{ myEventDateTime2 }}</p>
+          </div>
+          <div class="col-6">
+            <ui-menu [menuItems]="myMenuData2" [(isOpen)]="isMenuOpen2" (onClick)="handleMenuAction2($event)">
+              <ui-button color="info" iconClass="ti ti-helicopter"></ui-button>
+            </ui-menu>
+          </div>
+          <div class="col-6">
+            <app-color-picker [(value)]="selectedColor3" />
+          </div>
+        </div>
+      </div>
+      <div modal-footer>
+        <ui-button
+          class="right"
+          color="secondary"
+          variant="ghost"
+          uiTooltip="This is a tooltip on a button, on a modal!"
+          (click)="modalOpen2 = false"
+          >Close</ui-button
+        >
+      </div>
+    </ui-modal>
+  </section>
+
+  <!--Number Spinner-->
+  <section>
+    <h2>Number Spinner (integer)</h2>
+    <ui-number-spinner
+      [ngModel]="numberSpinnerValue()"
+      (ngModelChange)="onNumberSpinnerChanged($event)"
+      [min]="1"
+      [max]="10"
+      [step]="1"
+      [decimalPlaces]="0"
+      [showButtons]="true"
+      [showClear]="true"></ui-number-spinner>
+
+    <h2>Number Spinner (decimal)</h2>
+    <ui-number-spinner
+      [ngModel]="numberSpinnerValue2()"
+      (ngModelChange)="onNumberSpinnerChanged2($event)"
+      [step]="0.5"
+      [decimalPlaces]="2"
+      [showButtons]="true"
+      [showClear]="true"></ui-number-spinner>
+  </section>
+
+  <!-- Pagination -->
+  <section>
+    <h2>Pagination</h2>
+    <ui-pagination [page]="currentPage()" [totalPages]="5" (change)="onPageChanged($event)"></ui-pagination>
+  </section>
+
+  <!--Panels-->
+  <ui-panel>
+    <ng-content panel-title><h2>Panel Title</h2></ng-content>
+    <p>This is a collaspable panel component.</p>
+  </ui-panel>
+
+  <ui-panel [collaspable]="false">
+    <ng-content panel-title><h2>Panel Title 2</h2></ng-content>
+    <p>This is a non-collaspable panel component.</p>
+  </ui-panel>
+
+  <!--Popover-->
+
+  <section>
+    <h2>Popover</h2>
+    <div class="dashboard-container" style="display: flex; gap: 50px; padding: 100px">
+      <!-- ================= POPOVER ONE ================= -->
+      <div class="popover-wrapper">
+        <button
+          uiPopoverTrigger
+          #triggerA="uiPopoverTrigger"
+          class="btn btn-solid color-secondary"
+          (click)="isPopoverMenuOpen.set(!isPopoverMenuOpen())">
+          Actions Dropdown (Bottom/Top Flip)
+        </button>
+
+        <ui-popover
+          [isOpen]="isPopoverMenuOpen()"
+          [triggerElement]="triggerA"
+          [position]="'bottom'"
+          (onClose)="isPopoverMenuOpen.set(false)">
+          <div class="menu-card">
+            <button (click)="writeToControlInPopover()">📄 Export Report</button>
+            <button (click)="isPopoverMenuOpen.set(false)">⚙️ Settings</button>
+          </div>
+        </ui-popover>
+      </div>
+
+      <!-- ================= POPOVER TWO ================= -->
+      <div class="popover-wrapper">
+        <ui-button
+          uiPopoverTrigger
+          #triggerB="uiPopoverTrigger"
+          (click)="$event.preventDefault(); isPopoverMenuOpen2.set(!isPopoverMenuOpen2())">
+          Profile Tooltip (Left/Right Flip)
+        </ui-button>
+
+        <ui-popover
+          [isOpen]="isPopoverMenuOpen2()"
+          [triggerElement]="triggerB"
+          [position]="'right'"
+          [maxSize]="'200px'"
+          (onClose)="isPopoverMenuOpen2.set(false)">
+          <div class="profile-summary">
+            <strong>Jane Doe</strong>
+            <p style="margin: 4px 0 0; font-size: 12px; color: gray">Administrator Role</p>
+          </div>
+        </ui-popover>
+      </div>
+    </div>
+  </section>
+
+  <!--Radio Button-->
+  <section>
+    <h2>Radio Buttons</h2>
+    <ui-radio-group [(ngModel)]="radioButtonPreference" (ngModelChange)="radioButtonGroupChanged($event)">
+      <ui-radio-button [value]="0">Email</ui-radio-button>
+      <ui-radio-button [value]="1">Text Message</ui-radio-button>
+      <ui-radio-button [value]="2">Postal Service</ui-radio-button>
+      <ui-radio-button [value]="3">Good Old Phone Calls</ui-radio-button>
+    </ui-radio-group>
+  </section>
+
+  <!-- Skeleton -->
+  <section>
+    <h2>Skeleton Loader</h2>
+    <ui-skeleton width="200px" height="20px"></ui-skeleton>
+    <ui-skeleton width="100%" height="12px"></ui-skeleton>
+  </section>
+
+  <!--Stepper (Timeline)-->
+  <section>
+    <h2>Stepper: Horizontal</h2>
+    <ui-stepper
+      [steps]="checkoutSteps()"
+      [currentStepIndex]="myTimelineIndex()"
+      orientation="horizontal"
+      (stepClick)="handleStepChange($event)">
+    </ui-stepper>
+  </section>
+
+  <section>
+    <h2>Stepper: Vertical</h2>
+    <ui-stepper
+      [steps]="checkoutSteps2()"
+      [currentStepIndex]="myTimelineIndex2()"
+      orientation="vertical"
+      (stepClick)="handleStepChange2($event)">
+    </ui-stepper>
+  </section>
+
+  <section>
+    <h2>Stepper: Vertical with alternate sides</h2>
+    <ui-stepper
+      [steps]="checkoutSteps2()"
+      [currentStepIndex]="myTimelineIndex2()"
+      orientation="vertical"
+      [alternateSides]="true"
+      (stepClick)="handleStepChange2($event)">
+    </ui-stepper>
+  </section>
+
+  <section>
+    <h2>Stepper: Vertical with disabled future and alternate sides</h2>
+    <ui-stepper
+      [steps]="checkoutSteps3()"
+      [currentStepIndex]="myTimelineIndex3()"
+      orientation="vertical"
+      [disableFutureSteps]="true"
+      [alternateSides]="true"
+      (stepClick)="handleStepChange3($event)">
+      <!-- Custom Template Context Injector Hook -->
+      <ng-template #label let-step let-isActive="active" let-isDone="completed">
+        <div class="custom-step-card" [class.highlight]="isActive">
+          @if (isDone) {
+            <span class="badge">✓ Done</span>
+          }
+
+          <h4 class="custom-title">{{ step.label }}</h4>
+          <p class="custom-meta-desc">
+            Key bound ID: <code>{{ step.key }}</code>
+          </p>
+        </div>
+      </ng-template>
+    </ui-stepper>
+    <ui-button (click)="disabledTimelinePreviousClick()">Previous</ui-button>
+    <ui-button (click)="disabledTimelineNextClick()">Next</ui-button>
+  </section>
+
+  <!-- Table -->
+  <section>
+    <h2>Table</h2>
+    <ui-table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>John Doe</td>
+          <td>john@example.com</td>
+        </tr>
+      </tbody>
+    </ui-table>
+  </section>
+
+  <!--Tabs-->
+  <section>
+    <h2>Tabs</h2>
+    <ui-tabs [tabs]="tabs()" (tabClick)="onTabClick($event)">
+      @if (selectedTab() == undefined) {
+        <p>No selected tab</p>
+      } @else {
+        @switch (selectedTab()?.key) {
+          @case ('1') {
+            <div tab-content>Tab content for tab 1</div>
+          }
+          @case ('2') {
+            <div tab-content>Tab content for tab 2</div>
+          }
+
+          @case ('3') {
+            <div tab-content>Tab content for tab 3</div>
+          }
+
+          @case ('4') {
+            <div tab-content>Disabled tab content for tab 4</div>
+          }
+
+          @default {
+            Somehow got into the default case....
+          }
+        }
+      }
+    </ui-tabs>
+  </section>
+
+  <!--Theme Toggler-->
+  <section>
+    <h2>Theme Toggle</h2>
+    <ui-theme-toggle></ui-theme-toggle>
+  </section>
+
+  <!-- Toasts -->
+  <section>
+    <h2>Toasts</h2>
+    <ui-toast-container></ui-toast-container>
+    <ui-button class="mr-2" (click)="toast.show('Hello world!', 'success')">Show success Toast</ui-button>
+
+    <ui-button class="mr-2" (click)="toast.show('Hello error world!', 'error')">Show error Toast</ui-button>
+
+    <ui-button class="mr-2" (click)="toast.show('Hello warning world!', 'warning')">Show warning Toast</ui-button>
+
+    <ui-button class="mr-2" (click)="toast.show('Hello info world!', 'info')">Show info Toast</ui-button>
+
+    <ui-button
+      (click)="
+        toast.show(
+          'Hello this is a really long message that I want to so the user because I have something really important to say or it is something that is just blurted out from the underlying system that the developer had no idea would be generated but here it is anyways',
+          'info'
+        )
+      "
+      >Show really long Toast</ui-button
+    >
+  </section>
+
+  <!--Toggle-->
+  <section>
+    <h2>Toggle</h2>
+    <ui-toggle [ngModel]="toggleValue()" (ngModelChange)="onToggleChanged($event)"></ui-toggle>
+  </section>
+
+  <!--ToolTip-->
+  <section>
+    <h2>Tooltip</h2>
+    <button
+      uiTooltip="This is a tooltip"
+      [tooltipPosition]="'top'"
+      [tooltipTrigger]="'hover'"
+      [tooltipShowDelay]="300"
+      [tooltipHideDelay]="300">
+      Hover me top
+    </button>
+
+    <button
+      uiTooltip="This is a tooltip"
+      tooltipPosition="left"
+      tooltipTrigger="hover"
+      [tooltipShowDelay]="300"
+      [tooltipHideDelay]="300">
+      Hover me top left
+    </button>
+
+    <button
+      uiTooltip="This is a tooltip"
+      tooltipPosition="bottom"
+      tooltipTrigger="hover"
+      [tooltipShowDelay]="300"
+      [tooltipHideDelay]="300">
+      Hover me top bottom
+    </button>
+
+    <!-- Template tooltip -->
+    <ng-template #customTpl> <strong>Custom</strong> tooltip content </ng-template>
+
+    <input
+      type="text"
+      placeholder="Tooltip Right"
+      [uiTooltip]="customTpl"
+      style="width: calc(100% - 170px)"
+      tooltipPosition="right" />
+  </section>
+
+  <!--Tree View-->
+  <section>
+    <h2>Treeview</h2>
+    <h3>Some other sibling</h3>
+    <ui-tree-view
+      [id]="'OriginalTreeView'"
+      [nodes]="projectTree"
+      [multi]="true"
+      [showSearch]="true"
+      [selected]="selectedNodes1()"
+      (selectedChange)="onSelected1Changed($event)"></ui-tree-view>
+  </section>
+
+  <section style="height: 15rem; display: flex; flex-direction: column">
+    <h2>Treeview with small area</h2>
+    <h3>Some other sibling</h3>
+    <ui-tree-view
+      [id]="'OriginalTreeView'"
+      [nodes]="projectTree"
+      [multi]="true"
+      [showSearch]="true"
+      [selected]="selectedNodes1()"
+      (selectedChange)="onSelected1Changed($event)"></ui-tree-view>
+  </section>
+
+  <section style="height: 25rem">
+    <h2>Template Treeview</h2>
+    <h3>Some other sibling</h3>
+    <ui-tree-view
+      [id]="'TemplateTreeView'"
+      [(nodes)]="projectTree"
+      [selected]="selectedNodes2()"
+      (selectedChange)="onSelected2Changed($event)"
+      [useDragDrop]="true"
+      [showSearch]="true">
+      <ng-template #item let-node>
+        <span>{{ node.label }}</span>&nbsp;
+        @if (node.data?.count) {
+          <small>({{ node.data.count }})</small>
+        }
+      </ng-template>
+    </ui-tree-view>
+  </section>
+
+  <!--Vertical Nav (left)-->
+  <section>
+    <h2>Vertical Nav - left</h2>
+    <ui-vertical-nav
+      [items]="sidebarNav"
+      [highlightActive]="true"
+      [isActive]="isActive"
+      [sticky]="true"
+      side="left"
+      (itemClick)="onSideBarItemClick($event)">
+    </ui-vertical-nav>
+  </section>
+
+  <section>
+    <h2>Vertical Nav - right</h2>
+    <ui-vertical-nav
+      [items]="sidebarNav"
+      [highlightActive]="true"
+      [isActive]="isActive"
+      [sticky]="true"
+      side="right"
+      (itemClick)="onSideBarItemClick($event)">
+    </ui-vertical-nav>
+  </section>
+</div>

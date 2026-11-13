@@ -1,0 +1,54 @@
+<div
+  #popoverElement
+  popover="manual"
+  class="menu-popover-root"
+  (mouseenter)="onSubmenuMouseEnter()"
+  (mouseleave)="onSubmenuMouseLeave()">
+  <ul class="menu-list" role="menu">
+    @for (item of menuItems(); track item.id) {
+      @if (item.type === 'separator') {
+        <li class="menu-separator" role="separator"></li>
+      } @else {
+        <li
+          #menuItemElement
+          class="menu-item"
+          role="menuitem"
+          [id]="item.id"
+          [class.disabled]="item.disabled"
+          [attr.tabindex]="item.disabled ? -1 : 0"
+          (mouseenter)="onMouseEnter(item, menuItemElement)"
+          (mouseleave)="onMouseLeave()"
+          (click)="onItemClick(item, $event)">
+          <div class="menu-item-default">
+            <div class="menu-status-zone">
+              @if (item.checked) {
+                <span class="menu-checkmark" [class.checked-disabled]="item.disabled">✓</span>
+              } @else if (item.icon) {
+                <span [ui-icon]="item.icon" class="menu-icon"></span>
+              }
+            </div>
+
+            <span class="menu-label">{{ item.label }}</span>
+
+            @if (item.children && item.children.length > 0) {
+              <span class="menu-arrow">▶</span>
+            }
+          </div>
+        </li>
+      }
+    }
+  </ul>
+</div>
+
+@if (activeItem() && isStandardItem(activeItem()!) && activeItem()!.children && activeItem()!.children!.length > 0) {
+  <ui-sub-menu
+    [menuItems]="activeItem()!.children!"
+    [anchorX]="subMenuCoords().x"
+    [anchorY]="subMenuCoords().y"
+    [parentItemElement]="activeLiElement()"
+    [itemTemplate]="itemTemplate()"
+    (mouseenter)="onSubmenuMouseEnter()"
+    (mouseleave)="onSubmenuMouseLeave()"
+    (onCloseSubmenu)="focusParentTrigger()"
+    (onClick)="forwardClick($event)" />
+}

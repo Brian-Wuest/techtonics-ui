@@ -1,0 +1,165 @@
+:host {
+  --popover-bg: var(--surface);
+  --popover-text: var(--primary-text);
+  --popover-border: var(--border);
+  --popover-shadow: rgba(0, 0, 0, 0.12);
+  --popover-radius: var(--radius-md);
+  --arrow-size: 8px;
+}
+
+/* --- Native Top-Layer Popover Base --- */
+.ui-popover-surface {
+  margin: 0;
+  inset: unset;
+  position: fixed;
+  background-color: var(--popover-bg);
+  color: var(--popover-text);
+  border: 1px solid var(--popover-border);
+  border-radius: var(--popover-radius);
+  box-shadow: 0 4px 16px var(--popover-shadow);
+  padding: 0;
+  overflow: visible; /* Crucial: Allows the arrow to clip outside the popover border bounds */
+
+  /* --- ENABLES CHILD ELEMENTS TO DETECT FALLBACK FLIPS --- */
+  container-type: anchored;
+
+  transition:
+    opacity 0.15s ease-out,
+    transform 0.15s cubic-bezier(0.25, 0.8, 0.25, 1),
+    display 0.15s allow-discrete,
+    overlay 0.15s allow-discrete;
+
+  opacity: 0;
+}
+
+.ui-popover-surface:popover-open {
+  opacity: 1;
+}
+
+@starting-style {
+  .ui-popover-surface:popover-open {
+    opacity: 0;
+  }
+}
+
+/* --- Arrow Caret Base Definition --- */
+.ui-popover-arrow {
+  position: absolute;
+  width: var(--arrow-size);
+  height: var(--arrow-size);
+  background-color: var(--popover-bg);
+  border: 1px solid var(--popover-border);
+  /* Rotates a standard square to create a diamond caret shape */
+  transform: rotate(45deg);
+  z-index: -1;
+}
+
+/* ==========================================================================
+   POSITION CONFIGURATIONS & FALLBACK DIRECTIONS
+   ========================================================================== */
+
+/* --- Right Mode (Preferred Default, Fallback: Left) --- */
+.placement-right {
+  top: anchor(top);
+  left: anchor(right);
+  margin-left: calc(var(--arrow-size) / 2 + 4px);
+  position-try-fallbacks: flip-inline;
+}
+
+.placement-right .ui-popover-arrow {
+  left: calc(var(--arrow-size) / -2);
+  right: unset;
+  top: 16px;
+  /* Adds a distinct platform drop shadow targeting our diamond outline structure */
+  filter: drop-shadow(-2px 0 2px var(--popover-shadow));
+}
+
+/* HORIZONTAL FLIP ACTION: Triggers if the popover is forced to the LEFT side */
+@container anchored(fallback: flip-inline) {
+  .placement-right .ui-popover-arrow {
+    left: unset;
+    right: calc(var(--arrow-size) / -2);
+    filter: drop-shadow(2px 0 2px var(--popover-shadow));
+  }
+}
+
+/* ---  Left Mode (Preferred Default, Fallback: Right) --- */
+.placement-left {
+  top: anchor(top);
+  right: anchor(left);
+  margin-right: calc(var(--arrow-size) / 2 + 4px);
+  position-try-fallbacks: flip-inline;
+}
+
+.placement-left .ui-popover-arrow {
+  right: calc(var(--arrow-size) / -2);
+  left: unset;
+  top: 16px;
+  filter: drop-shadow(2px 0 2px var(--popover-shadow));
+}
+
+@container anchored(fallback: flip-inline) {
+  .placement-left .ui-popover-arrow {
+    right: unset;
+    left: calc(var(--arrow-size) / -2);
+    filter: drop-shadow(-2px 0 2px var(--popover-shadow));
+  }
+}
+
+/* --- Bottom Mode (Preferred Default, Fallback: Top) --- */
+.placement-bottom {
+  top: anchor(bottom);
+  left: anchor(left);
+  margin-top: calc(var(--arrow-size) / 2 + 4px);
+  position-try-fallbacks: flip-block;
+}
+
+.placement-bottom .ui-popover-arrow {
+  top: calc(var(--arrow-size) / -2);
+  bottom: unset;
+  left: 20px;
+  filter: drop-shadow(0 -2px 2px var(--popover-shadow));
+}
+
+/* VERTICAL FLIP ACTION: Triggers if the popover is forced to the TOP side */
+@container anchored(fallback: flip-block) {
+  .placement-bottom .ui-popover-arrow {
+    top: unset;
+    bottom: calc(var(--arrow-size) / -2);
+    filter: drop-shadow(0 2px 2px var(--popover-shadow));
+  }
+}
+
+/* --- Top Mode (Preferred Default, Fallback: Bottom) --- */
+.placement-top {
+  bottom: anchor(top);
+  left: anchor(left);
+  margin-bottom: calc(var(--arrow-size) / 2 + 4px);
+  position-try-fallbacks: flip-block;
+}
+
+.placement-top .ui-popover-arrow {
+  bottom: calc(var(--arrow-size) / -2);
+  top: unset;
+  left: 20px;
+  filter: drop-shadow(0 2px 2px var(--popover-shadow));
+}
+
+@container anchored(fallback: flip-block) {
+  .placement-top .ui-popover-arrow {
+    bottom: unset;
+    top: calc(var(--arrow-size) / -2);
+    filter: drop-shadow(0 -2px 2px var(--popover-shadow));
+  }
+}
+
+/* --- Content Content Layout Area --- */
+.ui-popover-content {
+  box-sizing: border-box;
+  padding: 1rem;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  border-radius: var(--popover-radius);
+  background-color: var(--popover-bg);
+}

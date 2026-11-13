@@ -1,0 +1,154 @@
+<div
+  class="picker-container"
+  [style.--datetime-anchor-id]="'--anchor-' + dateTimeId"
+  [ngClass]="componentClass()"
+  [hidden]="hidden()">
+  <!-- Input Display Box with direct keyboard entry validation -->
+  <div class="picker-input">
+    <input
+      #dropDownTrigger
+      [id]="name()"
+      [name]="name()"
+      [disabled]="disabled()"
+      type="text"
+      [readOnly]="readonly()"
+      [placeholder]="placeholder()"
+      [value]="inputValue()"
+      [required]="required()"
+      class="datetime-trigger"
+      [class.is-dirty]="dirty()"
+      [class.is-touched]="touched()"
+      [class.is-invalid]="invalid()"
+      [class.is-pending]="pending()"
+      [attr.popovertarget]="dateTimeId"
+      [style.anchor-name]="'--anchor-' + dateTimeId"
+      (click)="toggleDropdown($event)"
+      (blur)="onBlur()"
+      (input)="onUserInput($event)" />
+
+    <div class="action-cluster">
+      @if (showClear() && !disabled()) {
+        <button type="button" class="clear-btn" (click)="clear($event)" [aria-label]="clearAriaLabel()">×</button>
+      }
+      <span class="calendar-icon" (click)="toggleDropdown($event)" [ui-icon]="triggerIcon()"></span>
+    </div>
+  </div>
+
+  <!-- Dropdown Area Card -->
+  <div
+    [id]="dateTimeId"
+    popover
+    #dropDownMenu
+    class="picker-dropdown"
+    [class.mode-datetime]="mode() === 'datetime'"
+    [style.position-anchor]="'--anchor-' + dateTimeId">
+    <div class="inner-picker-container">
+      <!-- DATE PICKER CONTAINER SECTION -->
+      @if (mode() === 'date' || mode() === 'datetime') {
+        <div class="calendar-section">
+          <div class="calendar-header">
+            <button type="button" class="nav-btn" (click)="prevMonth()">&lt;</button>
+            <span class="month-label">{{ months[currentMonth()] }} {{ currentYear() }}</span>
+            <button type="button" class="nav-btn" (click)="nextMonth()">&gt;</button>
+          </div>
+
+          <div class="weekday-grid">
+            @for (day of weekdays; track day) {
+              <div class="weekday-cell">{{ day }}</div>
+            }
+          </div>
+
+          <div class="days-grid">
+            @for (item of calendarDays(); track item.date.getTime()) {
+              <button
+                type="button"
+                class="day-cell"
+                [class.outside-month]="!item.isCurrentMonth"
+                [class.disabled]="item.isDisabled"
+                [class.selected]="value()?.toDateString() === item.date.toDateString()"
+                [class.today]="item.date.toDateString() === todaysDate().toDateString()"
+                [disabled]="item.isDisabled"
+                (click)="selectDate(item.date)">
+                {{ item.date.getDate() }}
+              </button>
+            }
+          </div>
+        </div>
+      }
+
+      <!-- SCROLLABLE LIST TIME PICKER SECTION -->
+      @if (mode() === 'time' || mode() === 'datetime') {
+        <div class="time-section">
+          <div class="scroll-lists-wrapper">
+            <!-- Scrollable Hours -->
+            <div class="scroll-column">
+              <div class="scroll-box">
+                @for (hr of hoursList; track hr) {
+                  <button
+                    type="button"
+                    class="time-item"
+                    [class.active]="selectedHour() === hr"
+                    (click)="selectHour(hr)">
+                    {{ hr | number: '2.0' }}
+                  </button>
+                }
+              </div>
+            </div>
+
+            <!-- Scrollable Minutes -->
+            <div class="scroll-column">
+              <div class="scroll-box">
+                @for (min of minutesList; track min) {
+                  <button
+                    type="button"
+                    class="time-item"
+                    [class.active]="selectedMinute() === min"
+                    (click)="selectMinute(min)">
+                    {{ min | number: '2.0' }}
+                  </button>
+                }
+              </div>
+            </div>
+
+            <!-- AM/PM Toggle Segment -->
+
+            <div class="scroll-column period-column">
+              @if (timeFormat() === '12h') {
+                <div class="period-toggle-box">
+                  <button
+                    type="button"
+                    class="period-btn"
+                    [class.active]="selectedPeriod() === 'AM'"
+                    (click)="setPeriod('AM')">
+                    {{ amButtonText() }}
+                  </button>
+                  <button
+                    type="button"
+                    class="period-btn"
+                    [class.active]="selectedPeriod() === 'PM'"
+                    (click)="setPeriod('PM')">
+                    {{ pmButtonText() }}
+                  </button>
+                </div>
+              }
+
+              <button class="btn btn-solid btn-small color-primary" (click)="onSelectTimeClicked($event)">
+                {{ selectButtonText() }}
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <ui-form-error [errors]="normalizedErrors()" [visible]="shouldShowErrors()"></ui-form-error>
+
+  @if (disabled() && disabledReasons().length) {
+    <div class="disabled-reasons">
+      @for (reason of disabledReasons(); track reason) {
+        <small>{{ reason.message }}</small>
+      }
+    </div>
+  }
+</div>

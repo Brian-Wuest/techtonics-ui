@@ -1,0 +1,148 @@
+:host {
+  display: inline-block;
+  width: 100%;
+}
+
+.color-picker-container {
+  position: relative;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  background: var(--surface);
+  color: var(--text-primary);
+  user-select: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.input-wrapper:hover {
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+}
+
+.input-wrapper.disabled {
+  background-color: var(--surface-muted);
+  border-color: var(--border);
+}
+
+/* Validation layout styling integration hook triggers */
+.color-picker-container.has-error .input-wrapper {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.2);
+}
+
+.error-msg-box {
+  color: #ef4444;
+  font-size: 11px;
+  margin-top: 4px;
+  padding-left: 2px;
+}
+
+.color-preview {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+.display-text {
+  flex-grow: 1;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.copy-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  opacity: 0.7;
+}
+
+.copy-btn:hover {
+  background: var(--surface-muted);
+  opacity: 1;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}
+
+.icon-success {
+  color: #10b981;
+}
+
+/* Dropdown clears modal constraints using absolute anchor overrides dynamically injected */
+.dropdown-panel {
+  /* Link this top layer panel to our dynamic trigger anchor */
+  position-anchor: var(--dropdown-anchor-id);
+
+  /* This puts the dropdown area to the bottom left of the triggering input. */
+  position-area: bottom span-right;
+  position-try-fallbacks: flip-block;
+
+  margin-top: 4px;
+  width: 240px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+  padding: 12px;
+  z-index: 9999;
+  box-sizing: border-box;
+}
+
+.preset-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.preset-swatch {
+  height: 32px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.preset-swatch.active {
+  outline: 2px solid #3b82f6;
+  outline-offset: 1px;
+}
+
+.advanced-picker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--surface-muted);
+  padding-top: 10px;
+  font-size: 12px;
+  color: var(--text-primary);
+}
+
+.advanced-picker input[type='color'] {
+  border: none;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}

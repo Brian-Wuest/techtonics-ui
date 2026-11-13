@@ -1,0 +1,140 @@
+/* --- Easily Overridable Colors --- */
+:host {
+  --drawer-bg: var(--surface);
+  --drawer-text: var(--text-primary);
+  --drawer-header-border: var(--border);
+  --drawer-footer-border: var(--border);
+  --drawer-backdrop-color: rgba(0, 0, 0, 0.5);
+  --drawer-close-btn-hover: var(--bg-hover);
+}
+
+/* --- Backdrop Transition --- */
+.drawer-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--drawer-backdrop-color);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+.drawer-backdrop.active {
+  opacity: 1;
+}
+
+/* --- Base Drawer Pane Style --- */
+.drawer-pane {
+  position: fixed;
+  background-color: var(--drawer-bg);
+  color: var(--drawer-text);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  z-index: 1001;
+  box-sizing: border-box;
+  /* Smooth transform transition using cubic-bezier for a native modal feel */
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  will-change: transform;
+  outline: none;
+}
+
+/* --- Position Variations & Dynamic Initial Offsets --- */
+.position-right {
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 33.33vw;
+  transform: translate3d(100%, 0, 0);
+}
+@media (max-width: 768px) {
+  .position-right {
+    width: 100vw !important;
+  }
+}
+
+.position-left {
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 33.33vw;
+  transform: translate3d(-100%, 0, 0);
+}
+@media (max-width: 768px) {
+  .position-left {
+    width: 100vw !important;
+  }
+}
+
+.position-top {
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 33.33vh;
+  transform: translate3d(0, -100%, 0);
+}
+@media (max-width: 768px) {
+  .position-top {
+    height: 100vh !important;
+  }
+}
+
+.position-bottom {
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 33.33vh;
+  transform: translate3d(0, 100%, 0);
+}
+@media (max-width: 768px) {
+  .position-bottom {
+    height: 100vh !important;
+  }
+}
+
+/* --- Activated Animation Target State --- */
+.drawer-pane.active {
+  transform: translate3d(0, 0, 0) !important;
+}
+
+/* --- Layout Structure Elements --- */
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--drawer-header-border);
+}
+.drawer-header-content {
+  flex: 1;
+}
+.drawer-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--drawer-text);
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+.drawer-close-btn:hover {
+  background-color: var(--bg-hover);
+}
+.drawer-body {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+.drawer-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--drawer-footer-border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}

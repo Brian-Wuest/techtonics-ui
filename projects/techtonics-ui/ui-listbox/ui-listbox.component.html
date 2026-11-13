@@ -1,0 +1,86 @@
+<div class="field-container" [hidden]="hidden()">
+  <div
+    #inputEl
+    [id]="name()"
+    class="listbox"
+    [ngClass]="componentClass()"
+    [class.is-dirty]="dirty()"
+    [class.is-touched]="touched()"
+    [class.is-invalid]="invalid()"
+    [class.is-pending]="pending()">
+    @if (selectionMode() === 'checkbox' || showSearch()) {
+      <div>
+        @if (selectionMode() === 'checkbox') {
+          <div class="select-all">
+            <input
+              type="checkbox"
+              class="checkbox"
+              [checked]="allSelected()"
+              [disabled]="disabled()"
+              [indeterminate]="!allSelected() && someSelected()"
+              (change)="toggleSelectAll()" />
+            <span>{{ selectAllCheckboxLabel() }}</span>
+          </div>
+        }
+
+        @if (showSearch()) {
+          <input
+            class="search"
+            type="text"
+            [placeholder]="filterPlaceholder()"
+            [value]="search()"
+            [disabled]="disabled()"
+            (input)="search.set($event.target.value)" />
+        }
+      </div>
+    }
+
+    @for (group of groups(); track group.key) {
+      @if (group.key !== null) {
+        <div class="group-header" draggable="false">{{ group.key }}</div>
+      }
+
+      @for (item of group.items; track item; let i = $index) {
+        <div
+          class="item-container"
+          [class.selected]="isSelected(item)"
+          [class.drop-above]="dragOverItem() === item && dragOverPosition() === 'above'"
+          [class.drop-below]="dragOverItem() === item && dragOverPosition() === 'below'"
+          draggable="{{ !disabled() && draggable() === true ? true : null }}"
+          (dragstart)="onDragStart(item, $event)"
+          (dragover)="onDragOver(item, $event)"
+          (drop)="onDrop(item, $event)"
+          (click)="onRowClick(item, i, $event)">
+          @if (selectionMode() === 'checkbox') {
+            <input
+              type="checkbox"
+              class="checkbox"
+              [checked]="isSelected(item)"
+              [disabled]="disabled()"
+              (click)="toggleItem(item); $event.stopPropagation()" />
+          }
+
+          @if (itemTemplate()) {
+            <span class="template-item">
+              <ng-container [ngTemplateOutlet]="itemTemplate()" [ngTemplateOutletContext]="{ $implicit: item, $index }">
+              </ng-container>
+            </span>
+          } @else {
+            <span class="list-item"> {{ item.label }}</span>
+          }
+        </div>
+      }
+    }
+  </div>
+
+  <!-- Validation Error Reporting -->
+  <ui-form-error [errors]="normalizedErrors()" [visible]="shouldShowErrors()"></ui-form-error>
+
+  @if (disabled() && disabledReasons().length) {
+    <div class="disabled-reasons">
+      @for (reason of disabledReasons(); track reason) {
+        <small>{{ reason.message }}</small>
+      }
+    </div>
+  }
+</div>

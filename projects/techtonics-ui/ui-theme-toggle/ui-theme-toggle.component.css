@@ -1,0 +1,11 @@
+ui-toggle {
+  display: flex;
+}
+
+:host {
+  ::ng-deep {
+    .field-container {
+      padding-left: 0.5rem;
+    }
+  }
+}

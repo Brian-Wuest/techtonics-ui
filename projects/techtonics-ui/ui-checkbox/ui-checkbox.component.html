@@ -1,0 +1,32 @@
+@let currentLabel = label();
+
+<div class="field-container" [hidden]="hidden()">
+  <input
+    #inputEl
+    [id]="name()"
+    [name]="actualName()"
+    type="checkbox"
+    [disabled]="disabled()"
+    class="accessible-checkbox"
+    [checked]="checked()"
+    [required]="required()"
+    (change)="changeHandler($event)"
+    [class.is-dirty]="dirty()"
+    [class.is-touched]="touched()"
+    [class.is-invalid]="invalid()"
+    [class.is-pending]="pending()"
+    [attr.aria-label]="ariaLabel()" />
+
+  @if (currentLabel && currentLabel.trim() != '') {
+    <label class="ml-3">{{ currentLabel }}</label>
+  }
+  <ui-form-error [errors]="normalizedErrors()" [visible]="shouldShowErrors()"></ui-form-error>
+
+  @if (disabled() && disabledReasons().length) {
+    <div class="disabled-reasons">
+      @for (reason of disabledReasons(); track reason) {
+        <small>{{ reason.message }}</small>
+      }
+    </div>
+  }
+</div>

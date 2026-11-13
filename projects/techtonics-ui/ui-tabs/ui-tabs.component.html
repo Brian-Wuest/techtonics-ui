@@ -1,0 +1,23 @@
+<div class="tabs-container" [ngClass]="componentClass()" [class.hidden]="visible() == false">
+  <!-- Tab Headers -->
+  <div class="tabs-header-bar">
+    @for (tab of tabs(); track tab.key) {
+      <button
+        class="tab-header-btn"
+        [class.active]="activeTabKey() === tab.key"
+        [disabled]="tab.disabled"
+        (click)="selectTab(tab)">
+        @if (tab.icon) {
+          <span [ui-icon]="tab.icon" class="tab-icon"></span>
+        }
+
+        <span class="tab-label">{{ tab.label }}</span>
+      </button>
+    }
+  </div>
+
+  <!-- Tab Content Area -->
+  <div class="tabs-content-body">
+    <ng-content></ng-content>
+  </div>
+</div>

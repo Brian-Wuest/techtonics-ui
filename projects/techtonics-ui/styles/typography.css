@@ -1,0 +1,829 @@
+html {
+  color-scheme: light;
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+* {
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-size: 16px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.75rem;
+}
+
+h1 {
+  font-size: 1.9rem;
+}
+h2 {
+  font-size: 1.6rem;
+}
+h3 {
+  font-size: 1.3rem;
+}
+h4 {
+  font-size: 1.1rem;
+}
+
+p,
+span,
+li {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Support for "tabler" icons when included */
+.ti {
+  font-size: 1.25rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+input:required + label::after {
+  content: ' *';
+  color: var(--error);
+  font-weight: bold;
+}
+
+.required {
+  color: var(--error);
+}
+
+.errors {
+  color: var(--error);
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.disabled-reasons {
+  color: var(--text-secondary);
+}
+
+.block {
+  display: block !important;
+}
+
+.inline {
+  display: inline !important;
+}
+
+.inline-block {
+  display: inline-block !important;
+}
+
+.flex {
+  display: flex !important;
+}
+
+.inline-flex {
+  display: inline-flex !important;
+}
+
+.elevation-1 {
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.05),
+    0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode elevation (Shadows become subtle borders) */
+@media (prefers-color-scheme: dark) {
+  .elevation-1 {
+    box-shadow: none;
+    border: 1px solid var(--border);
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .sm\:hidden {
+    display: none !important;
+  }
+  .sm\:block {
+    display: block !important;
+  }
+  .sm\:inline {
+    display: inline !important;
+  }
+  .sm\:inline-block {
+    display: inline-block !important;
+  }
+  .sm\:flex {
+    display: flex !important;
+  }
+  .sm\:inline-flex {
+    display: inline-flex !important;
+  }
+}
+@media screen and (min-width: 768px) {
+  .md\:hidden {
+    display: none !important;
+  }
+  .md\:block {
+    display: block !important;
+  }
+  .md\:inline {
+    display: inline !important;
+  }
+  .md\:inline-block {
+    display: inline-block !important;
+  }
+  .md\:flex {
+    display: flex !important;
+  }
+  .md\:inline-flex {
+    display: inline-flex !important;
+  }
+}
+@media screen and (min-width: 992px) {
+  .lg\:hidden {
+    display: none !important;
+  }
+  .lg\:block {
+    display: block !important;
+  }
+  .lg\:inline {
+    display: inline !important;
+  }
+  .lg\:inline-block {
+    display: inline-block !important;
+  }
+  .lg\:flex {
+    display: flex !important;
+  }
+  .lg\:inline-flex {
+    display: inline-flex !important;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .xl\:hidden {
+    display: none !important;
+  }
+  .xl\:block {
+    display: block !important;
+  }
+  .xl\:inline {
+    display: inline !important;
+  }
+  .xl\:inline-block {
+    display: inline-block !important;
+  }
+  .xl\:flex {
+    display: flex !important;
+  }
+  .xl\:inline-flex {
+    display: inline-flex !important;
+  }
+}
+.text-center {
+  text-align: center !important;
+}
+
+.text-justify {
+  text-align: justify !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+@media screen and (min-width: 576px) {
+  .sm\:text-center {
+    text-align: center !important;
+  }
+  .sm\:text-justify {
+    text-align: justify !important;
+  }
+  .sm\:text-left {
+    text-align: left !important;
+  }
+  .sm\:text-right {
+    text-align: right !important;
+  }
+}
+@media screen and (min-width: 768px) {
+  .md\:text-center {
+    text-align: center !important;
+  }
+  .md\:text-justify {
+    text-align: justify !important;
+  }
+  .md\:text-left {
+    text-align: left !important;
+  }
+  .md\:text-right {
+    text-align: right !important;
+  }
+}
+@media screen and (min-width: 992px) {
+  .lg\:text-center {
+    text-align: center !important;
+  }
+  .lg\:text-justify {
+    text-align: justify !important;
+  }
+  .lg\:text-left {
+    text-align: left !important;
+  }
+  .lg\:text-right {
+    text-align: right !important;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .xl\:text-center {
+    text-align: center !important;
+  }
+  .xl\:text-justify {
+    text-align: justify !important;
+  }
+  .xl\:text-left {
+    text-align: left !important;
+  }
+  .xl\:text-right {
+    text-align: right !important;
+  }
+}
+.underline {
+  text-decoration: underline !important;
+}
+
+.line-through {
+  text-decoration: line-through !important;
+}
+
+.no-underline {
+  text-decoration: none !important;
+}
+
+.focus\:underline:focus {
+  text-decoration: underline !important;
+}
+
+.hover\:underline:hover {
+  text-decoration: underline !important;
+}
+
+.active\:underline:active {
+  text-decoration: underline !important;
+}
+
+.focus\:line-through:focus {
+  text-decoration: line-through !important;
+}
+
+.hover\:line-through:hover {
+  text-decoration: line-through !important;
+}
+
+.active\:line-through:active {
+  text-decoration: line-through !important;
+}
+
+.focus\:no-underline:focus {
+  text-decoration: none !important;
+}
+
+.hover\:no-underline:hover {
+  text-decoration: none !important;
+}
+
+.active\:no-underline:active {
+  text-decoration: none !important;
+}
+
+.lowercase {
+  text-transform: lowercase !important;
+}
+
+.uppercase {
+  text-transform: uppercase !important;
+}
+
+.capitalize {
+  text-transform: capitalize !important;
+}
+
+.text-overflow-clip {
+  text-overflow: clip !important;
+}
+
+.text-overflow-ellipsis {
+  text-overflow: ellipsis !important;
+}
+
+@media screen and (min-width: 576px) {
+  .sm\:text-overflow-clip {
+    text-overflow: clip !important;
+  }
+  .sm\:text-overflow-ellipsis {
+    text-overflow: ellipsis !important;
+  }
+}
+@media screen and (min-width: 768px) {
+  .md\:text-overflow-clip {
+    text-overflow: clip !important;
+  }
+  .md\:text-overflow-ellipsis {
+    text-overflow: ellipsis !important;
+  }
+}
+@media screen and (min-width: 992px) {
+  .lg\:text-overflow-clip {
+    text-overflow: clip !important;
+  }
+  .lg\:text-overflow-ellipsis {
+    text-overflow: ellipsis !important;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .xl\:text-overflow-clip {
+    text-overflow: clip !important;
+  }
+  .xl\:text-overflow-ellipsis {
+    text-overflow: ellipsis !important;
+  }
+}
+.font-light {
+  font-weight: 300 !important;
+}
+
+.font-normal {
+  font-weight: 400 !important;
+}
+
+.font-medium {
+  font-weight: 500 !important;
+}
+
+.font-semibold {
+  font-weight: 600 !important;
+}
+
+.font-bold {
+  font-weight: 700 !important;
+}
+
+@media screen and (min-width: 576px) {
+  .sm\:font-light {
+    font-weight: 300 !important;
+  }
+  .sm\:font-normal {
+    font-weight: 400 !important;
+  }
+  .sm\:font-medium {
+    font-weight: 500 !important;
+  }
+  .sm\:font-semibold {
+    font-weight: 600 !important;
+  }
+  .sm\:font-bold {
+    font-weight: 700 !important;
+  }
+}
+@media screen and (min-width: 768px) {
+  .md\:font-light {
+    font-weight: 300 !important;
+  }
+  .md\:font-normal {
+    font-weight: 400 !important;
+  }
+  .md\:font-medium {
+    font-weight: 500 !important;
+  }
+  .md\:font-semibold {
+    font-weight: 600 !important;
+  }
+  .md\:font-bold {
+    font-weight: 700 !important;
+  }
+}
+@media screen and (min-width: 992px) {
+  .lg\:font-light {
+    font-weight: 300 !important;
+  }
+  .lg\:font-normal {
+    font-weight: 400 !important;
+  }
+  .lg\:font-medium {
+    font-weight: 500 !important;
+  }
+  .lg\:font-semibold {
+    font-weight: 600 !important;
+  }
+  .lg\:font-bold {
+    font-weight: 700 !important;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .xl\:font-light {
+    font-weight: 300 !important;
+  }
+  .xl\:font-normal {
+    font-weight: 400 !important;
+  }
+  .xl\:font-medium {
+    font-weight: 500 !important;
+  }
+  .xl\:font-semibold {
+    font-weight: 600 !important;
+  }
+  .xl\:font-bold {
+    font-weight: 700 !important;
+  }
+}
+.font-italic {
+  font-style: italic !important;
+}
+
+.text-xs {
+  font-size: 0.75rem !important;
+}
+
+.text-sm {
+  font-size: 0.875rem !important;
+}
+
+.text-base {
+  font-size: 1rem !important;
+}
+
+.text-lg {
+  font-size: 1.125rem !important;
+}
+
+.text-xl {
+  font-size: 1.25rem !important;
+}
+
+.text-2xl {
+  font-size: 1.5rem !important;
+}
+
+.text-3xl {
+  font-size: 1.75rem !important;
+}
+
+.text-4xl {
+  font-size: 2rem !important;
+}
+
+.text-5xl {
+  font-size: 2.5rem !important;
+}
+
+.text-6xl {
+  font-size: 3rem !important;
+}
+
+.text-7xl {
+  font-size: 4rem !important;
+}
+
+.text-8xl {
+  font-size: 6rem !important;
+}
+
+@media screen and (min-width: 576px) {
+  .sm\:text-xs {
+    font-size: 0.75rem !important;
+  }
+  .sm\:text-sm {
+    font-size: 0.875rem !important;
+  }
+  .sm\:text-base {
+    font-size: 1rem !important;
+  }
+  .sm\:text-lg {
+    font-size: 1.125rem !important;
+  }
+  .sm\:text-xl {
+    font-size: 1.25rem !important;
+  }
+  .sm\:text-2xl {
+    font-size: 1.5rem !important;
+  }
+  .sm\:text-3xl {
+    font-size: 1.75rem !important;
+  }
+  .sm\:text-4xl {
+    font-size: 2rem !important;
+  }
+  .sm\:text-5xl {
+    font-size: 2.5rem !important;
+  }
+  .sm\:text-6xl {
+    font-size: 3rem !important;
+  }
+  .sm\:text-7xl {
+    font-size: 4rem !important;
+  }
+  .sm\:text-8xl {
+    font-size: 6rem !important;
+  }
+}
+@media screen and (min-width: 768px) {
+  .md\:text-xs {
+    font-size: 0.75rem !important;
+  }
+  .md\:text-sm {
+    font-size: 0.875rem !important;
+  }
+  .md\:text-base {
+    font-size: 1rem !important;
+  }
+  .md\:text-lg {
+    font-size: 1.125rem !important;
+  }
+  .md\:text-xl {
+    font-size: 1.25rem !important;
+  }
+  .md\:text-2xl {
+    font-size: 1.5rem !important;
+  }
+  .md\:text-3xl {
+    font-size: 1.75rem !important;
+  }
+  .md\:text-4xl {
+    font-size: 2rem !important;
+  }
+  .md\:text-5xl {
+    font-size: 2.5rem !important;
+  }
+  .md\:text-6xl {
+    font-size: 3rem !important;
+  }
+  .md\:text-7xl {
+    font-size: 4rem !important;
+  }
+  .md\:text-8xl {
+    font-size: 6rem !important;
+  }
+}
+@media screen and (min-width: 992px) {
+  .lg\:text-xs {
+    font-size: 0.75rem !important;
+  }
+  .lg\:text-sm {
+    font-size: 0.875rem !important;
+  }
+  .lg\:text-base {
+    font-size: 1rem !important;
+  }
+  .lg\:text-lg {
+    font-size: 1.125rem !important;
+  }
+  .lg\:text-xl {
+    font-size: 1.25rem !important;
+  }
+  .lg\:text-2xl {
+    font-size: 1.5rem !important;
+  }
+  .lg\:text-3xl {
+    font-size: 1.75rem !important;
+  }
+  .lg\:text-4xl {
+    font-size: 2rem !important;
+  }
+  .lg\:text-5xl {
+    font-size: 2.5rem !important;
+  }
+  .lg\:text-6xl {
+    font-size: 3rem !important;
+  }
+  .lg\:text-7xl {
+    font-size: 4rem !important;
+  }
+  .lg\:text-8xl {
+    font-size: 6rem !important;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .xl\:text-xs {
+    font-size: 0.75rem !important;
+  }
+  .xl\:text-sm {
+    font-size: 0.875rem !important;
+  }
+  .xl\:text-base {
+    font-size: 1rem !important;
+  }
+  .xl\:text-lg {
+    font-size: 1.125rem !important;
+  }
+  .xl\:text-xl {
+    font-size: 1.25rem !important;
+  }
+  .xl\:text-2xl {
+    font-size: 1.5rem !important;
+  }
+  .xl\:text-3xl {
+    font-size: 1.75rem !important;
+  }
+  .xl\:text-4xl {
+    font-size: 2rem !important;
+  }
+  .xl\:text-5xl {
+    font-size: 2.5rem !important;
+  }
+  .xl\:text-6xl {
+    font-size: 3rem !important;
+  }
+  .xl\:text-7xl {
+    font-size: 4rem !important;
+  }
+  .xl\:text-8xl {
+    font-size: 6rem !important;
+  }
+}
+.line-height-1 {
+  line-height: 1 !important;
+}
+
+.line-height-2 {
+  line-height: 1.25 !important;
+}
+
+.line-height-3 {
+  line-height: 1.5 !important;
+}
+
+.line-height-4 {
+  line-height: 2 !important;
+}
+
+.white-space-normal {
+  white-space: normal !important;
+}
+
+.white-space-nowrap {
+  white-space: nowrap !important;
+}
+
+.vertical-align-baseline {
+  vertical-align: baseline !important;
+}
+
+.vertical-align-top {
+  vertical-align: top !important;
+}
+
+.vertical-align-middle {
+  vertical-align: middle !important;
+}
+
+.vertical-align-bottom {
+  vertical-align: bottom !important;
+}
+
+.vertical-align-text-top {
+  vertical-align: text-top !important;
+}
+
+.vertical-align-text-bottom {
+  vertical-align: text-bottom !important;
+}
+
+.vertical-align-sub {
+  vertical-align: sub !important;
+}
+
+.vertical-align-super {
+  vertical-align: super !important;
+}
+
+@media screen and (min-width: 576px) {
+  .sm\:vertical-align-baseline {
+    vertical-align: baseline !important;
+  }
+  .sm\:vertical-align-top {
+    vertical-align: top !important;
+  }
+  .sm\:vertical-align-middle {
+    vertical-align: middle !important;
+  }
+  .sm\:vertical-align-bottom {
+    vertical-align: bottom !important;
+  }
+  .sm\:vertical-align-text-top {
+    vertical-align: text-top !important;
+  }
+  .sm\:vertical-align-text-bottom {
+    vertical-align: text-bottom !important;
+  }
+  .sm\:vertical-align-sub {
+    vertical-align: sub !important;
+  }
+  .sm\:vertical-align-super {
+    vertical-align: super !important;
+  }
+}
+@media screen and (min-width: 768px) {
+  .md\:vertical-align-baseline {
+    vertical-align: baseline !important;
+  }
+  .md\:vertical-align-top {
+    vertical-align: top !important;
+  }
+  .md\:vertical-align-middle {
+    vertical-align: middle !important;
+  }
+  .md\:vertical-align-bottom {
+    vertical-align: bottom !important;
+  }
+  .md\:vertical-align-text-top {
+    vertical-align: text-top !important;
+  }
+  .md\:vertical-align-text-bottom {
+    vertical-align: text-bottom !important;
+  }
+  .md\:vertical-align-sub {
+    vertical-align: sub !important;
+  }
+  .md\:vertical-align-super {
+    vertical-align: super !important;
+  }
+}
+@media screen and (min-width: 992px) {
+  .lg\:vertical-align-baseline {
+    vertical-align: baseline !important;
+  }
+  .lg\:vertical-align-top {
+    vertical-align: top !important;
+  }
+  .lg\:vertical-align-middle {
+    vertical-align: middle !important;
+  }
+  .lg\:vertical-align-bottom {
+    vertical-align: bottom !important;
+  }
+  .lg\:vertical-align-text-top {
+    vertical-align: text-top !important;
+  }
+  .lg\:vertical-align-text-bottom {
+    vertical-align: text-bottom !important;
+  }
+  .lg\:vertical-align-sub {
+    vertical-align: sub !important;
+  }
+  .lg\:vertical-align-super {
+    vertical-align: super !important;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .xl\:vertical-align-baseline {
+    vertical-align: baseline !important;
+  }
+  .xl\:vertical-align-top {
+    vertical-align: top !important;
+  }
+  .xl\:vertical-align-middle {
+    vertical-align: middle !important;
+  }
+  .xl\:vertical-align-bottom {
+    vertical-align: bottom !important;
+  }
+  .xl\:vertical-align-text-top {
+    vertical-align: text-top !important;
+  }
+  .xl\:vertical-align-text-bottom {
+    vertical-align: text-bottom !important;
+  }
+  .xl\:vertical-align-sub {
+    vertical-align: sub !important;
+  }
+  .xl\:vertical-align-super {
+    vertical-align: super !important;
+  }
+}

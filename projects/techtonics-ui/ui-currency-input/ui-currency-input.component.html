@@ -1,0 +1,60 @@
+<div class="field-container" [hidden]="hidden()">
+  <div class="currency-input" [ngClass]="componentClass()">
+    <span class="symbol">{{ formatter.formatToParts(0).find((p) => p.type === 'currency')?.value }}</span>
+
+    <input
+      #inputEl
+      [id]="name()"
+      [name]="name()"
+      class="ui-input"
+      [value]="display()"
+      [disabled]="disabled()"
+      [min]="min()"
+      [max]="max()"
+      [readOnly]="readonly()"
+      [required]="required()"
+      [class.is-dirty]="dirty()"
+      [class.is-touched]="touched()"
+      [class.is-invalid]="invalid()"
+      [class.is-pending]="pending()"
+      (blur)="onBlur()"
+      (input)="onInput($event.target.value)" />
+
+    <div class="action-cluster">
+      @if (showClear() && !disabled()) {
+        <button type="button" class="clear-btn" (click)="clear()" aria-label="Clear value">x</button>
+      }
+
+      @if (showButtons()) {
+        <div class="step-actions">
+          <button
+            type="button"
+            class="step-btn increment-btn"
+            [disabled]="disabled() || (max() != undefined && value() !== null && value()! >= max()!)"
+            (click)="increment()"
+            [aria-label]="incrementAriaLabel()">
+            ▲
+          </button>
+          <button
+            type="button"
+            class="step-btn decrement-btn"
+            [disabled]="disabled() || (min() != undefined && value() !== null && value()! <= min()!)"
+            (click)="decrement()"
+            [aria-label]="decrementAriaLabel()">
+            ▼
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+  <!-- Validation Error Reporting -->
+  <ui-form-error [errors]="normalizedErrors()" [visible]="shouldShowErrors()"></ui-form-error>
+
+  @if (disabled() && disabledReasons().length) {
+    <div class="disabled-reasons">
+      @for (reason of disabledReasons(); track reason) {
+        <small>{{ reason.message }}</small>
+      }
+    </div>
+  }
+</div>

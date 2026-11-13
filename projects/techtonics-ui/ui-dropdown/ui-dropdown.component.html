@@ -1,0 +1,111 @@
+<div
+  class="dropdown"
+  [class.disabled]="disabled()"
+  [style.--dropdown-anchor-id]="'--anchor-' + dropdownId"
+  [ngClass]="componentClass()"
+  [hidden]="hidden()">
+  <button
+    #dropDownTrigger
+    [id]="name()"
+    [name]="name()"
+    [disabled]="disabled()"
+    class="dropdown-trigger"
+    [class.is-dirty]="dirty()"
+    [class.is-touched]="touched()"
+    [class.is-invalid]="invalid()"
+    [class.is-pending]="pending()"
+    [ariaRequired]="required()"
+    [attr.popovertarget]="dropdownId"
+    [style.anchor-name]="'--anchor-' + dropdownId"
+    (click)="toggle($event)">
+    @if (displayTemplate()) {
+      <span class="display-template">
+        <ng-container
+          [ngTemplateOutlet]="displayTemplate()"
+          [ngTemplateOutletContext]="{ $implicit: value(), disabled: disabled() }">
+        </ng-container
+      ></span>
+    } @else {
+      <span class="display-item">{{ display() }}</span>
+    }
+
+    <div class="action-cluster">
+      @if (showClear() && !disabled()) {
+        <button
+          type="button"
+          class="clear-btn"
+          (click)="clear($event)"
+          [aria-label]="clearAriaLabel()">
+          ×
+        </button>
+      }
+
+      <span class="chevron">▾</span>
+    </div>
+  </button>
+
+  <div
+    class="dropdown-menu"
+    [id]="dropdownId"
+    #dropDownMenu
+    popover
+    [style.position-anchor]="'--anchor-' + dropdownId">
+    @if (showFilter()) {
+      <div class="dropdown-item-container" [class.disabled]="disabled() == true ? true : null">
+        <input
+          class="dropdown-item-input"
+          type="text"
+          [placeholder]="filterPlaceholder()"
+          [value]="filter()"
+          [disabled]="disabled()"
+          (input)="filter.set($event.target.value)" />
+      </div>
+    }
+
+    @if (showCheckboxes() && showSelectAll()) {
+      <div class="dropdown-item-container" [class.disabled]="disabled() == true ? true : null">
+        <input
+          class="select-all-checkbox accessible-checkbox"
+          type="checkbox"
+          (change)="selectAllChanged($event)"
+          [checked]="allSelected()"
+          [disabled]="disabled() == true ? true : null" />
+      </div>
+    }
+    @for (item of filteredItems(); track item) {
+      <div
+        class="dropdown-item-container"
+        [class.disabled]="item.disabled == true ? true : null"
+        (click)="choose($event, item)">
+        @if (showCheckboxes()) {
+          <input
+            class="dropdown-item-checkbox accessible-checkbox"
+            type="checkbox"
+            [checked]="item.selected == true"
+            (change)="itemCheckboxChanged($event, item)"
+            [disabled]="item.disabled == true ? true : null" />
+        }
+        @if (itemTemplate()) {
+          <span class="template-item">
+            <ng-container
+              [ngTemplateOutlet]="itemTemplate()"
+              [ngTemplateOutletContext]="{ $implicit: item, $index }">
+            </ng-container>
+          </span>
+        } @else {
+          <span class="dropdown-item">{{ item.label }}</span>
+        }
+      </div>
+    }
+  </div>
+
+  <ui-form-error [errors]="normalizedErrors()" [visible]="shouldShowErrors()"></ui-form-error>
+
+  @if (disabled() && disabledReasons().length) {
+    <div class="disabled-reasons">
+      @for (reason of disabledReasons(); track reason) {
+        <small>{{ reason.message }}</small>
+      }
+    </div>
+  }
+</div>
