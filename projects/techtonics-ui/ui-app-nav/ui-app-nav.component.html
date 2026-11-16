@@ -105,23 +105,29 @@
   </ul>
 
   <!-- RIGHT: PROFILE MENU -->
-  <div class="nav-right">
-    <button class="profile-button" (click)="toggleProfile()">
-      @if (profileTemplate()) {
-        <ng-container [ngTemplateOutlet]="profileTemplate()"> </ng-container>
-      } @else {
-        <span> {{ profileMenuName() }} </span>
-      }
-    </button>
-
-    @if (openProfile()) {
-      <div class="profile-menu">
-        @for (p of profileItems(); track p.id) {
-          <button [ui-icon]="p.icon" class="profile-item" (click)="onItemClick(p)" (uiClickOutside)="onClickOutside()">
-            {{ p.label }}
-          </button>
+  @if (showProfileMenu()) {
+    <div class="nav-right">
+      <button class="profile-button" (click)="toggleProfile()">
+        @if (profileTemplate()) {
+          <ng-container [ngTemplateOutlet]="profileTemplate()"> </ng-container>
+        } @else {
+          <span> {{ profileMenuName() }} </span>
         }
-      </div>
-    }
-  </div>
+      </button>
+
+      @if (openProfile()) {
+        <div class="profile-menu">
+          @for (p of profileItems(); track p.id) {
+            <button
+              [ui-icon]="p.icon"
+              class="profile-item"
+              (click)="onItemClick(p)"
+              (uiClickOutside)="onClickOutside()">
+              {{ p.label }}
+            </button>
+          }
+        </div>
+      }
+    </div>
+  }
 </nav>

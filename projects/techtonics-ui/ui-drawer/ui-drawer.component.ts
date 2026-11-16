@@ -1,17 +1,18 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   ElementRef,
   HostListener,
   Renderer2,
+  TemplateRef,
   ViewChild,
   contentChild,
   effect,
+  inject,
   input,
   output,
   signal,
-  TemplateRef,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 export type DrawerPosition = 'right' | 'left' | 'top' | 'bottom';
 
@@ -23,6 +24,8 @@ export type DrawerPosition = 'right' | 'left' | 'top' | 'bottom';
   styleUrl: './ui-drawer.component.css',
 })
 export class UIDrawerComponent {
+  private renderer: Renderer2 = inject(Renderer2);
+
   isOpen = input.required<boolean>();
   position = input<DrawerPosition>('right');
   closeOnEscape = input<boolean>(true);
@@ -40,7 +43,7 @@ export class UIDrawerComponent {
   // Controls the assignment of the '.active' CSS class
   isAnimated = signal<boolean>(false);
 
-  constructor(private renderer: Renderer2) {
+  constructor() {
     effect(() => {
       if (this.isOpen()) {
         this.renderer.setStyle(document.body, 'overflow', 'hidden');

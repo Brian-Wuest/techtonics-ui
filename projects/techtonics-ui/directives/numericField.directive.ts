@@ -1,10 +1,12 @@
-import { Directive, ElementRef, HostListener, input } from '@angular/core';
+import { Directive, ElementRef, HostListener, inject, input } from '@angular/core';
 import { FormControlName } from '@angular/forms';
 
 @Directive({
   selector: '[uiNumericField]',
 })
 export class NumericFieldDirective {
+  private readonly formControl: FormControlName = inject(FormControlName);
+  private el: ElementRef = inject(ElementRef);
   uiNumericType = input.required<'int' | 'decimal'>();
   uiMaxValue = input<number>();
   uiMinvalue = input<number>();
@@ -20,11 +22,6 @@ export class NumericFieldDirective {
   };
 
   private current = '';
-
-  constructor(
-    private readonly formControl: FormControlName,
-    private el: ElementRef,
-  ) {}
 
   @HostListener('keydown', ['$event'])
   onKeyDown(event: KeyboardEvent) {
@@ -114,10 +111,7 @@ export class NumericFieldDirective {
       const numericValue = isNegative ? -Number(absValue) : Number(absValue);
       const min = this.uiMinvalue();
 
-      if (
-        min != null &&
-        (currentType == 'int' || (currentType == 'decimal' && numericValue !== 0))
-      ) {
+      if (min != null && (currentType == 'int' || (currentType == 'decimal' && numericValue !== 0))) {
         // Revert value change if the input is lower than the min value.
         if (numericValue < min) {
           this.formControl.control.setValue(this.current);

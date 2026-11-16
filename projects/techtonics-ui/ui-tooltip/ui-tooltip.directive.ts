@@ -38,8 +38,6 @@ export class TooltipDirective implements OnInit, OnDestroy {
   private hideTimeout?: any;
   private observer: IntersectionObserver | null = null;
 
-  constructor() {}
-
   // Event bindings
   @HostListener('mouseenter') onMouseEnter() {
     const tooltipTrigger = this.tooltipTrigger();

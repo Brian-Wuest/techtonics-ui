@@ -8,6 +8,7 @@ import {
   signal,
   TemplateRef,
   output,
+  inject,
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClickOutsideDirective, UIIconInterceptorDirective } from 'techtonics-ui/directives';
@@ -22,7 +23,7 @@ import { NavItem } from './nav-item';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UIAppNavComponent {
-  constructor(private router: Router) {}
+  private router: Router = inject(Router);
 
   readonly items = input<NavItem[]>([]);
 
@@ -31,6 +32,7 @@ export class UIAppNavComponent {
   readonly visible = input<boolean>(true);
   readonly logoTemplate = contentChild<TemplateRef<any> | null>('logo');
 
+  readonly showProfileMenu = input<boolean>(true);
   readonly profileItems = input<NavItem[]>([]);
   readonly profileTemplate = contentChild<TemplateRef<any> | null>('profile');
   readonly profileMenuName = input<string>('Profile');

@@ -12,7 +12,7 @@
   "angularCompilerOptions": {
     "strictTemplates": true,
     "strictInjectionParameters": true,
-    "compilationMode": "partial",
+    "compilationMode": "full",
     "preserveWhitespaces": false
   }
 }

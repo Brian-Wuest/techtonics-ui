@@ -1,4 +1,4 @@
-import { ComponentRef, Directive, effect, ElementRef, input, Renderer2, ViewContainerRef } from '@angular/core';
+import { ComponentRef, Directive, effect, ElementRef, inject, input, Renderer2, ViewContainerRef } from '@angular/core';
 import { NgIcon } from '@ng-icons/core';
 
 @Directive({
@@ -6,17 +6,17 @@ import { NgIcon } from '@ng-icons/core';
   standalone: true,
 })
 export class UIIconInterceptorDirective {
+  private el: ElementRef = inject(ElementRef);
+  private renderer: Renderer2 = inject(Renderer2);
+  private viewContainer: ViewContainerRef = inject(ViewContainerRef);
+
   // Catch the class string passed by the developer (e.g., "ti ti-camera" or "ti-heart")
   icon = input<string | undefined | null>('', { alias: 'ui-icon' });
   iconYPosition = input<'higher' | 'lower' | 'baseline'>('baseline', { alias: 'ui-icon-y-position' });
 
   private iconComponentRef?: ComponentRef<NgIcon>;
 
-  constructor(
-    private el: ElementRef,
-    private renderer: Renderer2,
-    private viewContainer: ViewContainerRef,
-  ) {
+  constructor() {
     effect(() => {
       let iconUpdate = this.icon();
 

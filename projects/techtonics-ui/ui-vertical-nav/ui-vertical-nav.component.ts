@@ -10,6 +10,7 @@ import {
   signal,
   TemplateRef,
   output,
+  inject,
 } from '@angular/core';
 import { UIIconInterceptorDirective } from 'techtonics-ui/directives';
 import { NavItem } from 'techtonics-ui/ui-app-nav';
@@ -24,6 +25,7 @@ import { TooltipDirective } from 'techtonics-ui/ui-tooltip';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UIVerticalNavComponent implements AfterViewInit {
+  private host: ElementRef<HTMLElement> = inject(ElementRef<HTMLElement>);
   readonly items = input<NavItem[]>([]);
   readonly itemTemplate = contentChild<TemplateRef<any> | null>('item');
   readonly groupHeaderTemplate = contentChild<TemplateRef<any> | null>('groupHeader');
@@ -42,8 +44,6 @@ export class UIVerticalNavComponent implements AfterViewInit {
 
   openGroups = signal<Set<string | number>>(new Set());
   openPopoverId = signal<string | number | null>(null);
-
-  constructor(private host: ElementRef<HTMLElement>) {}
 
   ngAfterViewInit() {
     if (this.highlightActive()) {

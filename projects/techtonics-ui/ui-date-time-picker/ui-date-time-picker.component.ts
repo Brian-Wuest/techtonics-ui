@@ -123,7 +123,7 @@ export class UIDateTimePickerComponent implements FormValueControl<Date | null> 
 
   protected weekdays = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 
-  constructor(private elementRef: ElementRef) {
+  constructor() {
     // Sync time signals and string input text when selectedValue updates programmatically
     effect(() => {
       const val = this.value();

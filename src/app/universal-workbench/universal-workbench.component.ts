@@ -5,7 +5,6 @@ import {
   computed,
   effect,
   ElementRef,
-  Inject,
   inject,
   signal,
   TemplateRef,
@@ -15,7 +14,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { ThemeService } from 'techtonics-ui/services';
 import registryData from '../../assets/component-registry.json';
-import { COMPONENT_MAP, MOCK_DATA_REGISTRY, CHILD_TEMPLATE_REGISTRY, EXTRA_DOC_IMPORTS } from '../models/doc-registry';
+import { CHILD_TEMPLATE_REGISTRY, COMPONENT_MAP, EXTRA_DOC_IMPORTS, MOCK_DATA_REGISTRY } from '../models/doc-registry';
 
 interface RegistryInput {
   name: string;
@@ -664,6 +663,7 @@ interface ComponentMeta {
   ],
 })
 export class UniversalWorkbenchComponent {
+  private document: Document = inject(DOCUMENT);
   protected themeService = inject(ThemeService);
   @ViewChild('dynamicHost', { read: ViewContainerRef, static: true }) host!: ViewContainerRef;
   @ViewChild('defaultItemMarkup', { read: TemplateRef, static: true })
@@ -697,7 +697,7 @@ export class UniversalWorkbenchComponent {
     return name.includes('modal') || name.includes('drawer') || name.includes('dialog') || name.includes('popover');
   });
 
-  constructor(@Inject(DOCUMENT) private document: Document) {
+  constructor() {
     // Upgraded binding sync interceptor loop
     effect(() => {
       const currentKnobs = this.knobStates();

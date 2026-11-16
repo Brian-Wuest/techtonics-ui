@@ -18,6 +18,7 @@ A full angular component library with minimal dependencies
   - [Example of a input element implementing every form control option](#example-of-a-input-element-implementing-every-form-control-option)
     - [In a consuming app for error translation, create a bridge class as below](#in-a-consuming-app-for-error-translation-create-a-bridge-class-as-below)
     - [Validation script for when a supported validation key is added but a translation key is missed](#validation-script-for-when-a-supported-validation-key-is-added-but-a-translation-key-is-missed)
+  - [Consuming Techtonics-UI in other applications](#consuming-techtonics-ui-in-other-applications)
 
 ## Development server
 
@@ -475,3 +476,11 @@ Package Json Updates
 }
 
 ```
+
+## Consuming Techtonics-UI in other applications
+
+In `angular.json:
+
+- Add `"preserveSymlinks": true` under `projects.<app-name>.architect.build.options`.
+  - This is to ensure that the components use the consuming application's version of angular instead of the component libary's version.
+- Under `architect.serve.options` add `"prebundle": {"exclude": ["techtonics-ui"]}` so the dev server does not cache state or duplicated dependencies.

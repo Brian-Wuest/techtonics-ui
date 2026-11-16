@@ -6,6 +6,14 @@
   overflow-y: hidden;
 }
 
+.app-shell-columns {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg);
+  overflow-y: hidden;
+}
+
 .app-sidebar {
   width: 180px;
   padding: 1rem 0;

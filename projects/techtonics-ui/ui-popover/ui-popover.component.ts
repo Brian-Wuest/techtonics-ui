@@ -1,5 +1,5 @@
-import { Component, ElementRef, ViewChild, effect, input, output, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, ElementRef, Renderer2, ViewChild, effect, inject, input, output } from '@angular/core';
 import { UIPopoverTriggerDirective } from './ui-popover-trigger.directive';
 
 export type PopoverPosition = 'bottom' | 'top' | 'left' | 'right';
@@ -14,6 +14,7 @@ let instanceIdCounter = 0;
   styleUrl: './ui-popover.component.css',
 })
 export class UIPopoverComponent {
+  private renderer: Renderer2 = inject(Renderer2);
   // --- Inputs ---
   isOpen = input.required<boolean>();
   maxSize = input<string>('400px');
@@ -29,7 +30,7 @@ export class UIPopoverComponent {
 
   protected uniqueAnchorName = `--ui-popover-anchor-${instanceIdCounter++}`;
 
-  constructor(private renderer: Renderer2) {
+  constructor() {
     // Dynamic Anchor linkage alignment pass
     effect(() => {
       const triggerInput = this.triggerElement();
