@@ -19,6 +19,7 @@ A full angular component library with minimal dependencies
     - [In a consuming app for error translation, create a bridge class as below](#in-a-consuming-app-for-error-translation-create-a-bridge-class-as-below)
     - [Validation script for when a supported validation key is added but a translation key is missed](#validation-script-for-when-a-supported-validation-key-is-added-but-a-translation-key-is-missed)
   - [Consuming Techtonics-UI in other applications](#consuming-techtonics-ui-in-other-applications)
+  - [Using the error-translator token](#using-the-error-translator-token)
 
 ## Development server
 
@@ -484,3 +485,86 @@ In `angular.json:
 - Add `"preserveSymlinks": true` under `projects.<app-name>.architect.build.options`.
   - This is to ensure that the components use the consuming application's version of angular instead of the component libary's version.
 - Under `architect.serve.options` add `"prebundle": {"exclude": ["techtonics-ui"]}` so the dev server does not cache state or duplicated dependencies.
+
+## Using the error-translator token
+
+Create an service which implements the `HttpErrorTranslator` interface.
+
+This is a simple example, you might want to look for more/other status codes or do other things.
+
+```TypeScript
+import { HttpErrorResponse } from '@angular/common/http';
+import { inject, Service } from '@angular/core';
+import { TranslocoService } from '@jsverse/transloco';
+import { HttpErrorTranslator } from 'techtonics-ui/interceptors';
+import { translationKeys } from '../common/translateKeys';
+
+@Service()
+export class ErrorTranslatorService implements HttpErrorTranslator {
+  private translateService = inject(TranslocoService);
+  private translateKeys = translationKeys;
+
+  translate(
+    status: number,
+    defaultMessage: string,
+    serverMessage?: string,
+    serverError?: HttpErrorResponse,
+  ): string {
+    let message = translationKeys.ErrorMessages.DefaultHttpError;
+    let translateMessage = true;
+
+    if (status === 0) {
+      message = translationKeys.ErrorMessages.GeneralNetworkError;
+    } else if (status === 401) {
+      message = translationKeys.ErrorMessages.SessionExpired;
+    } else if (status === 403) {
+      message = translationKeys.ErrorMessages.Unauthorized;
+    } else if (status === 404) {
+      message = translationKeys.ErrorMessages.NotFound;
+    } else if (serverError?.error?.message) {
+      // Use a backend-provided error message if available
+      message = serverError.error.message;
+
+      translateMessage = false;
+    }
+
+    if (translateMessage) {
+      message = this.translateService.translate(message);
+    }
+
+    return message;
+  }
+}
+
+```
+
+Provide the token on your `app.config.ts`
+
+```Typescript
+    {
+      provide: HTTP_ERROR_TRANSLATOR,
+      useValue: ErrorTranslatorService,
+    },
+     provideHttpClient(withInterceptors([loadingInterceptor, errorNotificationInterceptor])),
+```
+
+Add the `<ui-toast-container>` to your main html document (generally app.html). This way toasts are always at the top.
+
+```HTML
+<div class="app-shell-columns">
+  <ui-app-nav
+    [items]="mainItems()"
+    (itemClick)="navItemClicked($event)"
+    [logo]="this.title()"
+    [showProfileMenu]="false"
+  ></ui-app-nav>
+  <main class="app-main">
+    <ui-toast-container></ui-toast-container>
+    <router-outlet></router-outlet>
+  </main>
+</div>
+
+```
+
+Now with this, any http error encountered when running the application will be captured by your service and you can show the appropriate message based on the context of the error and show it regardless of the component which created the issue in the first place.
+This also give you complete control within your consuming application as the interceptor will NOT show a toast notification if you end up returning null or an empty string. By returning null/empty you can determine which exceptions do not really need to be presented to the user.
