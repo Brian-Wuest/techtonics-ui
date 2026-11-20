@@ -1,0 +1,8 @@
+.field-container {
+  display: inline-block;
+}
+
+.checkbox-label {
+  position: relative;
+  top: 2px;
+}

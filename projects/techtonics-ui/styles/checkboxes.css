@@ -46,7 +46,8 @@
     }
   }
 
-  &:hover:not(:disabled) {
+  &:hover:not(:disabled),
+  &:not(:disabled):has(~ .checkbox-label:hover) {
     border-color: var(--ui-indigo-300);
   }
 }

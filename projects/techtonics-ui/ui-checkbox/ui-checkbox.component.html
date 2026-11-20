@@ -18,7 +18,7 @@
     [attr.aria-label]="ariaLabel()" />
 
   @if (currentLabel && currentLabel.trim() != '') {
-    <label class="ml-3">{{ currentLabel }}</label>
+    <label class="checkbox-label ml-3" (click)="changeHandler($event)">{{ currentLabel }}</label>
   }
   <ui-form-error [errors]="normalizedErrors()" [visible]="shouldShowErrors()"></ui-form-error>
 
