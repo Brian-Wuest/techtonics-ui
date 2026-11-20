@@ -117,3 +117,5 @@ The following are the UI components which need to have form control capabilities
   ╪ - Update tab to use `ui-icon` directive when the tab item is using an icon.
 ╪ - Add a "Color Input" component
 ╪ - Add `Dark Mode` toggle component. Since we use dark mode a lot here, it makes sense to add a component specific for this purpose.
+- Add `Footer` and `Header` elements.
+  - `Header` is different from App-Nav in that it is just there to show up at the top of thte screen (or it's container).
