@@ -544,7 +544,7 @@ Provide the token on your `app.config.ts`
 ```Typescript
     {
       provide: HTTP_ERROR_TRANSLATOR,
-      useValue: ErrorTranslatorService,
+      useFactory: () => new ErrorTranslatorService(),
     },
      provideHttpClient(withInterceptors([loadingInterceptor, errorNotificationInterceptor])),
 ```
