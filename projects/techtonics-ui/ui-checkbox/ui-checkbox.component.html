@@ -1,16 +1,17 @@
 @let currentLabel = label();
 
-<div class="field-container" [hidden]="hidden()">
+<div class="field-container" [hidden]="hidden()" [ngClass]="componentClass()">
   <input
     #inputEl
     [id]="name()"
-    [name]="actualName()"
+    [attr.name]="actualName()"
     type="checkbox"
     [disabled]="disabled()"
     class="accessible-checkbox"
     [checked]="checked()"
     [required]="required()"
     (change)="changeHandler($event)"
+    [class.checked]="checked()"
     [class.is-dirty]="dirty()"
     [class.is-touched]="touched()"
     [class.is-invalid]="invalid()"
@@ -18,7 +19,9 @@
     [attr.aria-label]="ariaLabel()" />
 
   @if (currentLabel && currentLabel.trim() != '') {
-    <label class="checkbox-label ml-3" (click)="changeHandler($event)">{{ currentLabel }}</label>
+    <label class="checkbox-label ml-3" [class.checked]="checked()" (click)="changeHandler($event)">{{
+      currentLabel
+    }}</label>
   }
   <ui-form-error [errors]="normalizedErrors()" [visible]="shouldShowErrors()"></ui-form-error>
 

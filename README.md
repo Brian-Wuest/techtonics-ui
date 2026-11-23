@@ -20,6 +20,7 @@ A full angular component library with minimal dependencies
     - [Validation script for when a supported validation key is added but a translation key is missed](#validation-script-for-when-a-supported-validation-key-is-added-but-a-translation-key-is-missed)
   - [Consuming Techtonics-UI in other applications](#consuming-techtonics-ui-in-other-applications)
   - [Using the error-translator token](#using-the-error-translator-token)
+  - [CSS Gotcha's](#css-gotchas)
 
 ## Development server
 
@@ -568,3 +569,15 @@ Add the `<ui-toast-container>` to your main html document (generally app.html). 
 
 Now with this, any http error encountered when running the application will be captured by your service and you can show the appropriate message based on the context of the error and show it regardless of the component which created the issue in the first place.
 This also give you complete control within your consuming application as the interceptor will NOT show a toast notification if you end up returning null or an empty string. By returning null/empty you can determine which exceptions do not really need to be presented to the user.
+
+## CSS Gotcha's
+
+- Do NOT use nested selectors in certain circumstances.
+  - For `:host`, `::ng-deep`, `:host-context`, or similar angular-specific selectors. These cannot be nested in most cases because it doesn't scope like you expect. This is especially true for `ng-deep` as it won't strip out the component specific attribute selector!
+  - Instead you MUST write your overrides like this:
+
+```css
+:host div.complete-item ::ng-deep .checked {
+  text-decoration: line-through;
+}
+```

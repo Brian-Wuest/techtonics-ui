@@ -27,11 +27,12 @@ import { UIFormErrorComponent } from 'techtonics-ui/ui-form-error';
   templateUrl: './ui-checkbox.component.html',
   styleUrls: ['./ui-checkbox.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule, ReactiveFormsModule, UIFormErrorComponent],
+  imports: [FormsModule, ReactiveFormsModule, UIFormErrorComponent, NgClass],
 })
 export class UICheckboxComponent implements FormCheckboxControl {
   readonly label = input<string>();
   readonly ariaLabel = input<string>();
+  readonly componentClass = input<string | undefined>(undefined);
 
   readonly name = input<string>('');
   readonly touched = input<boolean>(false);
