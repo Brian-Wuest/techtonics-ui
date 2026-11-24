@@ -2,8 +2,8 @@
   <div class="spinner-frame" [class.disabled]="disabled()" [ngClass]="componentClass()">
     <input
       #spinnerInput
-      [id]="name()"
-      [name]="name()"
+      [attr.id]="name()"
+      [attr.name]="name()"
       type="text"
       [disabled]="disabled()"
       [readOnly]="readonly()"
@@ -26,9 +26,7 @@
 
     <div class="action-cluster">
       @if (showClear() && !disabled()) {
-        <button type="button" class="clear-btn" (click)="clear()" [aria-label]="clearAriaLabel()">
-          ×
-        </button>
+        <button type="button" class="clear-btn" (click)="clear()" [aria-label]="clearAriaLabel()">×</button>
       }
 
       @if (showButtons()) {
@@ -36,9 +34,7 @@
           <button
             type="button"
             class="step-btn increment-btn"
-            [disabled]="
-              disabled() || (max() != undefined && value() !== null && value()! >= max()!)
-            "
+            [disabled]="disabled() || (max() != undefined && value() !== null && value()! >= max()!)"
             (click)="increment()"
             [aria-label]="incrementAriaLabel()">
             ▲
@@ -46,9 +42,7 @@
           <button
             type="button"
             class="step-btn decrement-btn"
-            [disabled]="
-              disabled() || (min() != undefined && value() !== null && value()! <= min()!)
-            "
+            [disabled]="disabled() || (min() != undefined && value() !== null && value()! <= min()!)"
             (click)="decrement()"
             [aria-label]="decrementAriaLabel()">
             ▼

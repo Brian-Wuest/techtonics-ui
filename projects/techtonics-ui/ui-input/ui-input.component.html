@@ -14,16 +14,14 @@
   <div class="input-frame" [ngClass]="componentClass()">
     @if (preInputTemplate()) {
       <div class="ui-input-prefix-cluster">
-        <ng-container
-          [ngTemplateOutlet]="preInputTemplate()"
-          [ngTemplateOutletContext]="{ $implicit: display() }">
+        <ng-container [ngTemplateOutlet]="preInputTemplate()" [ngTemplateOutletContext]="{ $implicit: display() }">
         </ng-container>
       </div>
     }
     <input
       #inputEl
-      [id]="name()"
-      [name]="name()"
+      [attr.id]="name()"
+      [attr.name]="name()"
       [type]="type()"
       [disabled]="disabled()"
       [attr.minLength]="minLength() == null ? null : minLength()"
@@ -43,9 +41,7 @@
 
     @if (showClear() && !disabled()) {
       <div class="action-cluster">
-        <button type="button" class="clear-btn" (click)="clear()" [aria-label]="clearAriaLabel()">
-          ×
-        </button>
+        <button type="button" class="clear-btn" (click)="clear()" [aria-label]="clearAriaLabel()">×</button>
       </div>
     }
   </div>

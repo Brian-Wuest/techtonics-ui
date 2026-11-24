@@ -3,7 +3,7 @@
 <div class="field-container" [hidden]="hidden()" [ngClass]="componentClass()">
   <input
     #inputEl
-    [id]="name()"
+    [attr.id]="name()"
     [attr.name]="actualName()"
     type="checkbox"
     [disabled]="disabled()"

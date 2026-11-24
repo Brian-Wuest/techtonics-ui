@@ -12,34 +12,25 @@
 
   <div
     #viewport
-    [id]="id()"
+    [attr.id]="id()"
     class="tree-native-viewport"
     [ngClass]="componentClass()"
     [style.height.px]="isFluidLayout() ? null : calculatedViewportHeight()"
     (scroll)="onViewportScroll($event)">
     <!-- Large structural empty track height pushing scrollbars out to accurate metrics -->
     <div class="tree-scroll-runway" [style.height.px]="virtualRenderState().totalHeight">
-      <ul [id]="id()" class="tree-root-list" tabindex="0" (keydown)="onKeydown($event)">
+      <ul [attr.id]="id()" class="tree-root-list" tabindex="0" (keydown)="onKeydown($event)">
         @for (row of virtualRenderState().renderedNodes; track trackById($index, row)) {
-          <li
-            class="tree-node"
-            [style.height.px]="rowHeight()"
-            [style.top.px]="row.virtualIndex * rowHeight()">
+          <li class="tree-node" [style.height.px]="rowHeight()" [style.top.px]="row.virtualIndex * rowHeight()">
             <div
               class="node-row"
               [class.selected]="isSelected(row.node.id)"
               [class.focused]="focusedNodeId() === row.node.id"
               [class.invalid-drop]="treeInvalidDropTargetId() === row.node.id"
               [class.drag-over]="dragOverNodeId() === row.node.id"
-              [class.drop-above]="
-                dragOverNodeId() === row.node.id && dragOverPosition() === 'above'
-              "
-              [class.drop-inside]="
-                dragOverNodeId() === row.node.id && dragOverPosition() === 'inside'
-              "
-              [class.drop-below]="
-                dragOverNodeId() === row.node.id && dragOverPosition() === 'below'
-              "
+              [class.drop-above]="dragOverNodeId() === row.node.id && dragOverPosition() === 'above'"
+              [class.drop-inside]="dragOverNodeId() === row.node.id && dragOverPosition() === 'inside'"
+              [class.drop-below]="dragOverNodeId() === row.node.id && dragOverPosition() === 'below'"
               [attr.draggable]="useDragDrop() ? true : null"
               (dragstart)="onDragStart(row.node, $event)"
               (dragover)="onDragOver(row.node, $event)"
@@ -49,9 +40,7 @@
               <span class="indent-spacer" [style.width.rem]="row.node.level * 1.25"></span>
 
               @if (row.node.expandable) {
-                <button
-                  class="expander"
-                  (click)="toggleExpand(row.node.id); $event.stopPropagation()">
+                <button class="expander" (click)="toggleExpand(row.node.id); $event.stopPropagation()">
                   {{ isExpanded(row.node) ? '▾' : '▸' }}
                 </button>
               } @else {

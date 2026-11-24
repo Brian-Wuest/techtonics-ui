@@ -6,8 +6,8 @@
   [hidden]="hidden()">
   <button
     #dropDownTrigger
-    [id]="name()"
-    [name]="name()"
+    [attr.id]="name()"
+    [attr.name]="name()"
     [disabled]="disabled()"
     class="dropdown-trigger"
     [class.is-dirty]="dirty()"
@@ -31,25 +31,14 @@
 
     <div class="action-cluster">
       @if (showClear() && !disabled()) {
-        <button
-          type="button"
-          class="clear-btn"
-          (click)="clear($event)"
-          [aria-label]="clearAriaLabel()">
-          ×
-        </button>
+        <button type="button" class="clear-btn" (click)="clear($event)" [aria-label]="clearAriaLabel()">×</button>
       }
 
       <span class="chevron">▾</span>
     </div>
   </button>
 
-  <div
-    class="dropdown-menu"
-    [id]="dropdownId"
-    #dropDownMenu
-    popover
-    [style.position-anchor]="'--anchor-' + dropdownId">
+  <div class="dropdown-menu" [id]="dropdownId" #dropDownMenu popover [style.position-anchor]="'--anchor-' + dropdownId">
     @if (showFilter()) {
       <div class="dropdown-item-container" [class.disabled]="disabled() == true ? true : null">
         <input
@@ -87,9 +76,7 @@
         }
         @if (itemTemplate()) {
           <span class="template-item">
-            <ng-container
-              [ngTemplateOutlet]="itemTemplate()"
-              [ngTemplateOutletContext]="{ $implicit: item, $index }">
+            <ng-container [ngTemplateOutlet]="itemTemplate()" [ngTemplateOutletContext]="{ $implicit: item, $index }">
             </ng-container>
           </span>
         } @else {

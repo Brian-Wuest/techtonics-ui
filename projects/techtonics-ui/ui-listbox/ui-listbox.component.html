@@ -1,7 +1,7 @@
 <div class="field-container" [hidden]="hidden()">
   <div
     #inputEl
-    [id]="name()"
+    [attr.id]="name()"
     class="listbox"
     [ngClass]="componentClass()"
     [class.is-dirty]="dirty()"
