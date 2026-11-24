@@ -9,7 +9,6 @@ A full angular component library with minimal dependencies
   - [Running unit tests](#running-unit-tests)
   - [Running end-to-end tests](#running-end-to-end-tests)
   - [Additional Resources](#additional-resources)
-  - [Tabler icons](#tabler-icons)
   - [How to review size of the library](#how-to-review-size-of-the-library)
   - [Create entry point files](#create-entry-point-files)
   - [How consume in other applications (repositories)](#how-consume-in-other-applications-repositories)
@@ -78,30 +77,15 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
-## Tabler icons
-
-Note: Whnever tabler icons gets an update and we update the package, we need to manually update the `tabler-icons-override.css` file with the latest from
-`node_modules\@tabler\icons-webfont\dist\tabler-icons.css`. Make sure to remove the font-face at the top since we are directly pulling in the font-face in index.html.
-
-Also make sure to copy the `woff2` file from: `node_modules\@tabler\icons-webfont\dist\fonts\tabler-icons.woff2` and place in the `src/assets/fonts` folder.
-
-This is all so we have the smallest resulting package for this project as well as for our component library!
-
 ## How to review size of the library
 
 Build the library using the following command:
 
 ```shell
-npm run build:shared:prod
+npm run build:prod-stats
 ```
 
-Next run the following command to run the source-map-explorer, if you don't already have this installed, it will prompt you to be installed.
-
-```shell
-
-npx source-map-explorer "C:\_src\the_todoer\client_angular\dist\techtonics-ui\fesm2022\techtonics-ui.mjs" --no-border-checks
-
-```
+Then go to: <https://esbuild.github.io/analyze/>
 
 ## Create entry point files
 
