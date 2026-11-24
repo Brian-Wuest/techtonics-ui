@@ -18,7 +18,7 @@
   z-index: var(--z-modal);
 
   &.x-small {
-    max-width: 30vw;
+    max-width: 35vw;
     max-height: 35vh;
   }
 

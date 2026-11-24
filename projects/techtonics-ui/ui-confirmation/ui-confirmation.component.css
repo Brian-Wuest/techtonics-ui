@@ -1,0 +1,9 @@
+:host ::ng-deep .modal-close {
+  margin-bottom: 0.75rem;
+}
+
+.message-content {
+  min-height: 3rem;
+  max-height: 13rem;
+  overflow-y: auto;
+}

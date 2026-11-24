@@ -1,0 +1,24 @@
+@if (confirmService.state(); as modal) {
+  <ui-modal [closeOnBackdropClick]="true" [size]="'x-small'" [open]="isModalOpen()" (close)="this.onModalClose()">
+    <h3 modal-title>{{ modal.title }}</h3>
+
+    <div modal-body class="modal-body mb-3">
+      @if (isTemplate(modal.message)) {
+        <ng-container [ngTemplateOutlet]="modal.message" />
+      } @else {
+        <div class="message-content" [innerHTML]="modal.message"></div>
+      }
+    </div>
+
+    <div modal-footer>
+      @for (btn of modal.buttons; track btn.label) {
+        <ui-button
+          class="footer-button ml-2"
+          [color]="btn.variant ?? 'primary'"
+          (click)="confirmService.close(btn.value)"
+          >{{ btn.label }}</ui-button
+        >
+      }
+    </div>
+  </ui-modal>
+}

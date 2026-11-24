@@ -41,6 +41,8 @@ import { UIToggleComponent } from 'techtonics-ui/ui-toggle';
 import { TooltipDirective } from 'techtonics-ui/ui-tooltip';
 import { TreeNode, UITreeViewComponent } from 'techtonics-ui/ui-tree-view';
 import { UIVerticalNavComponent } from 'techtonics-ui/ui-vertical-nav';
+import { UIConfirmationComponent, ConfirmService } from 'techtonics-ui/ui-confirmation';
+import { firstValueFrom, of } from 'rxjs';
 
 interface FormPayload {
   lastUpdated: Date;
@@ -50,6 +52,13 @@ interface FormPayload {
 interface IconData {
   randomOtherString: string;
   iconClass: string;
+}
+
+interface Project {
+  name: string;
+  dateEnd: Date;
+  budget: number;
+  id: string;
 }
 
 enum NotificationPreference {
@@ -116,6 +125,7 @@ interface MyCustomAccordionData {
     UIIconInterceptorDirective,
     UIColorPickerComponent,
     UIThemeToggleComponent,
+    UIConfirmationComponent,
   ],
   templateUrl: './ui-docs.component.html',
   styleUrls: ['./ui-docs.component.css'],
@@ -1532,6 +1542,35 @@ export class UIDocsComponent implements OnInit {
       validators: [reactiveFormsContrastValidator('textColor', 'primaryColor', 4.5)],
     },
   );
+
+  //#endregion
+
+  //#region Confirmation Modal
+
+  confirmService = inject(ConfirmService);
+
+  primaryProject = {
+    budget: 50_233_231,
+    dateEnd: new Date('05/17/2027'),
+    id: 'abc123',
+    name: 'The Ultimate Project',
+  } as Project;
+
+  async deleteItem(item: Project): Promise<void> {
+    const confirmed = await this.confirmService.open({
+      title: 'Delete Project',
+      message: `Delete <strong>${item.name}</strong>? This cannot be undone.`,
+      buttons: [
+        { label: 'Keep', value: false, variant: 'secondary' },
+        { label: 'Delete', value: true, variant: 'error' },
+      ],
+    });
+
+    if (confirmed) {
+      console.warn('Deleting project', item);
+      await firstValueFrom(of(item.id));
+    }
+  }
 
   //#endregion
 }
