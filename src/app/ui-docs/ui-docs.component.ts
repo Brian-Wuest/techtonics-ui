@@ -1558,10 +1558,10 @@ export class UIDocsComponent implements OnInit {
   async deleteItem(item: Project): Promise<void> {
     const confirmed = await this.confirmService.open({
       title: 'Delete Project',
-      message: `Delete <strong>${item.name}</strong>? This cannot be undone.`,
+      message: `Delete <strong>${item.name}</strong>?<br/>This cannot be undone.`,
       buttons: [
-        { label: 'Keep', value: false, variant: 'secondary' },
-        { label: 'Delete', value: true, variant: 'error' },
+        { label: 'Keep', value: false, color: 'secondary', variant: 'outline' },
+        { label: 'Delete', value: true, color: 'error' },
       ],
     });
 
@@ -1569,6 +1569,19 @@ export class UIDocsComponent implements OnInit {
       console.warn('Deleting project', item);
       await firstValueFrom(of(item.id));
     }
+  }
+
+  async reallyLongDialog(): Promise<void> {
+    const confirmed = await this.confirmService.open({
+      title: 'Are you sure?',
+      message: `This is a really long explaination...<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>Okay?`,
+      buttons: [
+        { label: 'Sure...', value: false, color: 'success', variant: 'outline' },
+        { label: 'Cancel', value: true, color: 'info' },
+      ],
+    });
+
+    console.warn('Response for really long thing', confirmed);
   }
 
   //#endregion

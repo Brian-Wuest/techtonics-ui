@@ -41,8 +41,8 @@ export class ConfirmService {
         message: options.message,
         closeOnBackdrop: options.closeOnBackdrop ?? true,
         buttons: options.buttons ?? [
-          { label: 'Cancel', value: false as T, variant: 'secondary' },
-          { label: 'Confirm', value: true as T, variant: 'primary' },
+          { label: 'Cancel', value: false as T, color: 'secondary' },
+          { label: 'Confirm', value: true as T, color: 'primary' },
         ],
         resolve,
       });

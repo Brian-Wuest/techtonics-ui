@@ -41,6 +41,10 @@
     max-width: 95vw;
     max-height: 95vh;
   }
+
+  &:focus-visible {
+    outline: none;
+  }
 }
 
 .modal-header {

@@ -3,7 +3,8 @@ import { TemplateRef } from '@angular/core';
 export interface ConfirmButton<T = boolean> {
   label: string;
   value: T;
-  variant?: 'primary' | 'secondary' | 'error';
+  color?: 'primary' | 'success' | 'warning' | 'error' | 'info' | 'secondary';
+  variant?: 'solid' | 'outline' | 'ghost';
 }
 
 export interface ConfirmOptions<T = boolean> {

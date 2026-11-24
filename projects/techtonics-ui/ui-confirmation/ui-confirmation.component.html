@@ -14,7 +14,8 @@
       @for (btn of modal.buttons; track btn.label) {
         <ui-button
           class="footer-button ml-2"
-          [color]="btn.variant ?? 'primary'"
+          [color]="btn.color ?? 'primary'"
+          [variant]="btn.variant ?? 'solid'"
           (click)="confirmService.close(btn.value)"
           >{{ btn.label }}</ui-button
         >
