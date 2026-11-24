@@ -2,6 +2,7 @@ import { JsonPipe, NgClass, UpperCasePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { form, FormField, FormRoot, minLength, required } from '@angular/forms/signals';
+import { firstValueFrom, of } from 'rxjs';
 import { UIIconInterceptorDirective } from 'techtonics-ui/directives/iconInterceptor.directive';
 import { LoaderService, ThemeService, ToastService } from 'techtonics-ui/services';
 import { AccordionModel, UIAccordionComponent } from 'techtonics-ui/ui-accordion';
@@ -16,6 +17,7 @@ import {
   signalFormsContrastValidator,
   UIColorPickerComponent,
 } from 'techtonics-ui/ui-color-picker';
+import { ConfirmService } from 'techtonics-ui/ui-confirmation';
 import { UICurrencyInputComponent } from 'techtonics-ui/ui-currency-input';
 import { UIDataGridComponent, UIGridColumnComponent } from 'techtonics-ui/ui-data-grid';
 import { UIDateTimePickerComponent } from 'techtonics-ui/ui-date-time-picker';
@@ -41,8 +43,6 @@ import { UIToggleComponent } from 'techtonics-ui/ui-toggle';
 import { TooltipDirective } from 'techtonics-ui/ui-tooltip';
 import { TreeNode, UITreeViewComponent } from 'techtonics-ui/ui-tree-view';
 import { UIVerticalNavComponent } from 'techtonics-ui/ui-vertical-nav';
-import { UIConfirmationComponent, ConfirmService } from 'techtonics-ui/ui-confirmation';
-import { firstValueFrom, of } from 'rxjs';
 
 interface FormPayload {
   lastUpdated: Date;
@@ -125,7 +125,6 @@ interface MyCustomAccordionData {
     UIIconInterceptorDirective,
     UIColorPickerComponent,
     UIThemeToggleComponent,
-    UIConfirmationComponent,
   ],
   templateUrl: './ui-docs.component.html',
   styleUrls: ['./ui-docs.component.css'],
